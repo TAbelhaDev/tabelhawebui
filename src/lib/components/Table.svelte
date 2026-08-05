@@ -10,7 +10,7 @@
 	}: {
 		columns?: string[];
 		rows?: Array<Record<string, unknown>>;
-		cell?: (row: Record<string, unknown>, key: string) => Snippet;
+		cell?: Snippet<[row: Record<string, unknown>, key: string]>;
 		children?: Snippet;
 		class?: string;
 	} = $props();
@@ -33,7 +33,7 @@
 					{#each columns as col}
 						<td>
 							{#if cell}
-								{@render cell(row, col)()}
+								{@render cell(row, col)}
 							{:else}
 								{String(row[col] ?? '')}
 							{/if}
