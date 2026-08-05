@@ -2,15 +2,17 @@
 	import type { Snippet } from 'svelte';
 
 	let {
+		variant = 'default',
 		children,
 		class: className = ''
 	}: {
+		variant?: 'default' | 'secondary' | 'outline';
 		children: Snippet;
 		class?: string;
 	} = $props();
 </script>
 
-<span class="twui-badge {className}">
+<span class="twui-badge twui-badge-{variant} {className}">
 	{@render children()}
 </span>
 
@@ -24,5 +26,16 @@
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 		line-height: 1.4;
+	}
+
+	.twui-badge-secondary {
+		background: var(--twui-rule);
+		color: var(--twui-ink);
+	}
+
+	.twui-badge-outline {
+		border-color: var(--twui-ink-soft);
+		background: transparent;
+		color: var(--twui-ink);
 	}
 </style>

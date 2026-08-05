@@ -32,6 +32,28 @@
     );
     --twui-danger: #d20f39;
 
+    /* Fontes */
+    --twui-font-mono:
+      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --twui-font-serif: "Newsreader", ui-serif, Georgia, serif;
+
+    /* Sombra "impressa" (hard offset) — popover/toast/dropdown */
+    --twui-shadow-offset: 3px 3px 0 0 var(--twui-rule);
+
+    /* Catppuccin Latte — escala completa */
+    --twui-latte-base: #eff1f5;
+    --twui-latte-mantle: #e6e9ef;
+    --twui-latte-crust: #dce0e8;
+    --twui-latte-surface0: #ccd0da;
+    --twui-latte-surface1: #bcc0cc;
+    --twui-latte-surface2: #acb0be;
+    --twui-latte-overlay0: #9ca0b0;
+    --twui-latte-overlay1: #8c8fa1;
+    --twui-latte-overlay2: #7c7f93;
+    --twui-latte-subtext0: #6c6f85;
+    --twui-latte-subtext1: #5c5f77;
+    --twui-latte-text: #4c4f69;
+
     /* Catppuccin Latte cru (pra gráficos, badges, etc.) */
     --twui-latte-rosewater: #dc8a78;
     --twui-latte-flamingo: #dd7878;
@@ -71,6 +93,20 @@
     );
     --twui-danger: #f38ba8;
 
+    /* Catppuccin Mocha — escala completa */
+    --twui-mocha-base: #1e1e2e;
+    --twui-mocha-mantle: #181825;
+    --twui-mocha-crust: #11111b;
+    --twui-mocha-surface0: #313244;
+    --twui-mocha-surface1: #45475a;
+    --twui-mocha-surface2: #585b70;
+    --twui-mocha-overlay0: #6c7086;
+    --twui-mocha-overlay1: #7f849c;
+    --twui-mocha-overlay2: #9399b2;
+    --twui-mocha-subtext0: #a6adc8;
+    --twui-mocha-subtext1: #bac2de;
+    --twui-mocha-text: #cdd6f4;
+
     /* Catppuccin Mocha cru */
     --twui-mocha-rosewater: #f5e0dc;
     --twui-mocha-flamingo: #f2cdcd;
@@ -93,6 +129,19 @@
 	   ativo é responsabilidade do app (ou do componente que conhece o tema). */
   :root,
   [data-theme="light"] {
+    --twui-base: var(--twui-latte-base);
+    --twui-mantle: var(--twui-latte-mantle);
+    --twui-crust: var(--twui-latte-crust);
+    --twui-surface0: var(--twui-latte-surface0);
+    --twui-surface1: var(--twui-latte-surface1);
+    --twui-surface2: var(--twui-latte-surface2);
+    --twui-overlay0: var(--twui-latte-overlay0);
+    --twui-overlay1: var(--twui-latte-overlay1);
+    --twui-overlay2: var(--twui-latte-overlay2);
+    --twui-subtext0: var(--twui-latte-subtext0);
+    --twui-subtext1: var(--twui-latte-subtext1);
+    --twui-text: var(--twui-latte-text);
+
     --twui-rosewater: var(--twui-latte-rosewater);
     --twui-flamingo: var(--twui-latte-flamingo);
     --twui-pink: var(--twui-latte-pink);
@@ -111,6 +160,19 @@
 
   [data-theme="dark"],
   .dark {
+    --twui-base: var(--twui-mocha-base);
+    --twui-mantle: var(--twui-mocha-mantle);
+    --twui-crust: var(--twui-mocha-crust);
+    --twui-surface0: var(--twui-mocha-surface0);
+    --twui-surface1: var(--twui-mocha-surface1);
+    --twui-surface2: var(--twui-mocha-surface2);
+    --twui-overlay0: var(--twui-mocha-overlay0);
+    --twui-overlay1: var(--twui-mocha-overlay1);
+    --twui-overlay2: var(--twui-mocha-overlay2);
+    --twui-subtext0: var(--twui-mocha-subtext0);
+    --twui-subtext1: var(--twui-mocha-subtext1);
+    --twui-text: var(--twui-mocha-text);
+
     --twui-rosewater: var(--twui-mocha-rosewater);
     --twui-flamingo: var(--twui-mocha-flamingo);
     --twui-pink: var(--twui-mocha-pink);
@@ -129,6 +191,24 @@
 }
 
 @layer twui-base {
+  html {
+    background-color: var(--twui-paper);
+    color-scheme: light;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--twui-paper);
+    color: var(--twui-ink);
+    font-family: var(--twui-font-serif);
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+
   ::selection {
     background-color: var(--twui-accent);
     color: var(--twui-paper);
@@ -140,5 +220,14 @@
     outline: 2px solid var(--twui-accent);
     outline-offset: 3px;
     border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

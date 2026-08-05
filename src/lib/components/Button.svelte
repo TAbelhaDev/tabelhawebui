@@ -1,21 +1,48 @@
+<script module lang="ts">
+	export type ButtonVariant = 'default' | 'primary' | 'ghost' | 'danger' | 'outline';
+	export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon-sm';
+
+	// Função de classes pra uso onde não cabe um <Button> real (ex. <span> decorativo).
+	export function buttonVariants(
+		opts: { variant?: ButtonVariant; size?: ButtonSize } = {}
+	): string {
+		const { variant = 'default', size = 'default' } = opts;
+		return `twui-button twui-button-${variant} twui-button-${size}`;
+	}
+</script>
+
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 
 	let {
 		variant = 'default',
+		size = 'default',
+		href,
 		children,
 		class: className = '',
 		...rest
 	}: {
-		variant?: 'default' | 'primary' | 'ghost' | 'danger';
+		variant?: ButtonVariant;
+		size?: ButtonSize;
+		href?: string;
 		children: Snippet;
 		class?: string;
-	} & import('svelte/elements').HTMLButtonAttributes = $props();
+	} & HTMLButtonAttributes & HTMLAnchorAttributes = $props();
 </script>
 
-<button class="twui-button twui-button-{variant} {className}" {...rest}>
-	{@render children()}
-</button>
+{#if href}
+	<a href={href} class="twui-button twui-button-{variant} twui-button-{size} {className}" {...rest}>
+		{@render children()}
+	</a>
+{:else}
+	<button
+		class="twui-button twui-button-{variant} twui-button-{size} {className}"
+		{...rest}
+	>
+		{@render children()}
+	</button>
+{/if}
 
 <style>
 	.twui-button {
@@ -29,6 +56,7 @@
 		font-size: 14px;
 		color: var(--twui-ink);
 		cursor: pointer;
+		text-decoration: none;
 		transition:
 			background-color 0.15s ease,
 			color 0.15s ease,
@@ -42,6 +70,22 @@
 	.twui-button:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	.twui-button-sm {
+		padding: 4px 12px;
+		font-size: 13px;
+	}
+
+	.twui-button-lg {
+		padding: 8px 24px;
+		font-size: 14px;
+	}
+
+	.twui-button-icon-sm {
+		width: 28px;
+		height: 28px;
+		padding: 0;
 	}
 
 	.twui-button-primary {
@@ -74,5 +118,15 @@
 	.twui-button-danger:hover:not(:disabled) {
 		background: var(--twui-danger);
 		color: var(--twui-paper);
+	}
+
+	.twui-button-outline {
+		border-color: var(--twui-ink-soft);
+		color: var(--twui-ink);
+	}
+
+	.twui-button-outline:hover:not(:disabled) {
+		background: var(--twui-accent-soft);
+		color: var(--twui-accent);
 	}
 </style>
