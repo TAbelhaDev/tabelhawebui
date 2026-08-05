@@ -1,0 +1,37 @@
+{
+  "name": "tabelawebui",
+  "version": "0.1.0",
+  "license": "AGPL-3.0",
+  "type": "module",
+  "description": "Tema + chrome compartilhado dos apps web do ianptkcs (Catppuccin + estética 'reading someone's source file').",
+  "scripts": {
+    "build": "svelte-package",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "prepare": "svelte-kit sync || echo ''",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./theme.css": "./dist/theme/theme.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^4.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/package": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^6.0.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "vite": "^7.0.0"
+  }
+}

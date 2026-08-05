@@ -1,0 +1,6 @@
+node_modules
+.svelte-kit
+dist
+package-lock.json
+bun.lock
+src/app.html
