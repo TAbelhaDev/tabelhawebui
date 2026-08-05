@@ -5,7 +5,7 @@
 **Tema + chrome compartilhado dos apps web do ianptkcs (Catppuccin + estética
 "reading someone's source file").**
 
-[![npm version](https://img.shields.io/npm/v/tabelawebui?style=flat-square&color=CB3837)]()
+[![npm version](https://img.shields.io/npm/v/tabelawebui?style=flat-square&color=CB3837)](https://www.npmjs.com/package/tabelawebui)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square)](LICENSE)
 [![Built with Svelte](https://img.shields.io/badge/built%20with-Svelte-FF3E00?style=flat-square)](https://svelte.dev)
 
