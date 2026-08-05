@@ -4,7 +4,7 @@
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ianptkcs/tabelawebui.git"
+    "url": "https://github.com/TabelaDev/tabelawebui.git"
   },
   "type": "module",
   "description": "Tema + chrome compartilhado dos apps web do ianptkcs (Catppuccin + estética 'reading someone's source file').",
