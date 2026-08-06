@@ -62,6 +62,9 @@ export { default as Rating } from "./components/Rating.svelte";
 export { default as MultiSelect } from "./components/MultiSelect.svelte";
 export { default as Listbox } from "./components/Listbox.svelte";
 
+// Pill de status (toast fixo)
+export { default as StatusPill } from "./components/StatusPill.svelte";
+
 // Seções de landing
 export { default as LandingHero } from "./components/LandingHero.svelte";
 export { default as SectionHeading } from "./components/SectionHeading.svelte";

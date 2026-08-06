@@ -79,6 +79,7 @@ No CSS do app (uma vez):
 | `Stepper`         | indicador de passos (onboarding) com `value` bindable                                                                                    |
 | `Carousel`        | carrossel com `page` bindable, dots e arrows                                                                                             |
 | `Rating`          | estrelas (`max`, `readonly`, `cancel`)                                                                                                   |
+| `StatusPill`      | pill fixa estilo toast (`position`, `closable`, `visible` bindable)                                                                      |
 | `LandingHero`     | hero de landing: eyebrow, `title` (string ou snippet), `lead`, `actions`/`note`                                                          |
 | `SectionHeading`  | título de seção: eyebrow + h2 + lead                                                                                                     |
 | `LandingSteps`    | grid de passos numerados com cor                                                                                                         |

@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-> Tudo abaixo vai na próxima versão (0.4.0, ainda não publicada).
+> Tudo abaixo vai na próxima versão (0.5.0, ainda não publicada).
 
 ### Adicionado
 
+- `StatusPill` — pill fixa estilo toast (canto configurável, `closable`, `visible`
+  bindable, `style`/`class` pra offset custom) extraída do TabelaFin.
 - Primitivos de formulário: `Radio`/`Checkbox` (hidden input + indicador) e
   `Textarea` (espelha o `Input`).
 - Absorção inspirada no PrimeNG (`ABSORCAO-PRIMENG.md`):
