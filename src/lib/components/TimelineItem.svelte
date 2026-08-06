@@ -10,6 +10,7 @@
 		details?: string[];
 		skills?: string[];
 		isLast?: boolean;
+		nowLabel?: string;
 	};
 </script>
 
@@ -24,11 +25,12 @@
 		link,
 		details = [],
 		skills = [],
-		isLast = false
+		isLast = false,
+		nowLabel = 'agora'
 	}: TimelineItemProps = $props();
 
 	const current = $derived(!date && !!start && !end);
-	const meta = $derived(date ?? (start ? `${start} — ${end || 'agora'}` : ''));
+	const meta = $derived(date ?? (start ? `${start} — ${end || nowLabel}` : ''));
 </script>
 
 <li class="twui-timeline-item">
