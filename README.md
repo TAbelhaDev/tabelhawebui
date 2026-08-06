@@ -40,28 +40,35 @@ No CSS do app (uma vez):
 
 ## Componentes
 
-| Componente    | O que é                                                                                                                                          |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Card`        | painel com header (título/descrição) e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                             |
-| `TabCard`     | painel "aba de arquivo" (chrome de página)                                                                                                       |
-| `Table`       | tabela com `columns`/`rows` e snippet `cell` custom                                                                                              |
-| `Badge`       | tag de texto pequena — variantes `default` / `secondary` / `outline`                                                                             |
-| `Button`      | variantes `default` / `primary` / `ghost` / `danger` / `outline`, `size` (default/sm/lg/icon-sm), `href`; `buttonVariants()` pra classes avulsas |
-| `Panel`       | contêiner com `focused` → borda accent                                                                                                           |
-| `Status`      | semântico `success` / `warning` / `error` / `info`                                                                                               |
-| `Input`       | campo de texto (`password`, `file` com `bind:files`, ...)                                                                                        |
-| `Label`       | rótulo mono 13px                                                                                                                                 |
-| `Select`      | listbox custom com `options` (`{ value, label, disabled? }`), `bind:value`, `name`, navegação por teclado                                        |
-| `DatePicker`  | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale`                                                                  |
-| `Toaster`     | renderiza toasts + store `toast` (`success`/`error`/`info`/`warning`, `action`)                                                                  |
-| `Timeline`    | linha do tempo (`TimelineItem`s com trilho, dot, skills)                                                                                         |
-| `RuleCard`    | cartão com borda-superior, ícone e prosa serif                                                                                                   |
-| `Nav`         | navbar: logo + links em breadcrumb com `/`                                                                                                       |
-| `ThemeToggle` | alterna `data-theme`/`.dark` + `localStorage`                                                                                                    |
-| `Dropdown`    | menu via `<details>` com sombra impressa                                                                                                         |
-| `Divider`     | divisor `// ---`                                                                                                                                 |
-| `Eyebrow`     | label de seção mono uppercase                                                                                                                    |
-| `BracketLink` | link mono `[ label ]`, colchetes acendem no hover                                                                                                |
+| Componente        | O que é                                                                                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Card`            | painel com header (título/descrição) e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                             |
+| `TabCard`         | painel "aba de arquivo" (chrome de página)                                                                                                       |
+| `Table`           | tabela com `columns`/`rows` e snippet `cell` custom                                                                                              |
+| `Badge`           | tag de texto pequena — variantes `default` / `secondary` / `outline`                                                                             |
+| `Button`          | variantes `default` / `primary` / `ghost` / `danger` / `outline`, `size` (default/sm/lg/icon-sm), `href`; `buttonVariants()` pra classes avulsas |
+| `Panel`           | contêiner com `focused` → borda accent                                                                                                           |
+| `Status`          | semântico `success` / `warning` / `error` / `info`                                                                                               |
+| `Input`           | campo de texto (`password`, `file` com `bind:files`, ...)                                                                                        |
+| `Label`           | rótulo mono 13px                                                                                                                                 |
+| `Select`          | listbox custom com `options` (`{ value, label, disabled? }`), `bind:value`, `name`, navegação por teclado                                        |
+| `DatePicker`      | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale`                                                                  |
+| `Toaster`         | renderiza toasts + store `toast` (`success`/`error`/`info`/`warning`, `action`)                                                                  |
+| `Timeline`        | linha do tempo (`TimelineItem`s com trilho, dot, skills)                                                                                         |
+| `RuleCard`        | cartão com borda-superior, ícone e prosa serif                                                                                                   |
+| `Nav`             | navbar: logo + links em breadcrumb com `/`                                                                                                       |
+| `ThemeToggle`     | alterna `data-theme`/`.dark` + `localStorage`                                                                                                    |
+| `Dropdown`        | menu via `<details>` com sombra impressa                                                                                                         |
+| `Divider`         | divisor `// ---`                                                                                                                                 |
+| `Eyebrow`         | label de seção mono uppercase                                                                                                                    |
+| `BracketLink`     | link mono `[ label ]`, colchetes acendem no hover                                                                                                |
+| `LandingHero`     | hero de landing: eyebrow, `title` (string ou snippet), `lead`, `actions`/`note`                                                                  |
+| `SectionHeading`  | título de seção: eyebrow + h2 + lead                                                                                                             |
+| `LandingSteps`    | grid de passos numerados com cor                                                                                                                 |
+| `LandingFeatures` | grid de cards com ícone (`Component` ou snippet) + título + body                                                                                 |
+| `LandingRoadmap`  | badges "no radar" com ícone + label                                                                                                              |
+| `LandingFooter`   | rodapé: nome, licença, botão "Ver o código"                                                                                                      |
+| `TerminalWindow`  | janela de terminal: barra de dots + `title` + conteúdo (`children`)                                                                              |
 
 ## Tokens
 

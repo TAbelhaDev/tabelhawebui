@@ -37,6 +37,15 @@ export { default as Divider } from "./components/Divider.svelte";
 export { default as Eyebrow } from "./components/Eyebrow.svelte";
 export { default as BracketLink } from "./components/BracketLink.svelte";
 
+// Seções de landing
+export { default as LandingHero } from "./components/LandingHero.svelte";
+export { default as SectionHeading } from "./components/SectionHeading.svelte";
+export { default as LandingSteps } from "./components/LandingSteps.svelte";
+export { default as LandingFeatures } from "./components/LandingFeatures.svelte";
+export { default as LandingRoadmap } from "./components/LandingRoadmap.svelte";
+export { default as LandingFooter } from "./components/LandingFooter.svelte";
+export { default as TerminalWindow } from "./components/TerminalWindow.svelte";
+
 // Card composto: `<Card title="..." description="...">` (API simples) e
 // `Card.Header` / `Card.Title` / `Card.Description` / `Card.Content` /
 // `Card.Footer` (API composta shadcn) coexistem.

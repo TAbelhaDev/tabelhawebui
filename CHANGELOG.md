@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Adicionado
 
+- Seções de landing: `LandingHero`, `SectionHeading`, `LandingSteps`,
+  `LandingFeatures`, `LandingRoadmap`, `LandingFooter`, `TerminalWindow` — para
+  generalizar as landings duplicadas dos apps da família (tokens `--twui-*`,
+  `class` pass-through, ícone como componente ou snippet).
+- `Table`: colunas aceitam `{ key, label?, width? }` e prop `widths` (proporções
+  relativas → `table-layout: fixed`).
+
+## [0.2.0]
+
+### Adicionado
+
 - `DatePicker`: seletor de data/mês com popover calendário (`bind:value`, `min`/`max`,
   `locale`, `mode: 'date' | 'month'`, hidden input com `name`).
 - Popovers (`Select`, `DatePicker`, `Dropdown`) usam a sombra impressa

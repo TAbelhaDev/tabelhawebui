@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	// Coluna: ou string simples (key == label) ou { key, label } — permite
-	// header em PT e chave real no objeto/row pro snippet `cell`.
-	type Column = string | { key: string; label?: string };
+	// Coluna: ou string simples (key == label) ou { key, label, width } —
+	// permite header em PT, chave real no objeto/row pro snippet `cell` e
+	// largura opcional (ex. `width: '9rem'` pra uma coluna maior).
+	type Column = string | { key: string; label?: string; width?: string };
 
 	function colKey(col: Column): string {
 		return typeof col === 'string' ? col : col.key;
@@ -11,28 +12,44 @@
 	function colLabel(col: Column): string {
 		return typeof col === 'string' ? col : (col.label ?? col.key);
 	}
+	function colWidth(col: Column): string | undefined {
+		return typeof col === 'string' ? undefined : col.width;
+	}
 
 	let {
 		columns,
 		rows,
 		cell,
 		children,
+		widths,
 		class: className = ''
 	}: {
 		columns?: Column[];
 		rows?: Array<Record<string, unknown>>;
 		cell?: Snippet<[row: Record<string, unknown>, key: string]>;
 		children?: Snippet;
+		// Proporções relativas de largura por coluna, ex. [4, 1, 2, 3] — a soma
+		// não precisa dar 100; cada coluna fica com total * (n / soma).
+		widths?: number[];
 		class?: string;
 	} = $props();
+
+	// Percentual de cada coluna a partir do array de proporções.
+	const total = $derived(widths?.reduce((a, b) => a + b, 0) ?? 0);
+	function colWidthPercent(i: number): string | undefined {
+		if (!widths || total === 0) return undefined;
+		return `${(widths[i] / total) * 100}%`;
+	}
 </script>
 
-<table class="twui-table {className}">
+<table class="twui-table {widths ? 'twui-table-fixed' : ''} {className}">
 	{#if columns}
 		<thead>
 			<tr>
-				{#each columns as col}
-					<th>{colLabel(col)}</th>
+				{#each columns as col, i (colKey(col))}
+					<th style={colWidth(col) ?? colWidthPercent(i)}>
+						{colLabel(col)}
+					</th>
 				{/each}
 			</tr>
 		</thead>
@@ -41,8 +58,8 @@
 		<tbody>
 			{#each rows as row, i (i)}
 				<tr>
-					{#each columns as col}
-						<td>
+					{#each columns as col, j (colKey(col))}
+						<td style={colWidth(col) ?? colWidthPercent(j)}>
 							{#if cell}
 								{@render cell(row, colKey(col))}
 							{:else}
@@ -65,6 +82,10 @@
 		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
 		font-size: 14px;
 		color: var(--twui-ink);
+	}
+
+	.twui-table-fixed {
+		table-layout: fixed;
 	}
 
 	.twui-table th {
