@@ -7,10 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Adicionado
+
+- `Table`: paginação client-side via `pageSize` — slices das linhas, janela de
+  páginas no rodapé, `aria-current` no ativo e `labels` configuráveis (i18n).
+
 ### Corrigido
 
 - `Table`: `style` de coluna agora emite `width: <valor>` em vez do valor cru
-  (o `style="9rem"` era CSS inválido e ignorava a largura).
 - `LandingFeatures`/`LandingRoadmap`: `icon` agora é **snippet-only** (`() => <Icon/>`).
   O discriminador `typeof icon === 'function'` era inválido — no Svelte 5 componente
   também é função, o que quebrava o SSR (500) quando um componente era passado como
