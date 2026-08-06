@@ -8,12 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Adicionado
+
 - `DatePicker`: seletor de data/mês com popover calendário (`bind:value`, `min`/`max`,
   `locale`, `mode: 'date' | 'month'`, hidden input com `name`).
 - Popovers (`Select`, `DatePicker`, `Dropdown`) usam a sombra impressa
   `--twui-shadow-offset` (hard offset 3px).
 
 ### Alterado
+
 - **BREAKING — `Select`**: de `<select>` nativo (children `<option>`) para listbox
   custom com prop `options: { value, label, disabled? }[]`, `bind:value`, `name`,
   navegação por teclado (↑/↓/Enter/Esc) e `aria-label`/`label`.
@@ -23,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.2]
 
 ### Adicionado
+
 - Tema: fontes `--twui-font-mono`/`--twui-font-serif`, sombra `--twui-shadow-offset`,
   defaults de `body`, guarda `prefers-reduced-motion`, neutros Catppuccin
   (Latte/Mocha: base/mantle/crust/surface0-2/overlay0-2/subtext0-1/text) e aliases
