@@ -32,7 +32,7 @@ function push(
   }
 }
 
-type ToastOptions = { action?: Toast["action"] };
+type ToastOptions = { action?: Toast["action"]; duration?: number };
 
 export interface ToastApi {
   (message: string, opts?: ToastOptions): void;

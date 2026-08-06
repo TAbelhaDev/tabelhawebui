@@ -4,15 +4,17 @@
 
 	let {
 		children,
+		for: forAttr,
 		class: className = '',
 		...rest
 	}: {
 		children: Snippet;
+		for?: string;
 		class?: string;
 	} & HTMLAttributes<HTMLLabelElement> = $props();
 </script>
 
-<label class="twui-label {className}" {...rest}>
+<label class="twui-label {className}" for={forAttr} {...rest}>
 	{@render children()}
 </label>
 
