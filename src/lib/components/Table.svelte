@@ -1,6 +1,17 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
+	// Coluna: ou string simples (key == label) ou { key, label } — permite
+	// header em PT e chave real no objeto/row pro snippet `cell`.
+	type Column = string | { key: string; label?: string };
+
+	function colKey(col: Column): string {
+		return typeof col === 'string' ? col : col.key;
+	}
+	function colLabel(col: Column): string {
+		return typeof col === 'string' ? col : (col.label ?? col.key);
+	}
+
 	let {
 		columns,
 		rows,
@@ -8,7 +19,7 @@
 		children,
 		class: className = ''
 	}: {
-		columns?: string[];
+		columns?: Column[];
 		rows?: Array<Record<string, unknown>>;
 		cell?: Snippet<[row: Record<string, unknown>, key: string]>;
 		children?: Snippet;
@@ -21,7 +32,7 @@
 		<thead>
 			<tr>
 				{#each columns as col}
-					<th>{col}</th>
+					<th>{colLabel(col)}</th>
 				{/each}
 			</tr>
 		</thead>
@@ -33,9 +44,9 @@
 					{#each columns as col}
 						<td>
 							{#if cell}
-								{@render cell(row, col)}
+								{@render cell(row, colKey(col))}
 							{:else}
-								{String(row[col] ?? '')}
+								{String(row[colKey(col)] ?? '')}
 							{/if}
 						</td>
 					{/each}
