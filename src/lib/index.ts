@@ -18,6 +18,7 @@ export { default as Status } from "./components/Status.svelte";
 export { default as Input } from "./components/Input.svelte";
 export { default as Label } from "./components/Label.svelte";
 export { default as Select } from "./components/Select.svelte";
+export { default as DatePicker } from "./components/DatePicker.svelte";
 export { default as Toaster } from "./components/Toaster.svelte";
 export { toast } from "./components/toast.svelte.js";
 export { buttonVariants, default as Button } from "./components/Button.svelte";

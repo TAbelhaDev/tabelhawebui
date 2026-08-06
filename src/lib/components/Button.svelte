@@ -49,6 +49,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		gap: 6px;
 		padding: 6px 16px;
 		border: 1px solid var(--twui-rule);
 		background: transparent;

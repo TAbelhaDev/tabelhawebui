@@ -51,7 +51,8 @@ No CSS do app (uma vez):
 | `Status`      | semântico `success` / `warning` / `error` / `info`                                                                                               |
 | `Input`       | campo de texto (`password`, `file` com `bind:files`, ...)                                                                                        |
 | `Label`       | rótulo mono 13px                                                                                                                                 |
-| `Select`      | select nativo estilizado, `bind:value`                                                                                                           |
+| `Select`   | listbox custom com `options` (`{ value, label, disabled? }`), `bind:value`, `name`, navegação por teclado |
+| `DatePicker` | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale` |
 | `Toaster`     | renderiza toasts + store `toast` (`success`/`error`/`info`/`warning`, `action`)                                                                  |
 | `Timeline`    | linha do tempo (`TimelineItem`s com trilho, dot, skills)                                                                                         |
 | `RuleCard`    | cartão com borda-superior, ícone e prosa serif                                                                                                   |
