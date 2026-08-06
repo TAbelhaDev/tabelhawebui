@@ -65,8 +65,8 @@ No CSS do app (uma vez):
 | `LandingHero`     | hero de landing: eyebrow, `title` (string ou snippet), `lead`, `actions`/`note`                                                                  |
 | `SectionHeading`  | título de seção: eyebrow + h2 + lead                                                                                                             |
 | `LandingSteps`    | grid de passos numerados com cor                                                                                                                 |
-| `LandingFeatures` | grid de cards com ícone (`Component` ou snippet) + título + body                                                                                 |
-| `LandingRoadmap`  | badges "no radar" com ícone + label                                                                                                              |
+| `LandingFeatures` | grid de cards com ícone (snippet) + título + body                                                                                                |
+| `LandingRoadmap`  | badges "no radar" com ícone (snippet) + label                                                                                                    |
 | `LandingFooter`   | rodapé: nome, licença, botão "Ver o código"                                                                                                      |
 | `TerminalWindow`  | janela de terminal: barra de dots + `title` + conteúdo (`children`)                                                                              |
 

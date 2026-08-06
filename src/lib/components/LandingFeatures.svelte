@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Snippet, Component } from 'svelte';
+	import type { Snippet } from 'svelte';
 	import Card from './Card.svelte';
 	import CardContent from './CardContent.svelte';
 
@@ -7,8 +7,11 @@
 		features,
 		class: className = ''
 	}: {
+		// icon é um Snippet (ex. `icon: () => <Icon class="..." />`). Não usar
+		// Component direto: não há como distinguir snippet de componente em
+		// runtime no Svelte 5 (quebraria no SSR).
 		features: Array<{
-			icon: Component<{ class?: string }> | Snippet;
+			icon: Snippet;
 			iconBg?: string;
 			iconColor?: string;
 			title: string;
@@ -26,13 +29,7 @@
 					class="twui-landing-feature-icon"
 					style="background:{feature.iconBg ?? 'var(--twui-accent-soft)'}; color:{feature.iconColor ?? 'var(--twui-accent)'}"
 				>
-					{#if typeof feature.icon === 'function'}
-						{@const icon = feature.icon as Snippet}
-						{@render icon()}
-					{:else}
-						{@const Icon = feature.icon as Component<{ class?: string }>}
-						<Icon class="twui-landing-feature-svg" />
-					{/if}
+					{@render feature.icon()}
 				</div>
 				<h3 class="twui-landing-feature-title">{feature.title}</h3>
 				<p class="twui-landing-feature-body">{feature.body}</p>
@@ -56,11 +53,6 @@
 		height: 36px;
 		margin-bottom: 12px;
 		border-radius: 8px;
-	}
-
-	.twui-landing-feature-svg {
-		width: 18px;
-		height: 18px;
 	}
 
 	.twui-landing-feature-title {

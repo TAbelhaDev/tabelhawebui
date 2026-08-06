@@ -7,12 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Corrigido
+
+- `LandingFeatures`/`LandingRoadmap`: `icon` agora é **snippet-only** (`() => <Icon/>`).
+  O discriminador `typeof icon === 'function'` era inválido — no Svelte 5 componente
+  também é função, o que quebrava o SSR (500) quando um componente era passado como
+  ícone. Não existe marcador runtime (`___snippet` é só AST do compiler); a API
+  dual é impossível de discriminar com segurança.
+
 ### Adicionado
 
 - Seções de landing: `LandingHero`, `SectionHeading`, `LandingSteps`,
   `LandingFeatures`, `LandingRoadmap`, `LandingFooter`, `TerminalWindow` — para
   generalizar as landings duplicadas dos apps da família (tokens `--twui-*`,
-  `class` pass-through, ícone como componente ou snippet).
+  `class` pass-through, ícone como snippet).
 - `Table`: colunas aceitam `{ key, label?, width? }` e prop `widths` (proporções
   relativas → `table-layout: fixed`).
 

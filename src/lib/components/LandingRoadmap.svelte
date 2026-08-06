@@ -1,11 +1,14 @@
 <script lang="ts">
-	import type { Snippet, Component } from 'svelte';
+	import type { Snippet } from 'svelte';
 
 	let {
 		items,
 		class: className = ''
 	}: {
-		items: Array<{ icon: Component<{ class?: string }> | Snippet; label: string }>;
+		// icon é um Snippet (ex. `icon: () => <Icon class="..." />`). Não usar
+		// Component direto: não há como distinguir snippet de componente em
+		// runtime no Svelte 5 (quebraria no SSR).
+		items: Array<{ icon: Snippet; label: string }>;
 		class?: string;
 	} = $props();
 </script>
@@ -13,13 +16,7 @@
 <div class="twui-landing-roadmap {className}">
 	{#each items as item (item.label)}
 		<span class="twui-landing-roadmap-item">
-			{#if typeof item.icon === 'function'}
-				{@const icon = item.icon as Snippet}
-				{@render icon()}
-			{:else}
-				{@const Icon = item.icon as Component<{ class?: string }>}
-				<Icon class="twui-landing-roadmap-icon" />
-			{/if}
+			{@render item.icon()}
 			{item.label}
 		</span>
 	{/each}
@@ -41,11 +38,5 @@
 		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
 		font-size: 12px;
 		color: var(--twui-ink-soft);
-	}
-
-	.twui-landing-roadmap-icon {
-		width: 14px;
-		height: 14px;
-		color: var(--twui-accent);
 	}
 </style>
