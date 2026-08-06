@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Adicionado
 
+- Primitivos de escolha/formulário: `Radio` e `Checkbox` (input nativo oculto
+  por `opacity:0`, indicador com accent no checked, foco via `:has()`) e
+  `Textarea` (espelha o `Input`: `bind:value`, `rows`, `resize: vertical`).
 - `Table`: paginação client-side via `pageSize` — slices das linhas, janela de
   páginas no rodapé, `aria-current` no ativo e `labels` configuráveis (i18n).
 

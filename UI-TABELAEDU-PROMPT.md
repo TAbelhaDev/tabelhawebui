@@ -12,8 +12,8 @@
 - **Repo alvo:** `/home/ianptkcs/codigo/pessoal/tabelaedu` (monorepo pnpm, SvelteKit,
   4 apps: `webapp`, `b2btool`, `b2bdemo`, `checkoutapp`; pacote compartilhado
   `packages/ui` com Button/Card shadcn + tokens Tailwind).
-- **Lib de UI:** `tabelawebui` **v0.1.2** — publicada no npm
-  (`npm view tabelawebui` → 0.1.2). Design system Catppuccin (Latte/Mocha),
+- **Lib de UI:** `tabelawebui` **v0.3.1** — publicada no npm
+  (`npm view tabelawebui` → 0.3.1). Design system Catppuccin (Latte/Mocha),
   estética "reading someone's source file": **mono leva estrutura, serif leva
   prosa, bordas afiadas, accent nunca azul, sombra dura 3px offset**.
 - **Referência de integração que já existe:** `~/codigo/pessoal/tabelafin` — o
@@ -62,21 +62,24 @@ acentos). Escuro via `[data-theme="dark"]` **ou** `.dark`. Já tem
 
 ## O que a lib NÃO tem (implementar NESTE repo, localmente)
 
-Seguir a convenção da lib: Svelte 5, `<style>` escopado, classes `twui-*`,
-**só tokens `--twui-*`** (zero Tailwind, zero dependência), exportado de um
-módulo local (ex.: `packages/ui` ou `$lib/`).
+> **Atualização 2026-08-06:** a fundação da integração já foi feita — o
+> `@tabelaedu/ui` virou shim sobre a lib (tema + shell + componentes
+> disponíveis); falta só a conversão página-a-página. E os dois primitivos
+> abaixo (`Textarea`, `Radio`/`Checkbox`) estão sendo adicionados à **própria
+> lib** (ver `UI-TABELAEDU-LIB-PROMPT.md` no repo tabelawebui). Se já
+> estiverem no `dist/` da lib quando você rodar, **use da lib**; senão,
+> implemente localmente seguindo a convenção: Svelte 5, `<style>` escopado,
+> classes `twui-*`, **só tokens `--twui-*`** (zero Tailwind), exportado de um
+> módulo local (ex.: `packages/ui` ou `$lib/`).
 
-1. **`Textarea`** — a lib só tem `Input` (texto). O repo tem **8 arquivos**
-   com `<textarea>` cru (QDB statement, simulado, redações, comunidade,
-   notebooks, atendimento). Criar `Textarea.svelte` estilizado: borda
-   `--twui-rule`, fundo `--twui-paper`, texto `--twui-ink`, `:focus` com
-   borda/outline `--twui-accent`, `::placeholder` `--twui-ink-faint`, `min-h`.
-   Forward de atributos + `class`.
-2. **`Radio`/`Checkbox`** — a lib não tem primitivos de escolha estilizados.
-   O simulado usa `<input type="radio">` nativo dentro de labels. Criar um
-   `Field`/`Radio` estilizado com tokens (accent no checked, borda `rule`,
-   foco accent) OU estilizar os radios/checks existentes via classe no
-   layout.css. Escolha a opção que não degrada a acessibilidade.
+1. **`Textarea`** — o repo tem **8 arquivos** com `<textarea>` cru (QDB
+   statement, simulado, redações, comunidade, notebooks, atendimento).
+   Estilizado: borda `--twui-rule`, fundo `--twui-paper`, texto `--twui-ink`,
+   `:focus` com borda `--twui-accent`, `::placeholder` `--twui-ink-faint`,
+   `min-h`, `resize: vertical`. Forward de atributos + `class`.
+2. **`Radio`/`Checkbox`** — o simulado usa `<input type="radio">` nativo dentro
+   de labels. Primitivo estilizado com tokens (accent no checked, borda `rule`,
+   foco accent, input nativo oculto por `opacity:0` mantendo acessibilidade).
 3. (Opcional) `EmptyState` — não é obrigatório; vazio pode ser composto com
    `Eyebrow`/`Status`/texto `ink-faint`.
 

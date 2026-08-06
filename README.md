@@ -50,7 +50,10 @@ No CSS do app (uma vez):
 | `Panel`           | contêiner com `focused` → borda accent                                                                                                           |
 | `Status`          | semântico `success` / `warning` / `error` / `info`                                                                                               |
 | `Input`           | campo de texto (`password`, `file` com `bind:files`, ...)                                                                                        |
+| `Textarea`        | área de texto multi-linha (`bind:value`, `rows`, `resize: vertical`)                                                                             |
 | `Label`           | rótulo mono 13px                                                                                                                                 |
+| `Radio`           | opção única: input oculto + indicador circular (accent no checked, foco por `:has()`)                                                            |
+| `Checkbox`        | opção múltipla: input oculto + quadrado com `✓`                                                                                                  |
 | `Select`          | listbox custom com `options` (`{ value, label, disabled? }`), `bind:value`, `name`, navegação por teclado                                        |
 | `DatePicker`      | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale`                                                                  |
 | `Toaster`         | renderiza toasts + store `toast` (`success`/`error`/`info`/`warning`, `action`)                                                                  |
