@@ -40,6 +40,10 @@
 		if (!widths || total === 0) return undefined;
 		return `${(widths[i] / total) * 100}%`;
 	}
+	function colStyle(col: Column, i: number): string | undefined {
+		const w = colWidth(col) ?? colWidthPercent(i);
+		return w ? `width: ${w}` : undefined;
+	}
 </script>
 
 <table class="twui-table {widths ? 'twui-table-fixed' : ''} {className}">
@@ -47,7 +51,7 @@
 		<thead>
 			<tr>
 				{#each columns as col, i (colKey(col))}
-					<th style={colWidth(col) ?? colWidthPercent(i)}>
+					<th style={colStyle(col, i)}>
 						{colLabel(col)}
 					</th>
 				{/each}
@@ -59,7 +63,7 @@
 			{#each rows as row, i (i)}
 				<tr>
 					{#each columns as col, j (colKey(col))}
-						<td style={colWidth(col) ?? colWidthPercent(j)}>
+						<td style={colStyle(col, j)}>
 							{#if cell}
 								{@render cell(row, colKey(col))}
 							{:else}
