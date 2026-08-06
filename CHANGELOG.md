@@ -7,13 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+> Tudo abaixo vai na próxima versão (0.4.0, ainda não publicada).
+
 ### Adicionado
 
-- Primitivos de escolha/formulário: `Radio` e `Checkbox` (input nativo oculto
-  por `opacity:0`, indicador com accent no checked, foco via `:has()`) e
-  `Textarea` (espelha o `Input`: `bind:value`, `rows`, `resize: vertical`).
-- `Table`: paginação client-side via `pageSize` — slices das linhas, janela de
-  páginas no rodapé, `aria-current` no ativo e `labels` configuráveis (i18n).
+- Primitivos de formulário: `Radio`/`Checkbox` (hidden input + indicador) e
+  `Textarea` (espelha o `Input`).
+- Absorção inspirada no PrimeNG (`ABSORCAO-PRIMENG.md`):
+  - **Table v2** — sort por coluna (`aria-sort`), filtro global com `filterFields`,
+    seleção de linha (`single`/`multiple`), loading com skeleton, estado vazio,
+    paginação com `pageSizeOptions` (dropdown), `pageReport` com placeholders
+    (`{first}`/`{last}`/`{totalRecords}`/`{currentPage}`/`{totalPages}`) e
+    botões `«`/`»` (`showFirstLast`).
+  - Tier 1: `Tabs` (teclado), `Toggle` (switch), `Dialog` (aria-modal, Esc/outside),
+    `Tooltip` (CSS), `Skeleton`, `ProgressBar`.
+  - Tier 2: `Message`, `Accordion`, `Rating`, `Sidebar`, `Stepper`, `Carousel`,
+    `MultiSelect`, `Listbox`.
+- Melhorias nos existentes: `Dropdown` fecha por fora/Esc; `Input`/`Textarea` com
+  `invalid` (`aria-invalid`); `Button` com `loading`; `Panel` colapsável
+  (`toggleable`); `Toaster` com `position`; `Divider` com `layout`/`type`/`label`;
+  `Status` com `icon`; `Select` com `filter`.
 
 ### Corrigido
 

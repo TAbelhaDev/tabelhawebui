@@ -40,38 +40,52 @@ No CSS do app (uma vez):
 
 ## Componentes
 
-| Componente        | O que é                                                                                                                                          |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Card`            | painel com header (título/descrição) e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                             |
-| `TabCard`         | painel "aba de arquivo" (chrome de página)                                                                                                       |
-| `Table`           | tabela com `columns`/`rows` e snippet `cell` custom                                                                                              |
-| `Badge`           | tag de texto pequena — variantes `default` / `secondary` / `outline`                                                                             |
-| `Button`          | variantes `default` / `primary` / `ghost` / `danger` / `outline`, `size` (default/sm/lg/icon-sm), `href`; `buttonVariants()` pra classes avulsas |
-| `Panel`           | contêiner com `focused` → borda accent                                                                                                           |
-| `Status`          | semântico `success` / `warning` / `error` / `info`                                                                                               |
-| `Input`           | campo de texto (`password`, `file` com `bind:files`, ...)                                                                                        |
-| `Textarea`        | área de texto multi-linha (`bind:value`, `rows`, `resize: vertical`)                                                                             |
-| `Label`           | rótulo mono 13px                                                                                                                                 |
-| `Radio`           | opção única: input oculto + indicador circular (accent no checked, foco por `:has()`)                                                            |
-| `Checkbox`        | opção múltipla: input oculto + quadrado com `✓`                                                                                                  |
-| `Select`          | listbox custom com `options` (`{ value, label, disabled? }`), `bind:value`, `name`, navegação por teclado                                        |
-| `DatePicker`      | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale`                                                                  |
-| `Toaster`         | renderiza toasts + store `toast` (`success`/`error`/`info`/`warning`, `action`)                                                                  |
-| `Timeline`        | linha do tempo (`TimelineItem`s com trilho, dot, skills)                                                                                         |
-| `RuleCard`        | cartão com borda-superior, ícone e prosa serif                                                                                                   |
-| `Nav`             | navbar: logo + links em breadcrumb com `/`                                                                                                       |
-| `ThemeToggle`     | alterna `data-theme`/`.dark` + `localStorage`                                                                                                    |
-| `Dropdown`        | menu via `<details>` com sombra impressa                                                                                                         |
-| `Divider`         | divisor `// ---`                                                                                                                                 |
-| `Eyebrow`         | label de seção mono uppercase                                                                                                                    |
-| `BracketLink`     | link mono `[ label ]`, colchetes acendem no hover                                                                                                |
-| `LandingHero`     | hero de landing: eyebrow, `title` (string ou snippet), `lead`, `actions`/`note`                                                                  |
-| `SectionHeading`  | título de seção: eyebrow + h2 + lead                                                                                                             |
-| `LandingSteps`    | grid de passos numerados com cor                                                                                                                 |
-| `LandingFeatures` | grid de cards com ícone (snippet) + título + body                                                                                                |
-| `LandingRoadmap`  | badges "no radar" com ícone (snippet) + label                                                                                                    |
-| `LandingFooter`   | rodapé: nome, licença, botão "Ver o código"                                                                                                      |
-| `TerminalWindow`  | janela de terminal: barra de dots + `title` + conteúdo (`children`)                                                                              |
+| Componente        | O que é                                                                                                                                  |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `Card`            | painel com header (título/descrição) e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                     |
+| `TabCard`         | painel "aba de arquivo" (chrome de página)                                                                                               |
+| `Table`           | tabela com `columns`/`rows`, snippet `cell`, sort, filtro global, selection, loading/skeleton, empty e paginação (com `pageSizeOptions`) |
+| `Badge`           | tag de texto pequena — variantes `default` / `secondary` / `outline`                                                                     |
+| `Button`          | variantes `default` / `primary` / `ghost` / `danger` / `outline`, `size` (default/sm/lg/icon-sm), `href`, `loading`; `buttonVariants()`  |
+| `Panel`           | contêiner com `focused` → borda accent; `toggleable` colapsável                                                                          |
+| `Status`          | semântico `success` / `warning` / `error` / `info`, com `icon` opcional                                                                  |
+| `Input`           | campo de texto (`password`, `file` com `bind:files`, ...), `invalid`                                                                     |
+| `Textarea`        | área de texto multi-linha (`bind:value`, `rows`, `resize: vertical`, `invalid`)                                                          |
+| `Label`           | rótulo mono 13px                                                                                                                         |
+| `Radio`           | opção única: input oculto + indicador circular (accent no checked, foco por `:has()`)                                                    |
+| `Checkbox`        | opção múltipla: input oculto + quadrado com `✓`                                                                                          |
+| `Toggle`          | switch on/off (hidden checkbox + role `switch`, `invalid`)                                                                               |
+| `Select`          | listbox custom com `options`, `bind:value`, `name`, navegação por teclado e `filter`                                                     |
+| `MultiSelect`     | seleção múltipla em popover com checkboxes, `filter`, hidden input com `name`                                                            |
+| `Listbox`         | lista de opções visível (single/múltipla), `filter`, `checkmark`                                                                         |
+| `DatePicker`      | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale`                                                          |
+| `Toaster`         | renderiza toasts + store `toast`; `position` configurável                                                                                |
+| `Timeline`        | linha do tempo (`TimelineItem`s com trilho, dot, skills)                                                                                 |
+| `RuleCard`        | cartão com borda-superior, ícone e prosa serif                                                                                           |
+| `Nav`             | navbar: logo + links em breadcrumb com `/`                                                                                               |
+| `ThemeToggle`     | alterna `data-theme`/`.dark` + `localStorage`                                                                                            |
+| `Dropdown`        | menu com sombra impressa; fecha por fora/Esc                                                                                             |
+| `Divider`         | linha horizontal/vertical, `solid`/`dashed`, label central                                                                               |
+| `Eyebrow`         | label de seção mono uppercase                                                                                                            |
+| `BracketLink`     | link mono `[ label ]`, colchetes acendem no hover                                                                                        |
+| `Message`         | alerta inline `info`/`success`/`warn`/`error`, `closable`, `life` (auto-dismiss)                                                         |
+| `ProgressBar`     | barra de progresso determinada/indeterminada com label                                                                                   |
+| `Skeleton`        | shimmer placeholder (`width`/`height`/`rounded`)                                                                                         |
+| `Tooltip`         | tooltip CSS via `data-tooltip` (`top`/`bottom`/`left`/`right`)                                                                           |
+| `Dialog`          | modal com overlay, `aria-modal`, Esc/outside pra fechar, `footer` snippet                                                                |
+| `Sidebar`         | painel lateral (`left`/`right`/`top`/`bottom`) com overlay                                                                               |
+| `Tabs`            | barra de abas com `value` bindable, `disabled`, navegação por teclado                                                                    |
+| `Accordion`       | painéis colapsáveis (`multiple`, `value` bindable)                                                                                       |
+| `Stepper`         | indicador de passos (onboarding) com `value` bindable                                                                                    |
+| `Carousel`        | carrossel com `page` bindable, dots e arrows                                                                                             |
+| `Rating`          | estrelas (`max`, `readonly`, `cancel`)                                                                                                   |
+| `LandingHero`     | hero de landing: eyebrow, `title` (string ou snippet), `lead`, `actions`/`note`                                                          |
+| `SectionHeading`  | título de seção: eyebrow + h2 + lead                                                                                                     |
+| `LandingSteps`    | grid de passos numerados com cor                                                                                                         |
+| `LandingFeatures` | grid de cards com ícone (snippet) + título + body                                                                                        |
+| `LandingRoadmap`  | badges "no radar" com ícone (snippet) + label                                                                                            |
+| `LandingFooter`   | rodapé: nome, licença, botão "Ver o código"                                                                                              |
+| `TerminalWindow`  | janela de terminal: barra de dots + `title` + conteúdo (`children`)                                                                      |
 
 ## Tokens
 

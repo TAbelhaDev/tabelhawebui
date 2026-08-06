@@ -6,10 +6,12 @@
 		value = $bindable(''),
 		files = $bindable(undefined),
 		type = 'text',
+		invalid = false,
 		...rest
 	}: HTMLInputAttributes & {
 		value?: string;
 		files?: FileList | undefined;
+		invalid?: boolean;
 	} = $props();
 </script>
 
@@ -18,7 +20,8 @@
 		{...rest}
 		type="file"
 		bind:files
-		class="twui-input twui-input-file {className}"
+		aria-invalid={invalid}
+		class="twui-input twui-input-file {invalid ? 'twui-input-invalid' : ''} {className}"
 	/>
 {:else}
 	<input
@@ -26,7 +29,8 @@
 		{type}
 		value={value}
 		oninput={(e) => (value = e.currentTarget.value)}
-		class="twui-input {className}"
+		aria-invalid={invalid}
+		class="twui-input {invalid ? 'twui-input-invalid' : ''} {className}"
 	/>
 {/if}
 
@@ -56,6 +60,14 @@
 	.twui-input:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	.twui-input-invalid {
+		border-color: var(--twui-danger);
+	}
+
+	.twui-input-invalid:focus-visible {
+		border-color: var(--twui-danger);
 	}
 
 	.twui-input-file {

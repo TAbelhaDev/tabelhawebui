@@ -12,16 +12,48 @@
 		align?: 'left' | 'right';
 		class?: string;
 	} = $props();
+
+	let open = $state(false);
+	let rootEl = $state<HTMLDivElement | undefined>();
+
+	// Fecha com pointerdown fora do componente ou com Esc.
+	function closeOnOutside(node: HTMLElement, callback: () => void) {
+		function onPointer(e: PointerEvent) {
+			if (!node.contains(e.target as Node)) callback();
+		}
+		function onKey(e: KeyboardEvent) {
+			if (e.key === 'Escape') callback();
+		}
+		document.addEventListener('pointerdown', onPointer);
+		document.addEventListener('keydown', onKey);
+		return {
+			destroy() {
+				document.removeEventListener('pointerdown', onPointer);
+				document.removeEventListener('keydown', onKey);
+			}
+		};
+	}
 </script>
 
-<details class="twui-dropdown {className}">
-	<summary class="twui-dropdown-trigger">{@render trigger()}</summary>
-	<ul
-		class="twui-dropdown-menu {align === 'left' ? 'twui-dropdown-menu-left' : 'twui-dropdown-menu-right'}"
+<div class="twui-dropdown {className}" bind:this={rootEl} use:closeOnOutside={() => (open = false)}>
+	<button
+		type="button"
+		class="twui-dropdown-trigger"
+		aria-haspopup="menu"
+		aria-expanded={open}
+		onclick={() => (open = !open)}
 	>
-		{@render children()}
-	</ul>
-</details>
+		{@render trigger()}
+	</button>
+	{#if open}
+		<ul
+			class="twui-dropdown-menu {align === 'left' ? 'twui-dropdown-menu-left' : 'twui-dropdown-menu-right'}"
+			role="menu"
+		>
+			{@render children()}
+		</ul>
+	{/if}
+</div>
 
 <style>
 	.twui-dropdown {
@@ -32,15 +64,14 @@
 		display: flex;
 		align-items: center;
 		gap: 6px;
+		padding: 0;
+		border: none;
+		background: transparent;
+		font-family: inherit;
 		font-size: 14px;
 		color: var(--twui-ink-soft);
-		list-style: none;
 		cursor: pointer;
 		transition: color 0.15s ease;
-	}
-
-	.twui-dropdown-trigger::-webkit-details-marker {
-		display: none;
 	}
 
 	.twui-dropdown-trigger:hover {

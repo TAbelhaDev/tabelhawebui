@@ -5,10 +5,12 @@
 		class: className = '',
 		value = $bindable(''),
 		rows = 4,
+		invalid = false,
 		...rest
 	}: HTMLTextareaAttributes & {
 		value?: string;
 		rows?: number;
+		invalid?: boolean;
 	} = $props();
 </script>
 
@@ -17,7 +19,8 @@
 	{rows}
 	value={value}
 	oninput={(e) => (value = e.currentTarget.value)}
-	class="twui-textarea {className}"
+	aria-invalid={invalid}
+	class="twui-textarea {invalid ? 'twui-textarea-invalid' : ''} {className}"
 ></textarea>
 
 <style>
@@ -49,5 +52,13 @@
 	.twui-textarea:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	.twui-textarea-invalid {
+		border-color: var(--twui-danger);
+	}
+
+	.twui-textarea-invalid:focus-visible {
+		border-color: var(--twui-danger);
 	}
 </style>

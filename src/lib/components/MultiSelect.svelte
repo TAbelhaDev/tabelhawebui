@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-
-	export type SelectOption = { value: string; label: string; disabled?: boolean };
+	import type { SelectOption } from './Select.svelte';
 
 	let {
 		options = [],
-		value = $bindable(''),
+		value = $bindable([]),
 		label,
 		name,
 		disabled = false,
@@ -17,7 +16,7 @@
 		...rest
 	}: {
 		options?: SelectOption[];
-		value?: string;
+		value?: string[];
 		label?: string;
 		name?: string;
 		disabled?: boolean;
@@ -29,10 +28,9 @@
 
 	let open = $state(false);
 	let rootEl = $state<HTMLDivElement | undefined>();
-	let activeIndex = $state(-1);
 	let query = $state('');
 
-	const selected = $derived(options.find((o) => o.value === value));
+	const selected = $derived(options.filter((o) => value.includes(o.value)));
 	const visibleOptions = $derived(
 		filter && query.trim()
 			? options.filter((o) => o.label.toLowerCase().includes(query.trim().toLowerCase()))
@@ -40,70 +38,47 @@
 	);
 
 	function clickOutside(node: HTMLElement, callback: () => void) {
-		function handler(e: MouseEvent) {
+		function handler(e: PointerEvent) {
 			if (!node.contains(e.target as Node)) callback();
 		}
 		document.addEventListener('pointerdown', handler);
-		return {
-			destroy: () => document.removeEventListener('pointerdown', handler)
-		};
+		return { destroy: () => document.removeEventListener('pointerdown', handler) };
 	}
 
 	function toggle() {
 		if (disabled) return;
 		open = !open;
-		if (open) {
-			query = '';
-			activeIndex = visibleOptions.findIndex((o) => o.value === value);
-		}
+		if (open) query = '';
 	}
 
-	function selectOption(option: SelectOption) {
+	function toggleOption(option: SelectOption) {
 		if (option.disabled) return;
-		value = option.value;
-		open = false;
-	}
-
-	function onKeydown(e: KeyboardEvent) {
-		if (disabled) return;
-		if (e.key === 'Escape') open = false;
-		if (e.key === 'ArrowDown') {
-			e.preventDefault();
-			if (!open) return toggle();
-			activeIndex = Math.min(activeIndex + 1, visibleOptions.length - 1);
-		}
-		if (e.key === 'ArrowUp') {
-			e.preventDefault();
-			activeIndex = Math.max(activeIndex - 1, 0);
-		}
-		if (e.key === 'Enter' && open && activeIndex >= 0) {
-			e.preventDefault();
-			selectOption(visibleOptions[activeIndex]);
-		}
+		value = value.includes(option.value)
+			? value.filter((v) => v !== option.value)
+			: [...value, option.value];
 	}
 </script>
 
 <div
-	class="twui-select-wrap {className}"
+	class="twui-multiselect {className}"
 	bind:this={rootEl}
 	use:clickOutside={() => (open = false)}
 >
 	<button
 		type="button"
-		class="twui-select-trigger"
+		class="twui-multiselect-trigger"
 		{...rest}
 		aria-label={ariaLabel ?? label}
 		disabled={disabled}
 		aria-haspopup="listbox"
 		aria-expanded={open}
 		onclick={toggle}
-		onkeydown={onKeydown}
 	>
-		<span class="twui-select-value {selected ? '' : 'twui-select-placeholder'}">
-			{selected?.label ?? placeholder}
+		<span class="twui-multiselect-value {selected.length ? '' : 'twui-multiselect-placeholder'}">
+			{selected.length ? selected.map((o) => o.label).join(', ') : placeholder}
 		</span>
 		<svg
-			class="twui-select-chevron {open ? 'twui-select-chevron-open' : ''}"
+			class="twui-multiselect-chevron {open ? 'twui-multiselect-chevron-open' : ''}"
 			width="16"
 			height="16"
 			viewBox="0 0 24 24"
@@ -117,20 +92,21 @@
 	</button>
 
 	{#if name}
-		<input type="hidden" {name} value={value} />
+		<input type="hidden" {name} value={value.join(',')} />
 	{/if}
 
 	{#if open}
 		<div
-			class="twui-select-popover"
+			class="twui-multiselect-popover"
 			role="listbox"
+			aria-multiselectable="true"
 			transition:fade={{ duration: 100 }}
 		>
 			{#if filter}
-				<div class="twui-select-filter">
+				<div class="twui-multiselect-filter">
 					<input
 						type="text"
-						class="twui-select-filter-input"
+						class="twui-multiselect-filter-input"
 						placeholder={filterPlaceholder}
 						bind:value={query}
 						aria-label={filterPlaceholder}
@@ -138,38 +114,33 @@
 				</div>
 			{/if}
 			{#if visibleOptions.length > 0}
-				{#each visibleOptions as option, i (option.value)}
+				{#each visibleOptions as option (option.value)}
 					<button
 						type="button"
 						role="option"
-						aria-selected={option.value === value}
-						class="twui-select-option {i === activeIndex ? 'twui-select-option-active' : ''} {option.value ===
-						value
-							? 'twui-select-option-selected'
-							: ''}"
+						aria-selected={value.includes(option.value)}
+						class="twui-multiselect-option {value.includes(option.value) ? 'twui-multiselect-option-selected' : ''}"
 						disabled={option.disabled}
-						onclick={() => selectOption(option)}
-						onmouseenter={() => (activeIndex = i)}
+						onclick={() => toggleOption(option)}
 					>
+						<span class="twui-multiselect-check" aria-hidden="true">{value.includes(option.value) ? '✓' : ''}</span>
 						{option.label}
 					</button>
 				{/each}
 			{:else}
-				<div class="twui-select-empty">Nenhum resultado</div>
+				<div class="twui-multiselect-empty">Nenhum resultado</div>
 			{/if}
 		</div>
 	{/if}
 </div>
 
 <style>
-	.twui-select-wrap {
+	.twui-multiselect {
 		position: relative;
-		display: block;
 		width: 100%;
-		color: var(--twui-ink-soft);
 	}
 
-	.twui-select-trigger {
+	.twui-multiselect-trigger {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -188,35 +159,36 @@
 			box-shadow 0.15s ease;
 	}
 
-	.twui-select-trigger:focus-visible {
+	.twui-multiselect-trigger:focus-visible {
 		border-color: var(--twui-accent);
 	}
 
-	.twui-select-trigger:disabled {
+	.twui-multiselect-trigger:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
 	}
 
-	.twui-select-value {
+	.twui-multiselect-value {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 
-	.twui-select-placeholder {
+	.twui-multiselect-placeholder {
 		color: var(--twui-ink-faint);
 	}
 
-	.twui-select-chevron {
+	.twui-multiselect-chevron {
 		flex-shrink: 0;
+		color: var(--twui-ink-soft);
 		transition: transform 0.15s ease;
 	}
 
-	.twui-select-chevron-open {
+	.twui-multiselect-chevron-open {
 		transform: rotate(180deg);
 	}
 
-	.twui-select-popover {
+	.twui-multiselect-popover {
 		position: absolute;
 		top: calc(100% + 4px);
 		right: 0;
@@ -230,13 +202,13 @@
 		padding: 4px;
 	}
 
-	.twui-select-filter {
+	.twui-multiselect-filter {
 		padding: 4px 4px 8px;
 		border-bottom: 1px solid var(--twui-rule);
 		margin-bottom: 4px;
 	}
 
-	.twui-select-filter-input {
+	.twui-multiselect-filter-input {
 		width: 100%;
 		padding: 6px 8px;
 		border: 1px solid var(--twui-rule);
@@ -247,23 +219,18 @@
 		outline: none;
 	}
 
-	.twui-select-filter-input::placeholder {
+	.twui-multiselect-filter-input::placeholder {
 		color: var(--twui-ink-faint);
 	}
 
-	.twui-select-filter-input:focus-visible {
+	.twui-multiselect-filter-input:focus-visible {
 		border-color: var(--twui-accent);
 	}
 
-	.twui-select-empty {
-		padding: 8px 10px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
-		font-size: 13px;
-		color: var(--twui-ink-faint);
-	}
-
-	.twui-select-option {
-		display: block;
+	.twui-multiselect-option {
+		display: flex;
+		align-items: center;
+		gap: 8px;
 		width: 100%;
 		padding: 6px 10px;
 		border: none;
@@ -275,19 +242,44 @@
 		cursor: pointer;
 	}
 
-	.twui-select-option:hover,
-	.twui-select-option-active {
+	.twui-multiselect-option:hover {
 		background: var(--twui-accent-soft);
 		color: var(--twui-accent);
 	}
 
-	.twui-select-option-selected {
+	.twui-multiselect-option-selected {
 		color: var(--twui-accent);
 		font-weight: 500;
 	}
 
-	.twui-select-option:disabled {
+	.twui-multiselect-option:disabled {
 		opacity: 0.4;
 		cursor: not-allowed;
+	}
+
+	.twui-multiselect-check {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 14px;
+		height: 14px;
+		flex-shrink: 0;
+		border: 1px solid var(--twui-rule);
+		border-radius: 2px;
+		font-size: 10px;
+		line-height: 1;
+	}
+
+	.twui-multiselect-option-selected .twui-multiselect-check {
+		border-color: var(--twui-accent);
+		background: var(--twui-accent);
+		color: var(--twui-paper);
+	}
+
+	.twui-multiselect-empty {
+		padding: 8px 10px;
+		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-size: 13px;
+		color: var(--twui-ink-faint);
 	}
 </style>

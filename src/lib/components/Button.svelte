@@ -19,6 +19,7 @@
 		variant = 'default',
 		size = 'default',
 		href,
+		loading = false,
 		children,
 		class: className = '',
 		...rest
@@ -26,20 +27,34 @@
 		variant?: ButtonVariant;
 		size?: ButtonSize;
 		href?: string;
+		loading?: boolean;
 		children: Snippet;
 		class?: string;
 	} & HTMLButtonAttributes & HTMLAnchorAttributes = $props();
 </script>
 
 {#if href}
-	<a href={href} class="twui-button twui-button-{variant} twui-button-{size} {className}" {...rest}>
+	<a
+		href={href}
+		class="twui-button twui-button-{variant} twui-button-{size} {loading ? 'twui-button-loading' : ''} {className}"
+		aria-busy={loading}
+		{...rest}
+	>
+		{#if loading}
+			<span class="twui-button-spinner" aria-hidden="true"></span>
+		{/if}
 		{@render children()}
 	</a>
 {:else}
 	<button
-		class="twui-button twui-button-{variant} twui-button-{size} {className}"
+		class="twui-button twui-button-{variant} twui-button-{size} {loading ? 'twui-button-loading' : ''} {className}"
+		disabled={rest.disabled || loading}
+		aria-busy={loading}
 		{...rest}
 	>
+		{#if loading}
+			<span class="twui-button-spinner" aria-hidden="true"></span>
+		{/if}
 		{@render children()}
 	</button>
 {/if}
@@ -71,6 +86,22 @@
 	.twui-button:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	.twui-button-spinner {
+		width: 12px;
+		height: 12px;
+		flex-shrink: 0;
+		border: 2px solid currentColor;
+		border-right-color: transparent;
+		border-radius: 9999px;
+		animation: twui-button-spin 0.7s linear infinite;
+	}
+
+	@keyframes twui-button-spin {
+		to {
+			transform: rotate(360deg);
+		}
 	}
 
 	.twui-button-sm {

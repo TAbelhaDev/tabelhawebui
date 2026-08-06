@@ -3,16 +3,21 @@
 
 	let {
 		kind = 'info',
+		icon,
 		children,
 		class: className = ''
 	}: {
 		kind?: 'success' | 'warning' | 'error' | 'info';
+		icon?: Snippet;
 		children: Snippet;
 		class?: string;
 	} = $props();
 </script>
 
-<span class="twui-status twui-status-{kind} {className}">
+<span class="twui-status twui-status-{kind} {icon ? 'twui-status-icon' : ''} {className}">
+	{#if icon}
+		{@render icon()}
+	{/if}
 	{@render children()}
 </span>
 
@@ -28,6 +33,16 @@
 		content: '●';
 		margin-right: 6px;
 		font-size: 8px;
+	}
+
+	.twui-status-icon::before {
+		content: none;
+	}
+
+	.twui-status > :global(svg) {
+		width: 12px;
+		height: 12px;
+		margin-right: 6px;
 	}
 
 	.twui-status-success {

@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { toasts, dismiss, type ToastKind } from './toast.svelte.js';
 
-	let { closeLabel = 'Fechar' }: { closeLabel?: string } = $props();
+	let {
+		closeLabel = 'Fechar',
+		position = 'top-right'
+	}: {
+		closeLabel?: string;
+		position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+	} = $props();
 
 	function kindColor(kind: ToastKind): string {
 		switch (kind) {
@@ -18,7 +24,7 @@
 </script>
 
 {#if toasts.current.length > 0}
-	<div class="twui-toaster">
+	<div class="twui-toaster twui-toaster-{position}">
 		{#each toasts.current as t (t.id)}
 			<div
 				class="twui-toast"
@@ -40,13 +46,33 @@
 <style>
 	.twui-toaster {
 		position: fixed;
-		top: 16px;
-		right: 16px;
 		z-index: 100;
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
 		max-width: 360px;
+	}
+
+	.twui-toaster-top-right {
+		top: 16px;
+		right: 16px;
+	}
+
+	.twui-toaster-top-left {
+		top: 16px;
+		left: 16px;
+	}
+
+	.twui-toaster-bottom-right {
+		bottom: 16px;
+		right: 16px;
+		flex-direction: column-reverse;
+	}
+
+	.twui-toaster-bottom-left {
+		bottom: 16px;
+		left: 16px;
+		flex-direction: column-reverse;
 	}
 
 	.twui-toast {
