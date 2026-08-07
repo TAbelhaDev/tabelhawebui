@@ -105,3 +105,36 @@ O tema expõe custom properties `--twui-*`:
 Tema escuro via `[data-theme="dark"]` **ou** classe `.dark` no `<html>`. O
 tema aplica defaults de `body` (fundo, cor, fonte serif) e respeita
 `prefers-reduced-motion`.
+
+## Accent custom por app
+
+O accent padrão é o marrom (claro) / pink (escuro). Cada app pode ter o seu —
+sobrescreva `--twui-accent` no `layout.css` (o `--twui-accent-soft` deriva
+automaticamente via `color-mix`; os semânticos `--twui-signal`/`--twui-danger`
+e os neutros não mudam):
+
+```css
+:root {
+  --twui-accent: #179299; /* teal */
+}
+[data-theme="dark"],
+.dark {
+  --twui-accent: #94e2d5;
+}
+```
+
+Cores sugeridas (acentos do Catppuccin, seguindo a regra da família "nunca azul"):
+
+| Accent           | Latte (claro) | Mocha (escuro) |
+| ---------------- | ------------- | -------------- |
+| marrom (default) | `#e64553`     | `#f5c2e7`      |
+| mauve            | `#8839ef`     | `#cba6f7`      |
+| pink             | `#ea76cb`     | `#f5c2e7`      |
+| red              | `#d20f39`     | `#f38ba8`      |
+| peach            | `#fe640b`     | `#fab387`      |
+| yellow           | `#df8e1d`     | `#f9e2af`      |
+| green            | `#40a02b`     | `#a6e3a1`      |
+| teal             | `#179299`     | `#94e2d5`      |
+| lavender         | `#7287fd`     | `#b4befe`      |
+| rosewater        | `#dc8a78`     | `#f5e0dc`      |
+| flamingo         | `#dd7878`     | `#f2cdcd`      |
