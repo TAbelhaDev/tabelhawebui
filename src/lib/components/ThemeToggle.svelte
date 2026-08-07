@@ -3,10 +3,16 @@
 	import { onMount } from 'svelte';
 
 	let {
+		lightTheme = 'light',
+		darkTheme = 'dark',
 		labels = { light: 'Usar tema claro', dark: 'Usar tema escuro' },
 		icons,
 		class: className = ''
 	}: {
+		// Par de temas que o toggle alterna — apps podem escolher o flavor
+		// Catppuccin: lightTheme='light' darkTheme='frappe'|'macchiato'|'dark'.
+		lightTheme?: string;
+		darkTheme?: string;
 		labels?: { light: string; dark: string };
 		icons?: { sun: Snippet; moon: Snippet };
 		class?: string;
@@ -16,15 +22,19 @@
 
 	onMount(() => {
 		const el = document.documentElement;
-		dark = el.getAttribute('data-theme') === 'dark' || el.classList.contains('dark');
+		const theme = el.getAttribute('data-theme');
+		dark = theme ? theme === darkTheme : el.classList.contains('dark');
 	});
 
 	function toggle() {
 		dark = !dark;
+		const next = dark ? darkTheme : lightTheme;
 		const el = document.documentElement;
-		el.setAttribute('data-theme', dark ? 'dark' : 'light');
-		el.classList.toggle('dark', dark);
-		localStorage.setItem('theme', dark ? 'dark' : 'light');
+		el.setAttribute('data-theme', next);
+		// A classe `.dark` só é sincronizada no par default (light/dark) — temas
+		// custom (frappe/macchiato) vivem do `data-theme` e evitam conflito.
+		if (darkTheme === 'dark') el.classList.toggle('dark', dark);
+		localStorage.setItem('theme', next);
 	}
 </script>
 

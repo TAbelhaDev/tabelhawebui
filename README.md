@@ -99,9 +99,21 @@ O tema expõe custom properties `--twui-*`:
 - Sombra: `--twui-shadow-offset` (hard offset 3px)
 - Paleta por flavor ativo: `--twui-base`, `--twui-surface0`, `--twui-text`,
   `--twui-red`, `--twui-green`, `--twui-mauve`, ... (via `--twui-<color>`)
-- Cores cruas por flavor: `--twui-latte-*` e `--twui-mocha-*` (escala completa
-  — neutros + 14 acentos do Catppuccin)
+- Cores cruas por flavor: `--twui-latte-*`, `--twui-frappe-*`, `--twui-macchiato-*`
+  e `--twui-mocha-*` (escala completa — neutros + 14 acentos do Catppuccin)
 
-Tema escuro via `[data-theme="dark"]` **ou** classe `.dark` no `<html>`. O
-tema aplica defaults de `body` (fundo, cor, fonte serif) e respeita
+## Temas (flavors do Catppuccin)
+
+O tema expõe 4 flavors do Catppuccin, cada um ativado pelo `data-theme`:
+
+| `data-theme`               | Flavor    | Tom                   |
+| -------------------------- | --------- | --------------------- |
+| (ausente) / `light`        | Latte     | claro                 |
+| `frappe`                   | Frappé    | escuro (mais azulado) |
+| `macchiato`                | Macchiato | escuro                |
+| `dark` (ou classe `.dark`) | Mocha     | escuro (default)      |
+
+O `ThemeToggle` alterna um par (`lightTheme`/`darkTheme`, default `light`/`dark`)
+— um app pode usar outro flavor escuro, ex. `<ThemeToggle darkTheme="frappe" />`.
+O tema aplica defaults de `body` (fundo, cor, fonte serif) e respeita
 `prefers-reduced-motion`.
