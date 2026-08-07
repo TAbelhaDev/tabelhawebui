@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-> Tudo abaixo vai na próxima versão (0.5.0, ainda não publicada).
+> Tudo abaixo vai na próxima versão (0.6.0, ainda não publicada).
+
+### Adicionado
+
+- Presets de accent por app: `data-accent="<nome>"` no `<html>` escolhe o par
+  Latte/Mocha automaticamente (maroon, mauve, pink, red, peach, yellow, green,
+  teal, lavender, rosewater, flamingo) — sem sobrescrever hex manual.
+
+## [0.5.0]
 
 ### Adicionado
 
@@ -38,6 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   também é função, o que quebrava o SSR (500) quando um componente era passado como
   ícone. Não existe marcador runtime (`___snippet` é só AST do compiler); a API
   dual é impossível de discriminar com segurança.
+
+## [0.3.0]
 
 ### Adicionado
 

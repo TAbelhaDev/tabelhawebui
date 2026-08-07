@@ -188,6 +188,98 @@
     --twui-blue: var(--twui-mocha-blue);
     --twui-lavender: var(--twui-mocha-lavender);
   }
+
+  /* Accent por app — escolha via data-accent no <html> (ex: data-accent="teal").
+     Os acentos seguem a regra da família "nunca azul". O --twui-accent-soft
+     deriva automaticamente (color-mix) e os semânticos signal/danger não mudam.
+     Sem data-accent, fica o default (marrom claro / pink escuro). */
+  :root[data-accent="maroon"] {
+    --twui-accent: var(--twui-latte-maroon);
+  }
+  [data-theme="dark"][data-accent="maroon"],
+  .dark[data-accent="maroon"] {
+    --twui-accent: var(--twui-mocha-maroon);
+  }
+
+  :root[data-accent="pink"] {
+    --twui-accent: var(--twui-latte-pink);
+  }
+  [data-theme="dark"][data-accent="pink"],
+  .dark[data-accent="pink"] {
+    --twui-accent: var(--twui-mocha-pink);
+  }
+
+  :root[data-accent="mauve"] {
+    --twui-accent: var(--twui-latte-mauve);
+  }
+  [data-theme="dark"][data-accent="mauve"],
+  .dark[data-accent="mauve"] {
+    --twui-accent: var(--twui-mocha-mauve);
+  }
+
+  :root[data-accent="red"] {
+    --twui-accent: var(--twui-latte-red);
+  }
+  [data-theme="dark"][data-accent="red"],
+  .dark[data-accent="red"] {
+    --twui-accent: var(--twui-mocha-red);
+  }
+
+  :root[data-accent="peach"] {
+    --twui-accent: var(--twui-latte-peach);
+  }
+  [data-theme="dark"][data-accent="peach"],
+  .dark[data-accent="peach"] {
+    --twui-accent: var(--twui-mocha-peach);
+  }
+
+  :root[data-accent="yellow"] {
+    --twui-accent: var(--twui-latte-yellow);
+  }
+  [data-theme="dark"][data-accent="yellow"],
+  .dark[data-accent="yellow"] {
+    --twui-accent: var(--twui-mocha-yellow);
+  }
+
+  :root[data-accent="green"] {
+    --twui-accent: var(--twui-latte-green);
+  }
+  [data-theme="dark"][data-accent="green"],
+  .dark[data-accent="green"] {
+    --twui-accent: var(--twui-mocha-green);
+  }
+
+  :root[data-accent="teal"] {
+    --twui-accent: var(--twui-latte-teal);
+  }
+  [data-theme="dark"][data-accent="teal"],
+  .dark[data-accent="teal"] {
+    --twui-accent: var(--twui-mocha-teal);
+  }
+
+  :root[data-accent="lavender"] {
+    --twui-accent: var(--twui-latte-lavender);
+  }
+  [data-theme="dark"][data-accent="lavender"],
+  .dark[data-accent="lavender"] {
+    --twui-accent: var(--twui-mocha-lavender);
+  }
+
+  :root[data-accent="rosewater"] {
+    --twui-accent: var(--twui-latte-rosewater);
+  }
+  [data-theme="dark"][data-accent="rosewater"],
+  .dark[data-accent="rosewater"] {
+    --twui-accent: var(--twui-mocha-rosewater);
+  }
+
+  :root[data-accent="flamingo"] {
+    --twui-accent: var(--twui-latte-flamingo);
+  }
+  [data-theme="dark"][data-accent="flamingo"],
+  .dark[data-accent="flamingo"] {
+    --twui-accent: var(--twui-mocha-flamingo);
+  }
 }
 
 @layer twui-base {

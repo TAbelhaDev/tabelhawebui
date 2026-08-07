@@ -108,33 +108,31 @@ tema aplica defaults de `body` (fundo, cor, fonte serif) e respeita
 
 ## Accent custom por app
 
-O accent padrão é o marrom (claro) / pink (escuro). Cada app pode ter o seu —
-sobrescreva `--twui-accent` no `layout.css` (o `--twui-accent-soft` deriva
-automaticamente via `color-mix`; os semânticos `--twui-signal`/`--twui-danger`
-e os neutros não mudam):
+O accent padrão é o marrom (claro) / pink (escuro). Cada app pode ter o seu
+**escolhendo um nome** via `data-accent` no `<html>` — a lib resolve o par
+Latte/Mocha automaticamente:
 
-```css
-:root {
-  --twui-accent: #179299; /* teal */
-}
-[data-theme="dark"],
-.dark {
-  --twui-accent: #94e2d5;
-}
+```html
+<html data-accent="teal"></html>
 ```
 
-Cores sugeridas (acentos do Catppuccin, seguindo a regra da família "nunca azul"):
+O `--twui-accent-soft` deriva sozinho (via `color-mix`); os semânticos
+`--twui-signal`/`--twui-danger` e os neutros não mudam. Acentos disponíveis
+(seguindo a regra da família "nunca azul"):
 
-| Accent           | Latte (claro) | Mocha (escuro) |
-| ---------------- | ------------- | -------------- |
-| marrom (default) | `#e64553`     | `#f5c2e7`      |
-| mauve            | `#8839ef`     | `#cba6f7`      |
-| pink             | `#ea76cb`     | `#f5c2e7`      |
-| red              | `#d20f39`     | `#f38ba8`      |
-| peach            | `#fe640b`     | `#fab387`      |
-| yellow           | `#df8e1d`     | `#f9e2af`      |
-| green            | `#40a02b`     | `#a6e3a1`      |
-| teal             | `#179299`     | `#94e2d5`      |
-| lavender         | `#7287fd`     | `#b4befe`      |
-| rosewater        | `#dc8a78`     | `#f5e0dc`      |
-| flamingo         | `#dd7878`     | `#f2cdcd`      |
+| Accent             | Latte (claro) | Mocha (escuro) |
+| ------------------ | ------------- | -------------- |
+| `maroon` (default) | `#e64553`     | `#eba0ac`      |
+| `mauve`            | `#8839ef`     | `#cba6f7`      |
+| `pink`             | `#ea76cb`     | `#f5c2e7`      |
+| `red`              | `#d20f39`     | `#f38ba8`      |
+| `peach`            | `#fe640b`     | `#fab387`      |
+| `yellow`           | `#df8e1d`     | `#f9e2af`      |
+| `green`            | `#40a02b`     | `#a6e3a1`      |
+| `teal`             | `#179299`     | `#94e2d5`      |
+| `lavender`         | `#7287fd`     | `#b4befe`      |
+| `rosewater`        | `#dc8a78`     | `#f5e0dc`      |
+| `flamingo`         | `#dd7878`     | `#f2cdcd`      |
+
+(Escape hatch: quem precisar de uma cor fora da lista pode sobrescrever
+`--twui-accent` direto no `layout.css`, nos dois temas.)
