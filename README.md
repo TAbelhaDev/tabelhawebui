@@ -52,6 +52,7 @@ No CSS do app (uma vez):
 | `Input`           | campo de texto (`password`, `file` com `bind:files`, ...), `invalid`                                                                     |
 | `Textarea`        | área de texto multi-linha (`bind:value`, `rows`, `resize: vertical`, `invalid`)                                                          |
 | `Label`           | rótulo mono 13px                                                                                                                         |
+| `Field`           | wrapper de form: label + children (input/textarea/select) + mensagem de erro opcional                                                    |
 | `Radio`           | opção única: input oculto + indicador circular (accent no checked, foco por `:has()`)                                                    |
 | `Checkbox`        | opção múltipla: input oculto + quadrado com `✓`                                                                                          |
 | `Toggle`          | switch on/off (hidden checkbox + role `switch`, `invalid`)                                                                               |

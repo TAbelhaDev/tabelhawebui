@@ -5,9 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.7.0]
 
-> Tudo abaixo vai na próxima versão (0.6.0, ainda não publicada).
+### Adicionado
+
+- `Field` — wrapper de formulário com `label` + children (input/textarea/select)
+  - mensagem de erro opcional, usando os tokens do tema (`--twui-ink`/
+    `--twui-danger`). Elimina o boilerplate repetido nas 8+ páginas de form do apps/site.
+
+## [0.6.0]
 
 ### Adicionado
 

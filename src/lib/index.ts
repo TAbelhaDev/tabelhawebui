@@ -18,6 +18,7 @@ export { default as Status } from "./components/Status.svelte";
 export { default as Input } from "./components/Input.svelte";
 export { default as Textarea } from "./components/Textarea.svelte";
 export { default as Label } from "./components/Label.svelte";
+export { default as Field } from "./components/Field.svelte";
 export { default as Radio } from "./components/Radio.svelte";
 export { default as Checkbox } from "./components/Checkbox.svelte";
 export { default as Select } from "./components/Select.svelte";
