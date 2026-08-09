@@ -168,6 +168,12 @@ bun run build   # svelte-package (dist)
 O pacote é publicado no npm como `tabelawebui`; as versões seguem o
 `CHANGELOG.md` e a convenção do `CONTRIBUTING.md`.
 
+## Ferramentas
+
+- **MCP server** (`mcp/`): expõe componentes, tokens e accents como tools
+  MCP pra coding agents (props com tipos, `--twui-*` light/dark,
+  `data-accent`). Veja `mcp/README.md` pra instalar/rodar.
+
 ## Changelog
 
 Veja [CHANGELOG.md](CHANGELOG.md) para o histórico de versões.

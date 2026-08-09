@@ -1,0 +1,46 @@
+{
+  "name": "@tabeladev/mcp-tabelawebui",
+  "version": "0.1.0",
+  "description": "MCP server para o TabelaWebUI: componentes, tokens e accents consultáveis por coding agents.",
+  "type": "module",
+  "license": "AGPL-3.0",
+  "bin": {
+    "mcp-tabelawebui": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "check": "tsc --noEmit",
+    "test": "bun run build && tsx test/client.mts",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "prepublishOnly": "bun run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "tabelawebui",
+    "catppuccin",
+    "svelte",
+    "design-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TabelaDev/tabelawebui.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "prettier": "3.8.1",
+    "tsx": "^4.23.11",
+    "typescript": "^7.0.2"
+  }
+}
