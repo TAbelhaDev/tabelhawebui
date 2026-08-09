@@ -4,7 +4,7 @@
 
 **Tema + chrome compartilhado dos apps web do ianptkcs — Catppuccin (Latte/Mocha)
 com a estética "reading someone's source file": mono leva a estrutura, bordas
-afiadas, acento nunca azul.**
+afiadas, acento configurável.**
 
 [![SvelteKit](https://img.shields.io/badge/SvelteKit-Svelte-ff3e00?style=flat-square&logo=svelte&logoColor=white)](https://kit.svelte.dev)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-orange?style=flat-square&logo=cloudflare&logoColor=white)](https://workers.cloudflare.com)
@@ -134,8 +134,7 @@ Latte/Mocha automaticamente:
 ```
 
 O `--twui-accent-soft` deriva sozinho (via `color-mix`); os semânticos
-`--twui-signal`/`--twui-danger` e os neutros não mudam. Acentos disponíveis
-(seguindo a regra da família "nunca azul"):
+`--twui-signal`/`--twui-danger` e os neutros não mudam. Acentos disponíveis:
 
 | Accent             | Latte (claro) | Mocha (escuro) |
 | ------------------ | ------------- | -------------- |
@@ -150,6 +149,9 @@ O `--twui-accent-soft` deriva sozinho (via `color-mix`); os semânticos
 | `lavender`         | `#7287fd`     | `#b4befe`      |
 | `rosewater`        | `#dc8a78`     | `#f5e0dc`      |
 | `flamingo`         | `#dd7878`     | `#f2cdcd`      |
+| `blue`             | `#1e66f5`     | `#89b4fa`      |
+| `sky`              | `#04a5e5`     | `#89dceb`      |
+| `sapphire`         | `#209fb5`     | `#74c7ec`      |
 
 (Escape hatch: quem precisar de uma cor fora da lista pode sobrescrever
 `--twui-accent` direto no `layout.css`, nos dois temas.)

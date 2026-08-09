@@ -24,14 +24,14 @@ com o pacote publicado, sem acesso ao fonte).
 | `get_component`   | API completa de um componente: props + tipos, defaults, snippets/slots, eventos, snippet de uso |
 | `list_tokens`     | Todos os `--twui-*` tokens com valor light/dark (Catppuccin Latte/Mocha)                        |
 | `get_token`       | Valor de um token específico nos dois temas                                                     |
-| `list_accents`    | Guia de `data-accent` (12 cores + escape hatch `--twui-accent`)                                 |
+| `list_accents`    | Guia de `data-accent` (14 cores + escape hatch `--twui-accent`)                                 |
 
 ## Por que / contexto
 
 - O TabelaWebUI é um design system com **~52 componentes** e um **sistema de
   tokens completo** (`theme.css`, 348 linhas). Agentes que consomem a lib
   precisam de uma fonte de verdade programática pra: props exatas, nomes de
-  tokens, convenções (mono, "accent never blue", `data-accent`).
+  tokens, convenções (mono, `data-accent`, accent configurável).
 - Hoje a API só está documentada em `README.md` (estático) e no fonte `.svelte`
   (precisa ler arquivo). Um agente fora do repo ou sem querer ler fonte não tem
   acesso a isso de forma estruturada.
