@@ -31,3 +31,17 @@ agents. Cada pedido é um arquivo markdown em `requests/`.
 - `requests/_template.md` — o que preencher em cada arquivo.
 - Ao implementar: seguir o padrão do repo (ver `README.md` — tabela de
   componentes / tokens, e `CHANGELOG.md` — bump + entry).
+
+## Abrir request pelo GitHub (uso externo)
+
+Usuários do TabelaWebUI publicado **fora deste repo** (um terceiro, sem o
+clonado localmente) abrem o request como **issue de feature no GitHub**:
+
+```bash
+gh issue create --repo TabelaDev/tabelawebui --template feature_request.yml
+```
+
+O template `feature_request.yml` funciona no formulário do GitHub via
+"New Issue → Feature request". Issues de feature criadas pelo GitHub entram
+no mesmo fluxo: vão para `requests/done/` quando implementadas e o commit de
+implementação referencia a issue no corpo da mensagem.

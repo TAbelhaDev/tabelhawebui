@@ -14,3 +14,7 @@ Pedidos de novos componentes/features chegam pelo dir `requests/`:
 3. Se for implementar: veja se já existe um request para a feature, siga os
    critérios de aceite dele, e referencie-o no commit. Ao concluir, mova o
    arquivo para `requests/done/`.
+
+Uso externo (terceiro usando o TabelaWebUI publicado, sem repo local): o
+pedido chega como GitHub issue via
+`gh issue create --repo TabelaDev/tabelawebui --template feature_request.yml`.
