@@ -27,7 +27,7 @@ dos componentes que todo mundo desenhava do zero.
 Requer Svelte 5.
 
 ```bash
-bun add tabelawebui
+bun add @tabeladev/tabelawebui
 ```
 
 ## Uso
@@ -36,7 +36,7 @@ Importe o tema uma vez no app e use os componentes:
 
 ```svelte
 <script>
-	import { Card, Table, Badge, Button, Status } from 'tabelawebui';
+	import { Card, Table, Badge, Button, Status } from '@tabeladev/tabelawebui';
 </script>
 
 <Card title="Resumo" description="mês atual">
@@ -49,7 +49,7 @@ Importe o tema uma vez no app e use os componentes:
 No CSS do app (uma vez):
 
 ```css
-@import "tabelawebui/theme.css";
+@import "@tabeladev/tabelawebui/theme.css";
 ```
 
 ## Componentes
@@ -168,7 +168,7 @@ bun run lint    # prettier
 bun run build   # svelte-package (dist)
 ```
 
-O pacote é publicado no npm como `tabelawebui`; as versões seguem o
+O pacote é publicado no npm como `@tabeladev/tabelawebui`; as versões seguem o
 `CHANGELOG.md` e a convenção do `CONTRIBUTING.md`.
 
 ## Ferramentas

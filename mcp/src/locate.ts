@@ -35,15 +35,17 @@ function resolveRoot(sourceArg?: string): string | undefined {
   if (existsSync(cwdPkg)) {
     try {
       const pkg = JSON.parse(readPkg(cwdPkg)) as { name?: string };
-      if (pkg.name === "tabelawebui") return process.cwd();
+      if (pkg.name === "@tabeladev/tabelawebui") return process.cwd();
     } catch {
       /* ignore */
     }
   }
 
-  // Resolve `tabelawebui` a partir do cwd (sobe node_modules).
+  // Resolve `@tabeladev/tabelawebui` a partir do cwd (sobe node_modules).
   try {
-    const entry = require.resolve("tabelawebui", { paths: [process.cwd()] });
+    const entry = require.resolve("@tabeladev/tabelawebui", {
+      paths: [process.cwd()],
+    });
     // entry aponta pra dist/index.js (ou theme.css) — a raiz é o pacote.
     const pkgJson = findPackageJson(dirname(entry));
     if (pkgJson) return dirname(pkgJson);
@@ -124,7 +126,7 @@ export function locate(sourceArg?: string): SourceLayout {
   const root = resolveRoot(sourceArg);
   if (!root) {
     throw new Error(
-      "tabelawebui não encontrado. Instale o pacote no projeto (bun add tabelawebui) " +
+      "tabelawebui não encontrado. Instale o pacote no projeto (bun add @tabeladev/tabelawebui) " +
         "ou aponte pra um checkout com TWUI_MCP_SOURCE ou --source <dir>.",
     );
   }

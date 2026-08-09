@@ -1,8 +1,8 @@
 // tabelawebui — tema + chrome compartilhado dos apps web.
 //
 // Uso:
-//   import '@tabela/webui/theme.css';  // uma vez no app (ou em cada app da família)
-//   import { Card, Table, Badge, Button, Toaster } from 'tabelawebui';
+//   import '@tabeladev/tabelawebui/theme.css';  // uma vez no app (ou em cada app da família)
+//   import { Card, Table, Badge, Button, Toaster } from '@tabeladev/tabelawebui';
 
 import CardRoot from "./components/Card.svelte";
 import CardHeader from "./components/CardHeader.svelte";

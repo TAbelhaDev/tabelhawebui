@@ -9,7 +9,7 @@ repo local.
 
 ## Como funciona
 
-O servidor localiza o pacote `tabelawebui` e parseia:
+O servidor localiza o pacote `@tabeladev/tabelawebui` e parseia:
 
 - **Componentes**: da fonte (`src/lib/components/*.svelte`, destructuring
   `$props()` do Svelte 5) ou, no pacote publicado, dos `.d.ts` gerados
@@ -40,10 +40,10 @@ Exemplo no `opencode.json` (ou `claude_desktop_config.json`/`.cursor/mcp.json`):
 }
 ```
 
-O servidor resolve o `tabelawebui` a partir do **diretório de trabalho** do
-processo (sobe o `node_modules`), então rode com o cwd no seu projeto que tem
-a lib instalada. Pra apontar pra um checkout específico (dev), use `--source`
-ou a env `TWUI_MCP_SOURCE`.
+O servidor resolve o `@tabeladev/tabelawebui` a partir do **diretório de
+trabalho** do processo (sobe o `node_modules`), então rode com o cwd no seu
+projeto que tem a lib instalada. Pra apontar pra um checkout específico (dev),
+use `--source` ou a env `TWUI_MCP_SOURCE`.
 
 ## Tools
 
@@ -69,7 +69,7 @@ Publicar:
 
 ```sh
 bun run build
-npm publish       # ou bun publish (AGPL-3.0, como o tabelawebui)
+npm publish       # ou bun publish (AGPL-3.0, como o @tabeladev/tabelawebui)
 ```
 
 ## Escopo

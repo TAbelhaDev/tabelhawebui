@@ -4,7 +4,7 @@
  * bordas afiadas.
  *
  * Uso: importe uma vez no app e as custom properties viram o tema global.
- *   @import 'tabelawebui/theme.css';
+ *   @import '@tabeladev/tabelawebui/theme.css';
  *
  * O accent é sobrescrevível por app via CSS var --twui-accent (ou herdando
  * do seu próprio [data-theme='dark']).
