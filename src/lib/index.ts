@@ -69,6 +69,9 @@ export { default as StatusPill } from "./components/StatusPill.svelte";
 // Pill flutuante clicável (abre painel/dialog)
 export { default as FloatingActionPill } from "./components/FloatingActionPill.svelte";
 
+// Chat
+export { default as ChatMessage } from "./components/ChatMessage.svelte";
+
 // Seções de landing
 export { default as LandingHero } from "./components/LandingHero.svelte";
 export { default as SectionHeading } from "./components/SectionHeading.svelte";

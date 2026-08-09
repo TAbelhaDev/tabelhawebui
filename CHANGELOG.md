@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0]
+
+### Adicionado
+
+- `ChatMessage` — bubble de mensagem de chat (`role` user/assistant, `content`,
+  `name` com default por role, `streaming` → ellipsis pulsante quando sem
+  conteúdo). Presentacional, sem lógica de API/SSE — extraído do TabelaFin.
+  Ver `requests/20260808-chat-message.md`.
+
 ## [0.9.0]
 
 ### Adicionado

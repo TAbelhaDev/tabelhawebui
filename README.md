@@ -96,6 +96,7 @@ No CSS do app (uma vez):
 | `Rating`             | estrelas (`max`, `readonly`, `cancel`)                                                                                                                                                  |
 | `StatusPill`         | pill fixa estilo toast (`position`, `closable`, `visible` bindable)                                                                                                                     |
 | `FloatingActionPill` | pill flutuante clicável (`position`, `label`, `expanded` → `aria-expanded`) — estilo do StatusPill, mas `<button>` que abre painel/dialog                                               |
+| `ChatMessage`        | bubble de chat (`role` user/assistant, `content`, `name`, `streaming` → ellipsis pulsando) — render presentacional, sem lógica de SSE                                                   |
 | `LandingHero`        | hero de landing: eyebrow, `title` (string ou snippet), `lead`, `actions`/`note`                                                                                                         |
 | `SectionHeading`     | título de seção: eyebrow + h2 + lead                                                                                                                                                    |
 | `LandingSteps`       | grid de passos numerados com cor                                                                                                                                                        |
