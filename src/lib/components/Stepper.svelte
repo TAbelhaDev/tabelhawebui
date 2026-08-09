@@ -16,6 +16,7 @@
 	{#each items as step, i (step.value)}
 		<li
 			class="twui-stepper-item {i <= currentIndex ? 'twui-stepper-item-active' : ''} {step.disabled ? 'twui-stepper-item-disabled' : ''}"
+			aria-current={i === currentIndex ? 'step' : undefined}
 		>
 			<button
 				type="button"
