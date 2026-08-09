@@ -16,6 +16,8 @@ afiadas, acento nunca azul.**
 
 ---
 
+## O que é
+
 Equivalente web do [`tabelatuiui`](https://github.com/TabelaDev/tabelatuiui)
 (os TUIs Bubble Tea): cada app mantém só o negócio dele; a lib cuida do tema e
 dos componentes que todo mundo desenhava do zero.
@@ -150,3 +152,43 @@ O `--twui-accent-soft` deriva sozinho (via `color-mix`); os semânticos
 
 (Escape hatch: quem precisar de uma cor fora da lista pode sobrescrever
 `--twui-accent` direto no `layout.css`, nos dois temas.)
+
+## Desenvolvimento
+
+Stack: Svelte 5 + SvelteKit, Bun como package manager.
+
+```sh
+bun install
+bun run check   # typecheck (svelte-kit sync + svelte-check)
+bun run lint    # prettier
+bun run build   # svelte-package (dist)
+```
+
+O pacote é publicado no npm como `tabelawebui`; as versões seguem o
+`CHANGELOG.md` e a convenção do `CONTRIBUTING.md`.
+
+## Changelog
+
+Veja [CHANGELOG.md](CHANGELOG.md) para o histórico de versões.
+
+## Apoie o projeto
+
+- **Global**: [ko-fi.com/ianptkcs](https://ko-fi.com/ianptkcs)
+- **Brasil (Pix)**: escaneie o QR abaixo ou copie o código
+
+  <img src="pix-qr.png" alt="Pix QR" width="200" />
+
+  <details><summary>Código Pix (copiar)</summary>
+
+  ```
+  00020126580014BR.GOV.BCB.PIX01365ad933b0-dcdc-4525-a736-0759902aeec65204000053039865802BR5925Ian Patrick da Costa Soar6009SAO PAULO62140510tQA85x6Dov63041FB6
+  ```
+
+  </details>
+
+## Licença
+
+[AGPL-3.0](LICENSE) — copyleft forte: você pode usar, modificar e até
+hospedar o TabelaWebUI comercialmente, mas qualquer versão modificada,
+inclusive rodando como serviço via rede (SaaS), precisa continuar open source
+sob a mesma licença.
