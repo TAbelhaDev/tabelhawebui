@@ -23,6 +23,7 @@
 				class="twui-stepper-btn"
 				disabled={step.disabled}
 				onclick={() => (value = step.value)}
+				aria-label={`Passo ${i + 1} de ${items.length}: ${step.label}`}
 			>
 				<span class="twui-stepper-num" aria-hidden="true">
 					{i < currentIndex ? '✓' : String(i + 1).padStart(2, '0')}

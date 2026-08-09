@@ -18,15 +18,38 @@
 		class?: string;
 	} = $props();
 
+	const FOCUSABLE =
+		'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 	let panelEl = $state<HTMLDivElement | undefined>();
 
 	$effect(() => {
 		if (!open) return;
 		const onKey = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') open = false;
+			if (e.key === 'Escape') {
+				open = false;
+				return;
+			}
+			// Focus trap (WCAG 2.4.3): Tab circula dentro do modal, sem
+			// escapar pro conteúdo atrás do overlay.
+			if (e.key !== 'Tab' || !panelEl) return;
+			const focusable = Array.from(panelEl.querySelectorAll<HTMLElement>(FOCUSABLE));
+			if (focusable.length === 0) return;
+			const first = focusable[0];
+			const last = focusable[focusable.length - 1];
+			if (e.shiftKey && document.activeElement === first) {
+				e.preventDefault();
+				last.focus();
+			} else if (!e.shiftKey && document.activeElement === last) {
+				e.preventDefault();
+				first.focus();
+			}
 		};
 		document.addEventListener('keydown', onKey);
-		tick().then(() => panelEl?.focus());
+		tick().then(() => {
+			const first = panelEl?.querySelector<HTMLElement>(FOCUSABLE);
+			(first ?? panelEl)?.focus();
+		});
 		return () => document.removeEventListener('keydown', onKey);
 	});
 </script>
