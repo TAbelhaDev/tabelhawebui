@@ -46,6 +46,7 @@ export { default as Tooltip } from "./components/Tooltip.svelte";
 // Feedback
 export { default as Message } from "./components/Message.svelte";
 export { default as ProgressBar } from "./components/ProgressBar.svelte";
+export { default as ErrorPage } from "./components/ErrorPage.svelte";
 
 // Overlay
 export { default as Dialog } from "./components/Dialog.svelte";

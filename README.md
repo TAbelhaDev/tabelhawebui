@@ -85,6 +85,7 @@ No CSS do app (uma vez):
 | `BracketLink`        | link mono `[ label ]`, colchetes acendem no hover                                                                                                                                       |
 | `Message`            | alerta inline `info`/`success`/`warn`/`error`, `closable`, `life` (auto-dismiss)                                                                                                        |
 | `ProgressBar`        | barra de progresso determinada/indeterminada com label                                                                                                                                  |
+| `ErrorPage`          | display de página de erro (`status` em mono/accent, `title`, `description`, `homeHref`/`homeLabel`, `actions` snippet) — usado dentro de `+error.svelte`                                |
 | `Skeleton`           | shimmer placeholder (`width`/`height`/`rounded`)                                                                                                                                        |
 | `Tooltip`            | tooltip CSS via `data-tooltip` (`top`/`bottom`/`left`/`right`)                                                                                                                          |
 | `Dialog`             | modal com overlay, `aria-modal`, Esc/outside pra fechar, `footer` snippet                                                                                                               |
