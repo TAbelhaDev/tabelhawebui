@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0]
+
+### Adicionado
+
+- `Sidebar` — responsiva + colapsável + overlay/animados:
+  - `mode: 'overlay' | 'push'` — `push` entra no fluxo do layout (desktop) ≥
+    768px e no mobile vira drawer overlay full-width (breakpoint fixo).
+  - `collapsible` + `collapsed` bindable → rail (width `--twui-sidebar-width-collapsed`,
+    default 48px), botão com `aria-expanded`.
+  - `overlay={false}` remove o backdrop; animação fade+slide respeitando
+    `prefers-reduced-motion`; largura via CSS vars
+    (`--twui-sidebar-width`/`-collapsed`/`-mobile`).
+  - Ver `requests/20260808-sidebar-responsive.md`.
+
 ## [0.8.0]
 
 ### Adicionado
@@ -39,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   bindable, `style`/`class` pra offset custom) extraída do TabelaFin.
 - Primitivos de formulário: `Radio`/`Checkbox` (hidden input + indicador) e
   `Textarea` (espelha o `Input`).
-- Absorção inspirada no PrimeNG (`ABSORCAO-PRIMENG.md`):
+- Absorção inspirada no PrimeNG (`docs/archive/ABSORCAO-PRIMENG.md`):
   - **Table v2** — sort por coluna (`aria-sort`), filtro global com `filterFields`,
     seleção de linha (`single`/`multiple`), loading com skeleton, estado vazio,
     paginação com `pageSizeOptions` (dropdown), `pageReport` com placeholders
