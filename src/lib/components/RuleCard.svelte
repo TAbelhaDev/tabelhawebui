@@ -32,8 +32,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
-		border-top: 1px solid var(--twui-rule);
-		padding-top: 24px;
+		border: 1px solid var(--twui-rule);
+		background: var(--twui-paper-raised);
+		padding: 24px;
 	}
 
 	.twui-rulecard-label {

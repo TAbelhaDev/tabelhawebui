@@ -110,6 +110,7 @@
 	}
 
 	.twui-timeline-dot {
+		display: block;
 		position: relative;
 		z-index: 10;
 		margin-top: 6px;

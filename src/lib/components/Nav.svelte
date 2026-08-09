@@ -61,6 +61,12 @@
 		color: var(--twui-ink);
 	}
 
+	.twui-nav-trailing {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
 	.twui-nav-links {
 		display: flex;
 		flex-wrap: wrap;
