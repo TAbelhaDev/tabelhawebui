@@ -1,7 +1,7 @@
 /*
  * tabelawebui — tema Catppuccin + estética "reading someone's source file".
  * Mesmo design system do portfolio e do tabelatuiui: mono leva a estrutura,
- * bordas afiadas, accent nunca azul.
+ * bordas afiadas.
  *
  * Uso: importe uma vez no app e as custom properties viram o tema global.
  *   @import 'tabelawebui/theme.css';
@@ -18,7 +18,7 @@
     --twui-ink-soft: #6c6f85;
     --twui-ink-faint: #9ca0b0;
     --twui-rule: #ccd0da;
-    --twui-accent: #e64553; /* maroon — nunca azul */
+    --twui-accent: #e64553; /* maroon */
     --twui-accent-soft: color-mix(
       in srgb,
       var(--twui-accent) 12%,
@@ -190,9 +190,8 @@
   }
 
   /* Accent por app — escolha via data-accent no <html> (ex: data-accent="teal").
-     Os acentos seguem a regra da família "nunca azul". O --twui-accent-soft
-     deriva automaticamente (color-mix) e os semânticos signal/danger não mudam.
-     Sem data-accent, fica o default (marrom claro / pink escuro). */
+     O --twui-accent-soft deriva automaticamente (color-mix) e os semânticos
+     signal/danger não mudam. Sem data-accent, fica o default (marrom / pink). */
   :root[data-accent="maroon"] {
     --twui-accent: var(--twui-latte-maroon);
   }
@@ -279,6 +278,30 @@
   [data-theme="dark"][data-accent="flamingo"],
   .dark[data-accent="flamingo"] {
     --twui-accent: var(--twui-mocha-flamingo);
+  }
+
+  :root[data-accent="blue"] {
+    --twui-accent: var(--twui-latte-blue);
+  }
+  [data-theme="dark"][data-accent="blue"],
+  .dark[data-accent="blue"] {
+    --twui-accent: var(--twui-mocha-blue);
+  }
+
+  :root[data-accent="sky"] {
+    --twui-accent: var(--twui-latte-sky);
+  }
+  [data-theme="dark"][data-accent="sky"],
+  .dark[data-accent="sky"] {
+    --twui-accent: var(--twui-mocha-sky);
+  }
+
+  :root[data-accent="sapphire"] {
+    --twui-accent: var(--twui-latte-sapphire);
+  }
+  [data-theme="dark"][data-accent="sapphire"],
+  .dark[data-accent="sapphire"] {
+    --twui-accent: var(--twui-mocha-sapphire);
   }
 }
 

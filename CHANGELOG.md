@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0]
+
+### Adicionado
+
+- Accents `data-accent`: `blue`, `sky` e `sapphire` entram na lista
+  selecionável — a regra da família "nunca azul" foi relaxada (o azul é uma
+  opção como as demais).
+- `Stepper`: `aria-current="step"` no passo atual (a11y).
+
 ## [0.10.0]
 
 ### Adicionado
