@@ -1,13 +1,12 @@
-name: Release
+name: Release MCP
 
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "mcp-v*.*.*"
   workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: write
 
 jobs:
@@ -20,27 +19,33 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: Install
+        working-directory: mcp
         run: bun install --frozen-lockfile
 
       - name: Typecheck
+        working-directory: mcp
         run: bun run check
 
       - name: Lint
+        working-directory: mcp
         run: bun run lint
 
       - name: Build
+        working-directory: mcp
         run: bun run build
 
       - name: Check tag matches package.json version
         if: github.ref_type == 'tag'
+        working-directory: mcp
         run: |
           PKG_VERSION="$(npm pkg get version | tr -d '"')"
-          if [ "${GITHUB_REF_NAME#v}" != "$PKG_VERSION" ]; then
-            echo "tag ${GITHUB_REF_NAME} != package version ${PKG_VERSION}" >&2
+          if [ "${GITHUB_REF_NAME#mcp-v}" != "$PKG_VERSION" ]; then
+            echo "tag ${GITHUB_REF_NAME} != mcp version ${PKG_VERSION}" >&2
             exit 1
           fi
 
       - name: Publish to npm
+        working-directory: mcp
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
