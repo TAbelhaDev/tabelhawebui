@@ -85,7 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `ErrorPage` — display de página de erro (`status` em mono/accent, `title`,
   `description`, botão `homeHref`/`homeLabel`, `actions` snippet) pra montar
-  `+error.svelte` em apps SvelteKit. Ver `requests/20260809-error-page.md`.
+  `+error.svelte` em apps SvelteKit.
 
 ## [0.11.0]
 
@@ -103,7 +103,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ChatMessage` — bubble de mensagem de chat (`role` user/assistant, `content`,
   `name` com default por role, `streaming` → ellipsis pulsante quando sem
   conteúdo). Presentacional, sem lógica de API/SSE — extraído do TabelaFin.
-  Ver `requests/20260808-chat-message.md`.
 
 ## [0.9.0]
 
@@ -117,7 +116,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `overlay={false}` remove o backdrop; animação fade+slide respeitando
     `prefers-reduced-motion`; largura via CSS vars
     (`--twui-sidebar-width`/`-collapsed`/`-mobile`).
-  - Ver `requests/20260808-sidebar-responsive.md`.
 
 ## [0.8.0]
 
@@ -126,8 +124,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `FloatingActionPill` — pill flutuante clicável (estilo `StatusPill`, mas `<button>`):
   `position` (canto fixo), `label`/`expandedLabel` → `aria-label`, `expanded` →
   `aria-expanded`, sombra `--twui-shadow-offset` com press no clique (offset some).
-  Pro extraída do TabelaFin (acesso ao chat de IA) — ver
-  `requests/20260808-floating-action-pill.md`.
+  Pro extraída do TabelaFin (acesso ao chat de IA).
 
 ## [0.7.0]
 

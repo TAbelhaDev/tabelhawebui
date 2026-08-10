@@ -21,4 +21,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   tema (Latte/Mocha) e accents de `data-accent`.
 - Resolução do pacote via cwd/`node_modules`, `--source` ou
   `TWUI_MCP_SOURCE`.
-- Ver `requests/20260809-mcp-server.md`.

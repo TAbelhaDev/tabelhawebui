@@ -1,3 +1,7 @@
 node_modules/
 dist/
 .svelte-kit/
+
+# Requests de features — fluxo interno (inbox de agents), não vão pro público.
+# Requests externos entram como GitHub issue (ver .github/ISSUE_TEMPLATE/feature_request.yml).
+requests/
