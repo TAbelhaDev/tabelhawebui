@@ -140,11 +140,16 @@
 	);
 
 	// --- paginação ---
+	// pageSize=0 significa "sem paginação, mostra todas as linhas". Evita
+	// slice((p-1)*0, p*0) = slice(0,0) = [] e divisão por zero em totalPages.
+	const noPagination = $derived(!pageSize || pageSize <= 0);
 	const totalRecords = $derived(sortedRows.length);
-	const totalPages = $derived(Math.max(1, Math.ceil(totalRecords / pageSize)));
+	const totalPages = $derived(
+		noPagination ? 1 : Math.max(1, Math.ceil(totalRecords / pageSize))
+	);
 	let currentPage = $state(1);
 	const pageRows = $derived(
-		sortedRows.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+		noPagination ? sortedRows : sortedRows.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 	);
 
 	$effect(() => {
