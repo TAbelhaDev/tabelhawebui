@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Table`: `pageSize={0}` (intenção: "sem paginação, mostra todas as linhas")
   zerava a lista — `slice((p-1)*0, p*0)` retornava `[]`. Agora `pageSize<=0`
   renderiza todas as linhas sem controles de paginação.
+- `Select`: escondida a scrollbar nativa do dropdown (`scrollbar-width: none`
+  + `::-webkit-scrollbar { display: none }`) — o scroll continua por teclado/
+  roda, sem a barra feia no visual mono.
 
 ## [0.14.0]
 

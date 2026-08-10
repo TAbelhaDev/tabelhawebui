@@ -224,10 +224,17 @@
 		z-index: 50;
 		max-height: 240px;
 		overflow-y: auto;
+		/* Esconde a scrollbar nativa (feia no mono) mantendo o scroll do
+		   teclado/roda — a lista é curta e o indicador não agrega. */
+		scrollbar-width: none;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);
 		box-shadow: var(--twui-shadow-offset, 3px 3px 0 0 var(--twui-rule));
 		padding: 4px;
+	}
+
+	.twui-select-popover::-webkit-scrollbar {
+		display: none;
 	}
 
 	.twui-select-filter {
