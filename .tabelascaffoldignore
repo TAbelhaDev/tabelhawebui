@@ -1,0 +1,7 @@
+# Release próprio: publica o pacote no npm via Trusted Publishing e valida que
+# a tag bate com a versão do package.json. O template genérico do scaffold só
+# gera notas de release — sobrescrever aqui quebraria a publicação.
+.github/workflows/release.yml
+
+# CI próprio: roda os testes do sub-pacote mcp/ além dos da lib.
+.github/workflows/ci.yml
