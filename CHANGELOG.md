@@ -10,8 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Corrigido
 
 - `Select`: escondida a scrollbar nativa do dropdown (`scrollbar-width: none`
-  + `::-webkit-scrollbar { display: none }`) — o scroll continua por teclado/
-  roda, sem a barra feia no visual mono. (Ficou de fora do 0.14.1 publicado.)
+  - `::-webkit-scrollbar { display: none }`) — o scroll continua por teclado/
+    roda, sem a barra feia no visual mono. (Ficou de fora do 0.14.1 publicado.)
 
 ## [0.14.1]
 
