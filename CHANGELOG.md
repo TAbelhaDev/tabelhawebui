@@ -5,6 +5,37 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.0]
+
+### Adicionado
+
+- Suíte de testes de componente (Vitest + Testing Library): 18 testes cobrindo
+  `Tooltip`, `Select` e `Table` — render, navegação por teclado e o contrato de
+  props que o MCP anuncia. A lib estava publicada no npm e consumida por cinco
+  apps sem nenhum teste.
+- Rota de showcase (`bun run dev`): todos os componentes numa página só, com
+  toggle de tema, pra conferir claro e escuro lado a lado. Não vai pro pacote —
+  o build é `svelte-package`, que só empacota `src/lib`.
+- O CI passou a rodar os testes da lib e os do sub-pacote `mcp/`. O teste do MCP
+  já existia e nenhum workflow o executava.
+
+### Corrigido
+
+- `Tooltip`: o label vivia num `::after` alimentado por `attr(data-tooltip)`,
+  que não entra na árvore de acessibilidade — era invisível pra leitor de tela.
+  Agora é um elemento real com `role="tooltip"`, ligado por `aria-describedby`,
+  dispensável com `Esc` (WCAG 1.4.13) e com quebra de linha em vez de
+  `white-space: nowrap`, que estourava a viewport com label longo.
+- MCP: o parser do index exigia aspas duplas, então rodar o prettier com
+  `singleQuote` faria a lista de componentes vir vazia — sem erro, sem aviso.
+  Passou a aceitar os dois estilos e a falhar alto quando não reconhece o index.
+
+### Interno
+
+- `.tabelascaffoldignore` marcando `ci.yml` e `release.yml` como divergência
+  intencional: o `tabelascaffold setup` sobrescreveria o workflow que publica no
+  npm pelo genérico.
+
 ## [0.14.2]
 
 ### Corrigido
