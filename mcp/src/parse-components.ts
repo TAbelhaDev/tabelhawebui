@@ -18,14 +18,21 @@ interface IndexExport {
   category?: string;
 }
 
-/** Extrai a lista de exports do index (src/lib/index.ts ou dist/index.d.ts). */
+/**
+ * Extrai a lista de exports do index (src/lib/index.ts ou dist/index.d.ts).
+ *
+ * Quote style is deliberately not pinned: the regex used to require double
+ * quotes, so running prettier with singleQuote over index.ts would have made
+ * this return an empty list — and an agent would silently conclude the library
+ * has no components at all. Hence the throw below rather than an empty array.
+ */
 export function parseIndex(indexFile: string): IndexExport[] {
   const text = readFileSync(indexFile, "utf8");
   const out: IndexExport[] = [];
   let category: string | undefined;
   const sectionRe = /^\s*\/\/\s*([A-ZÁÉÍÓÚ][^\n]*)$/;
   const exportRe =
-    /export\s*\{([^}]*)\}\s*from\s*"\.\/components\/([A-Za-z0-9.]+)"/g;
+    /export\s*\{([^}]*)\}\s*from\s*["']\.\/components\/([A-Za-z0-9.]+)["']/g;
   const cardRe = /export\s+(?:declare\s+)?const\s+(Card)\s*:/;
 
   const lines = text.split("\n");
@@ -86,6 +93,16 @@ export function parseIndex(indexFile: string): IndexExport[] {
         });
       }
     }
+  }
+
+  // An index file that yields nothing means the parser lost track of the
+  // format, not that the library is empty. Failing loudly here turns a silent
+  // "no components found" into an actionable error.
+  if (out.length === 0) {
+    throw new Error(
+      `parseIndex: nenhum export reconhecido em ${indexFile}. ` +
+        `O formato do index mudou e o parser precisa acompanhar.`,
+    );
   }
   return out;
 }

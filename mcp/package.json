@@ -14,7 +14,7 @@
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "check": "tsc --noEmit",
-    "test": "bun run build && tsx test/client.mts",
+    "test": "bun run build && tsx test/parse.mts && tsx test/client.mts",
     "lint": "prettier --check .",
     "format": "prettier --write .",
     "prepublishOnly": "bun run build"
