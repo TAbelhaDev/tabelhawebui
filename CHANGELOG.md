@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- `LandingFooter`: `repoUrl` is now optional — the "view the code" link is hidden
+  when omitted, so closed-source products can use the footer without a repo link.
+  Request: `requests/20260811-landing-footer-sem-repo.md`.
+
 ## [0.15.1]
 
 > From this entry on the changelog is written in English, per the language

@@ -106,7 +106,7 @@ In the app's CSS (once):
 | `LandingSteps`       | grid of numbered, coloured steps                                                                                                                                                           |
 | `LandingFeatures`    | grid of cards with icon (snippet) + title + body                                                                                                                                           |
 | `LandingRoadmap`     | "on the radar" badges with icon (snippet) + label                                                                                                                                          |
-| `LandingFooter`      | footer: name, license, "view the code" button                                                                                                                                              |
+| `LandingFooter`      | footer: name, license, optional "view the code" link (`repoUrl` omitted → link hidden)                                                                                                     |
 | `TerminalWindow`     | terminal window: dot bar + `title` + content (`children`)                                                                                                                                  |
 
 ## Tokens
