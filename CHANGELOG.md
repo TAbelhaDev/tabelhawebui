@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.15.1]
+
+> From this entry on the changelog is written in English, per the language
+> convention now carried by tabelascaffold. Earlier entries are left as the
+> historical record rather than retranslated.
+
+### Changed
+
+- README and CONTRIBUTING are bilingual: English is canonical (it is what GitHub
+  and the npm package page render) with a `.pt-BR.md` half beside each and a
+  selector at the top. The README also documents the `requests/` flow, which
+  existed but was only discoverable by finding the directory.
+
 ## [0.15.0]
 
 ### Adicionado
