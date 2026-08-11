@@ -5,13 +5,31 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.16.1]
 
 ### Changed
 
 - `LandingFooter`: `repoUrl` is now optional — the "view the code" link is hidden
   when omitted, so closed-source products can use the footer without a repo link.
   Request: `requests/20260811-landing-footer-sem-repo.md`.
+
+## [0.16.0]
+
+### Breaking
+
+- `Card` keeps only the composed API: `Card.Header`/`Card.Title`/`Card.Description`/`Card.Content`/`Card.Footer`.
+  The simple props (`title`, `description`, `header`) are removed, and the standalone exports
+  (`CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`) no longer exist —
+  a single `Card` export is now the whole module.
+- `TimelineItem` is no longer exported standalone; use `Timeline.Item`.
+
+### Changed
+
+- `src/lib/components/` is reorganized by domain: `card/`, `timeline/`, `table/`, `forms/`,
+  `choice/`, `actions/`, `feedback/`, `overlay/`, `navigation/`, `layout/`, `landing/`, `chat/`.
+  The public exports are unchanged apart from the two breaking items above.
+- The MCP catalog parser follows the new paths and exposes the composed sub-parts
+  (`Card.Header`, `Timeline.Item`).
 
 ## [0.15.1]
 
