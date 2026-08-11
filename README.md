@@ -2,9 +2,11 @@
 
 # TabelaWebUI
 
-**Tema + chrome compartilhado dos apps web do ianptkcs — Catppuccin (Latte/Mocha)
-com a estética "reading someone's source file": mono leva a estrutura, bordas
-afiadas, acento configurável.**
+**Shared theme and chrome for ianptkcs's web apps — Catppuccin (Latte/Mocha)
+with a "reading someone's source file" aesthetic: mono carries the structure,
+sharp borders, configurable accent.**
+
+**English** · [Português](README.pt-BR.md)
 
 [![SvelteKit](https://img.shields.io/badge/SvelteKit-Svelte-ff3e00?style=flat-square&logo=svelte&logoColor=white)](https://kit.svelte.dev)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-orange?style=flat-square&logo=cloudflare&logoColor=white)](https://workers.cloudflare.com)
@@ -16,23 +18,24 @@ afiadas, acento configurável.**
 
 ---
 
-## O que é
+## What it is
 
-Equivalente web do [`tabelatuiui`](https://github.com/TabelaDev/tabelatuiui)
-(os TUIs Bubble Tea): cada app mantém só o negócio dele; a lib cuida do tema e
-dos componentes que todo mundo desenhava do zero.
+The web counterpart of [`tabelatuiui`](https://github.com/TabelaDev/tabelatuiui)
+(the Bubble Tea TUIs): each app keeps only its own business logic, and the
+library takes care of the theme and of the components everyone was redrawing
+from scratch.
 
-## Instalação
+## Installation
 
-Requer Svelte 5.
+Requires Svelte 5.
 
 ```bash
 bun add @tabeladev/tabelawebui
 ```
 
-## Uso
+## Usage
 
-Importe o tema uma vez no app e use os componentes:
+Import the theme once in the app and use the components:
 
 ```svelte
 <script>
@@ -46,120 +49,122 @@ Importe o tema uma vez no app e use os componentes:
 </Card>
 ```
 
-No CSS do app (uma vez):
+In the app's CSS (once):
 
 ```css
 @import "@tabeladev/tabelawebui/theme.css";
 ```
 
-## Componentes
+## Components
 
-| Componente           | O que é                                                                                                                                                                                       |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Card`               | painel com header (título/descrição) e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                                                                          |
-| `TabCard`            | painel "aba de arquivo" (chrome de página)                                                                                                                                                    |
-| `Table`              | tabela com `columns`/`rows`, snippet `cell`, sort, filtro global, selection, loading/skeleton, empty e paginação (com `pageSizeOptions`; `pageSize={0}` mostra todas as linhas sem paginação) |
-| `Badge`              | tag de texto pequena — variantes `default` / `secondary` / `outline`                                                                                                                          |
-| `Button`             | variantes `default` / `primary` / `ghost` / `danger` / `outline`, `size` (default/sm/lg/icon-sm), `href`, `loading`; `buttonVariants()`                                                       |
-| `Panel`              | contêiner com `focused` → borda accent; `toggleable` colapsável                                                                                                                               |
-| `Status`             | semântico `success` / `warning` / `error` / `info`, com `icon` opcional                                                                                                                       |
-| `Input`              | campo de texto (`password`, `file` com `bind:files`, ...), `invalid`                                                                                                                          |
-| `Textarea`           | área de texto multi-linha (`bind:value`, `rows`, `resize: vertical`, `invalid`)                                                                                                               |
-| `Label`              | rótulo mono 13px                                                                                                                                                                              |
-| `Field`              | wrapper de form: label + children (input/textarea/select) + mensagem de erro opcional                                                                                                         |
-| `Radio`              | opção única: input oculto + indicador circular (accent no checked, foco por `:has()`)                                                                                                         |
-| `Checkbox`           | opção múltipla: input oculto + quadrado com `✓`                                                                                                                                               |
-| `Toggle`             | switch on/off (hidden checkbox + role `switch`, `invalid`)                                                                                                                                    |
-| `Select`             | listbox custom com `options`, `bind:value`, `name`, navegação por teclado e `filter`                                                                                                          |
-| `MultiSelect`        | seleção múltipla em popover com checkboxes, `filter`, hidden input com `name`                                                                                                                 |
-| `Listbox`            | lista de opções visível (single/múltipla), `filter`, `checkmark`                                                                                                                              |
-| `DatePicker`         | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale`                                                                                                               |
-| `Toaster`            | renderiza toasts + store `toast`; `position` configurável                                                                                                                                     |
-| `Timeline`           | linha do tempo (`TimelineItem`s com trilho, dot, skills)                                                                                                                                      |
-| `RuleCard`           | cartão com borda-superior, ícone e prosa serif                                                                                                                                                |
-| `Nav`                | navbar: logo + links em breadcrumb com `/`                                                                                                                                                    |
-| `ThemeToggle`        | alterna `data-theme`/`.dark` + `localStorage`                                                                                                                                                 |
-| `Dropdown`           | menu com sombra impressa; fecha por fora/Esc                                                                                                                                                  |
-| `Divider`            | linha horizontal/vertical, `solid`/`dashed`, label central                                                                                                                                    |
-| `Eyebrow`            | label de seção mono uppercase                                                                                                                                                                 |
-| `BracketLink`        | link mono `[ label ]`, colchetes acendem no hover                                                                                                                                             |
-| `Message`            | alerta inline `info`/`success`/`warn`/`error`, `closable`, `life` (auto-dismiss)                                                                                                              |
-| `ProgressBar`        | barra de progresso determinada/indeterminada com label                                                                                                                                        |
-| `ErrorPage`          | display de página de erro (`status` em mono/accent, `title`, `description`, `homeHref`/`homeLabel`, `actions` snippet) — usado dentro de `+error.svelte`                                      |
-| `Skeleton`           | shimmer placeholder (`width`/`height`/`rounded`)                                                                                                                                              |
-| `Tooltip`            | tooltip CSS via `data-tooltip` (`top`/`bottom`/`left`/`right`)                                                                                                                                |
-| `Dialog`             | modal com overlay, `aria-modal`, Esc/outside pra fechar, `footer` snippet                                                                                                                     |
-| `Sidebar`            | painel lateral/`top`/`bottom`; `mode` overlay (drawer) ou `push` (estático, desktop), `collapsible`+`collapsed`, `overlay` off, breakpoint 768 (mobile vira drawer full-width), animado       |
-| `Tabs`               | barra de abas com `value` bindable, `disabled`, navegação por teclado                                                                                                                         |
-| `Accordion`          | painéis colapsáveis (`multiple`, `value` bindable)                                                                                                                                            |
-| `Stepper`            | indicador de passos (onboarding) com `value` bindable                                                                                                                                         |
-| `Carousel`           | carrossel com `page` bindable, dots e arrows                                                                                                                                                  |
-| `Rating`             | estrelas (`max`, `readonly`, `cancel`)                                                                                                                                                        |
-| `StatusPill`         | pill fixa estilo toast (`position`, `closable`, `visible` bindable)                                                                                                                           |
-| `FloatingActionPill` | pill flutuante clicável (`position`, `label`, `expanded` → `aria-expanded`) — estilo do StatusPill, mas `<button>` que abre painel/dialog                                                     |
-| `ChatMessage`        | bubble de chat (`role` user/assistant, `content`, `name`, `streaming` → ellipsis pulsando) — render presentacional, sem lógica de SSE                                                         |
-| `LandingHero`        | hero de landing: eyebrow, `title` (string ou snippet), `lead`, `actions`/`note`                                                                                                               |
-| `SectionHeading`     | título de seção: eyebrow + h2 + lead                                                                                                                                                          |
-| `LandingSteps`       | grid de passos numerados com cor                                                                                                                                                              |
-| `LandingFeatures`    | grid de cards com ícone (snippet) + título + body                                                                                                                                             |
-| `LandingRoadmap`     | badges "no radar" com ícone (snippet) + label                                                                                                                                                 |
-| `LandingFooter`      | rodapé: nome, licença, botão "Ver o código"                                                                                                                                                   |
-| `TerminalWindow`     | janela de terminal: barra de dots + `title` + conteúdo (`children`)                                                                                                                           |
+| Component            | What it is                                                                                                                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Card`               | panel with header (title/description) and content; composed API `Card.Header`/`Title`/`Description`/`Content`/`Footer`                                                                     |
+| `TabCard`            | "file tab" panel (page chrome)                                                                                                                                                             |
+| `Table`              | table with `columns`/`rows`, `cell` snippet, sort, global filter, selection, loading/skeleton, empty and pagination (with `pageSizeOptions`; `pageSize={0}` shows every row unpaginated)   |
+| `Badge`              | small text tag — `default` / `secondary` / `outline` variants                                                                                                                              |
+| `Button`             | `default` / `primary` / `ghost` / `danger` / `outline` variants, `size` (default/sm/lg/icon-sm), `href`, `loading`; `buttonVariants()`                                                     |
+| `Panel`              | container with `focused` → accent border; `toggleable` collapsible                                                                                                                         |
+| `Status`             | semantic `success` / `warning` / `error` / `info`, with optional `icon`                                                                                                                    |
+| `Input`              | text field (`password`, `file` with `bind:files`, ...), `invalid`                                                                                                                          |
+| `Textarea`           | multi-line text area (`bind:value`, `rows`, `resize: vertical`, `invalid`)                                                                                                                 |
+| `Label`              | 13px mono label                                                                                                                                                                            |
+| `Field`              | form wrapper: label + children (input/textarea/select) + optional error message                                                                                                            |
+| `Radio`              | single choice: hidden input + circular indicator (accent when checked, focus via `:has()`)                                                                                                 |
+| `Checkbox`           | multiple choice: hidden input + square with `✓`                                                                                                                                            |
+| `Toggle`             | on/off switch (hidden checkbox + `switch` role, `invalid`)                                                                                                                                 |
+| `Select`             | custom listbox with `options`, `bind:value`, `name`, keyboard navigation and `filter`                                                                                                      |
+| `MultiSelect`        | multiple selection in a popover with checkboxes, `filter`, hidden input with `name`                                                                                                        |
+| `Listbox`            | visible option list (single/multiple), `filter`, `checkmark`                                                                                                                               |
+| `DatePicker`         | date/month picker with a calendar popover, `bind:value`, `min`/`max`, `locale`                                                                                                             |
+| `Toaster`            | renders toasts + the `toast` store; configurable `position`                                                                                                                                |
+| `Timeline`           | timeline (`TimelineItem`s with rail, dot, skills)                                                                                                                                          |
+| `RuleCard`           | card with a top border, icon and serif prose                                                                                                                                               |
+| `Nav`                | navbar: logo + breadcrumb links separated by `/`                                                                                                                                           |
+| `ThemeToggle`        | toggles `data-theme`/`.dark` + `localStorage`                                                                                                                                              |
+| `Dropdown`           | menu with a printed shadow; closes on outside click/Esc                                                                                                                                    |
+| `Divider`            | horizontal/vertical line, `solid`/`dashed`, centered label                                                                                                                                 |
+| `Eyebrow`            | uppercase mono section label                                                                                                                                                               |
+| `BracketLink`        | mono `[ label ]` link, brackets light up on hover                                                                                                                                          |
+| `Message`            | inline `info`/`success`/`warn`/`error` alert, `closable`, `life` (auto-dismiss)                                                                                                            |
+| `ProgressBar`        | determinate/indeterminate progress bar with a label                                                                                                                                        |
+| `ErrorPage`          | error page display (`status` in mono/accent, `title`, `description`, `homeHref`/`homeLabel`, `actions` snippet) — used inside `+error.svelte`                                              |
+| `Skeleton`           | shimmer placeholder (`width`/`height`/`rounded`)                                                                                                                                           |
+| `Tooltip`            | CSS tooltip via `data-tooltip` (`top`/`bottom`/`left`/`right`)                                                                                                                             |
+| `Dialog`             | modal with overlay, `aria-modal`, Esc/outside to close, `footer` snippet                                                                                                                   |
+| `Sidebar`            | side/`top`/`bottom` panel; `mode` overlay (drawer) or `push` (static, desktop), `collapsible`+`collapsed`, `overlay` off, breakpoint 768 (becomes a full-width drawer on mobile), animated |
+| `Tabs`               | tab bar with bindable `value`, `disabled`, keyboard navigation                                                                                                                             |
+| `Accordion`          | collapsible panels (`multiple`, bindable `value`)                                                                                                                                          |
+| `Stepper`            | step indicator (onboarding) with bindable `value`                                                                                                                                          |
+| `Carousel`           | carousel with bindable `page`, dots and arrows                                                                                                                                             |
+| `Rating`             | stars (`max`, `readonly`, `cancel`)                                                                                                                                                        |
+| `StatusPill`         | fixed toast-style pill (`position`, `closable`, bindable `visible`)                                                                                                                        |
+| `FloatingActionPill` | clickable floating pill (`position`, `label`, `expanded` → `aria-expanded`) — StatusPill's styling, but a `<button>` that opens a panel/dialog                                             |
+| `ChatMessage`        | chat bubble (`role` user/assistant, `content`, `name`, `streaming` → pulsing ellipsis) — presentational render, no SSE logic                                                               |
+| `LandingHero`        | landing hero: eyebrow, `title` (string or snippet), `lead`, `actions`/`note`                                                                                                               |
+| `SectionHeading`     | section title: eyebrow + h2 + lead                                                                                                                                                         |
+| `LandingSteps`       | grid of numbered, coloured steps                                                                                                                                                           |
+| `LandingFeatures`    | grid of cards with icon (snippet) + title + body                                                                                                                                           |
+| `LandingRoadmap`     | "on the radar" badges with icon (snippet) + label                                                                                                                                          |
+| `LandingFooter`      | footer: name, license, "view the code" button                                                                                                                                              |
+| `TerminalWindow`     | terminal window: dot bar + `title` + content (`children`)                                                                                                                                  |
 
 ## Tokens
 
-O tema expõe custom properties `--twui-*`:
+The theme exposes `--twui-*` custom properties:
 
-- Semânticos: `--twui-paper`, `--twui-paper-raised`, `--twui-ink`,
+- Semantic: `--twui-paper`, `--twui-paper-raised`, `--twui-ink`,
   `--twui-ink-soft`, `--twui-ink-faint`, `--twui-rule`, `--twui-accent`,
   `--twui-accent-soft`, `--twui-signal`, `--twui-signal-soft`, `--twui-danger`
-- Fontes: `--twui-font-mono`, `--twui-font-serif`
-- Sombra: `--twui-shadow-offset` (hard offset 3px)
-- Paleta por flavor ativo: `--twui-base`, `--twui-surface0`, `--twui-text`,
-  `--twui-red`, `--twui-green`, `--twui-mauve`, ... (via `--twui-<color>`)
-- Cores cruas por flavor: `--twui-latte-*` e `--twui-mocha-*` (escala completa
-  — neutros + 14 acentos do Catppuccin)
+- Fonts: `--twui-font-mono`, `--twui-font-serif`
+- Shadow: `--twui-shadow-offset` (hard 3px offset)
+- Palette for the active flavour: `--twui-base`, `--twui-surface0`,
+  `--twui-text`, `--twui-red`, `--twui-green`, `--twui-mauve`, ... (via
+  `--twui-<color>`)
+- Raw colours per flavour: `--twui-latte-*` and `--twui-mocha-*` (the full scale
+  — neutrals + Catppuccin's 14 accents)
 
-Tema escuro via `[data-theme="dark"]` **ou** classe `.dark` no `<html>`. O
-tema aplica defaults de `body` (fundo, cor, fonte serif) e respeita
+Dark theme via `[data-theme="dark"]` **or** a `.dark` class on `<html>`. The
+theme applies `body` defaults (background, colour, serif font) and respects
 `prefers-reduced-motion`.
 
-## Accent custom por app
+## Per-app custom accent
 
-O accent padrão é o marrom (claro) / pink (escuro). Cada app pode ter o seu
-**escolhendo um nome** via `data-accent` no `<html>` — a lib resolve o par
-Latte/Mocha automaticamente:
+The default accent is maroon (light) / pink (dark). Each app can have its own by
+**picking a name** through `data-accent` on `<html>` — the library resolves the
+Latte/Mocha pair automatically:
 
 ```html
 <html data-accent="teal"></html>
 ```
 
-O `--twui-accent-soft` deriva sozinho (via `color-mix`); os semânticos
-`--twui-signal`/`--twui-danger` e os neutros não mudam. Acentos disponíveis:
+`--twui-accent-soft` derives on its own (via `color-mix`); the semantic
+`--twui-signal`/`--twui-danger` and the neutrals do not change. Available
+accents:
 
-| Accent             | Latte (claro) | Mocha (escuro) |
-| ------------------ | ------------- | -------------- |
-| `maroon` (default) | `#e64553`     | `#eba0ac`      |
-| `mauve`            | `#8839ef`     | `#cba6f7`      |
-| `pink`             | `#ea76cb`     | `#f5c2e7`      |
-| `red`              | `#d20f39`     | `#f38ba8`      |
-| `peach`            | `#fe640b`     | `#fab387`      |
-| `yellow`           | `#df8e1d`     | `#f9e2af`      |
-| `green`            | `#40a02b`     | `#a6e3a1`      |
-| `teal`             | `#179299`     | `#94e2d5`      |
-| `lavender`         | `#7287fd`     | `#b4befe`      |
-| `rosewater`        | `#dc8a78`     | `#f5e0dc`      |
-| `flamingo`         | `#dd7878`     | `#f2cdcd`      |
-| `blue`             | `#1e66f5`     | `#89b4fa`      |
-| `sky`              | `#04a5e5`     | `#89dceb`      |
-| `sapphire`         | `#209fb5`     | `#74c7ec`      |
+| Accent             | Latte (light) | Mocha (dark) |
+| ------------------ | ------------- | ------------ |
+| `maroon` (default) | `#e64553`     | `#eba0ac`    |
+| `mauve`            | `#8839ef`     | `#cba6f7`    |
+| `pink`             | `#ea76cb`     | `#f5c2e7`    |
+| `red`              | `#d20f39`     | `#f38ba8`    |
+| `peach`            | `#fe640b`     | `#fab387`    |
+| `yellow`           | `#df8e1d`     | `#f9e2af`    |
+| `green`            | `#40a02b`     | `#a6e3a1`    |
+| `teal`             | `#179299`     | `#94e2d5`    |
+| `lavender`         | `#7287fd`     | `#b4befe`    |
+| `rosewater`        | `#dc8a78`     | `#f5e0dc`    |
+| `flamingo`         | `#dd7878`     | `#f2cdcd`    |
+| `blue`             | `#1e66f5`     | `#89b4fa`    |
+| `sky`              | `#04a5e5`     | `#89dceb`    |
+| `sapphire`         | `#209fb5`     | `#74c7ec`    |
 
-(Escape hatch: quem precisar de uma cor fora da lista pode sobrescrever
-`--twui-accent` direto no `layout.css`, nos dois temas.)
+(Escape hatch: anyone needing a colour outside the list can override
+`--twui-accent` directly in `layout.css`, in both themes.)
 
-## Desenvolvimento
+## Development
 
-Stack: Svelte 5 + SvelteKit, Bun como package manager.
+Stack: Svelte 5 + SvelteKit, Bun as the package manager.
 
 ```sh
 bun install
@@ -168,27 +173,33 @@ bun run lint    # prettier
 bun run build   # svelte-package (dist)
 ```
 
-O pacote é publicado no npm como `@tabeladev/tabelawebui`; as versões seguem o
-`CHANGELOG.md` e a convenção do `CONTRIBUTING.md`.
+The package is published to npm as `@tabeladev/tabelawebui`; versions follow
+`CHANGELOG.md` and the convention in `CONTRIBUTING.md`.
 
-## Ferramentas
+## Tooling
 
-- **MCP server** (`mcp/`): expõe componentes, tokens e accents como tools
-  MCP pra coding agents (props com tipos, `--twui-*` light/dark,
-  `data-accent`). Veja `mcp/README.md` pra instalar/rodar.
+- **MCP server** (`mcp/`): exposes components, tokens and accents as MCP tools
+  for coding agents (props with types, light/dark `--twui-*`, `data-accent`).
+  See `mcp/README.md` to install and run it.
+
+## Requesting a component
+
+Feature requests from other agents live in `requests/` as markdown files — see
+`requests/README.md` for the flow, and `requests/_template.md` for what to fill
+in. From outside this repo, open a feature request issue instead.
 
 ## Changelog
 
-Veja [CHANGELOG.md](CHANGELOG.md) para o histórico de versões.
+See [CHANGELOG.md](CHANGELOG.md) for the version history.
 
-## Apoie o projeto
+## Support the project
 
 - **Global**: [ko-fi.com/ianptkcs](https://ko-fi.com/ianptkcs)
-- **Brasil (Pix)**: escaneie o QR abaixo ou copie o código
+- **Brazil (Pix)**: scan the QR below or copy the code
 
   <img src="pix-qr.png" alt="Pix QR" width="200" />
 
-  <details><summary>Código Pix (copiar)</summary>
+  <details><summary>Pix code (copy)</summary>
 
   ```
   00020126580014BR.GOV.BCB.PIX01365ad933b0-dcdc-4525-a736-0759902aeec65204000053039865802BR5925Ian Patrick da Costa Soar6009SAO PAULO62140510tQA85x6Dov63041FB6
@@ -196,9 +207,8 @@ Veja [CHANGELOG.md](CHANGELOG.md) para o histórico de versões.
 
   </details>
 
-## Licença
+## License
 
-[AGPL-3.0](LICENSE) — copyleft forte: você pode usar, modificar e até
-hospedar o TabelaWebUI comercialmente, mas qualquer versão modificada,
-inclusive rodando como serviço via rede (SaaS), precisa continuar open source
-sob a mesma licença.
+[AGPL-3.0](LICENSE) — strong copyleft: you may use, modify and even host
+TabelaWebUI commercially, but any modified version, including one running as a
+network service (SaaS), has to stay open source under the same license.
