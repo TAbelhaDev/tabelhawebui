@@ -5,15 +5,7 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.16.1]
-
-### Changed
-
-- `LandingFooter`: `repoUrl` is now optional — the "view the code" link is hidden
-  when omitted, so closed-source products can use the footer without a repo link.
-  Request: `requests/20260811-landing-footer-sem-repo.md`.
-
-## [0.16.0]
+## [0.17.0]
 
 ### Breaking
 
@@ -25,11 +17,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `Divider` no longer applies a default `margin` — spacing around a separator is
+  the layout's job, so the primitive ships margin-free and consumers opt in via
+  `class`.
 - `src/lib/components/` is reorganized by domain: `card/`, `timeline/`, `table/`, `forms/`,
   `choice/`, `actions/`, `feedback/`, `overlay/`, `navigation/`, `layout/`, `landing/`, `chat/`.
   The public exports are unchanged apart from the two breaking items above.
 - The MCP catalog parser follows the new paths and exposes the composed sub-parts
   (`Card.Header`, `Timeline.Item`).
+
+## [0.16.1]
+
+### Changed
+
+- `LandingFooter`: `repoUrl` is now optional — the "view the code" link is hidden
+  when omitted, so closed-source products can use the footer without a repo link.
+  Request: `requests/20260811-landing-footer-sem-repo.md`.
 
 ## [0.15.1]
 
