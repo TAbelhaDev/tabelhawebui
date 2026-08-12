@@ -26,7 +26,6 @@
 
 <style>
 	.twui-divider {
-		margin: 24px 0;
 		border-top: 1px solid var(--twui-rule);
 	}
 
