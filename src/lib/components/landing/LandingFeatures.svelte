@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Card from './Card.svelte';
-	import CardContent from './CardContent.svelte';
+	import Card from '../card/Card.svelte';
+	import CardContent from '../card/CardContent.svelte';
 
 	let {
 		features,

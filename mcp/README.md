@@ -11,9 +11,9 @@ repo local.
 
 O servidor localiza o pacote `@tabeladev/tabelawebui` e parseia:
 
-- **Componentes**: da fonte (`src/lib/components/*.svelte`, destructuring
+- **Componentes**: da fonte (`src/lib/components/**/*.svelte`, destructuring
   `$props()` do Svelte 5) ou, no pacote publicado, dos `.d.ts` gerados
-  (`dist/components/*.svelte.d.ts`). Extrai props com tipo/default/bindable,
+  (`dist/components/**/*.svelte.d.ts`). Extrai props com tipo/default/bindable,
   snippets, tipos HTML herdados via `...rest` e um exemplo de uso gerado.
 - **Tokens**: do `theme.css` (`--twui-*`), com valor no tema claro (Latte) e
   escuro (Mocha), resolvendo `var()`/`color-mix` quando possível.

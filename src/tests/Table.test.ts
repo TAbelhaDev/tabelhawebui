@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
-import Table from "$lib/components/Table.svelte";
+import Table from "$lib/components/table/Table.svelte";
 
 const columns = ["Data", "Descrição", "Valor"];
 

@@ -54,4 +54,53 @@ assert.throws(
 );
 console.log("ok: parseIndex falha alto quando não reconhece o index");
 
+const nestedPath = join(dir, "index-nested.ts");
+writeFileSync(
+  nestedPath,
+  [
+    "// Dados",
+    `export { default as Table } from ${'"'}./components/table/Table.svelte${'"'};`,
+    "// Feedback",
+    `export { toast } from ${'"'}./components/feedback/toast.svelte.js${'"'};`,
+    "",
+  ].join("\n"),
+  "utf8",
+);
+const nested = parseIndex(nestedPath);
+assert.deepEqual(
+  nested.map((e) => [e.name, e.kind, e.file]),
+  [
+    ["Table", "component", "table/Table.svelte"],
+    ["toast", "store", undefined],
+  ],
+  "subfolder component paths must parse with the folder prefix; the store is still detected",
+);
+console.log(
+  "ok: parseIndex reads exports in subfolders (components/<domain>/)",
+);
+
+const multilinePath = join(dir, "index-multiline.ts");
+writeFileSync(
+  multilinePath,
+  [
+    "// Ações",
+    'export {',
+    "  buttonVariants,",
+    '  default as Button,',
+    '} from "./components/actions/Button.svelte";',
+    "",
+  ].join("\n"),
+  "utf8",
+);
+const multiline = parseIndex(multilinePath);
+assert.deepEqual(
+  multiline.map((e) => [e.name, e.kind, e.file]),
+  [
+    ["buttonVariants", "function", undefined],
+    ["Button", "component", "actions/Button.svelte"],
+  ],
+  "a prettier-broken multiline export must still parse",
+);
+console.log("ok: parseIndex parses a prettier-broken multiline export");
+
 console.log("\nTUDO OK");

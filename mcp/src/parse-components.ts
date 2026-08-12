@@ -32,10 +32,20 @@ export function parseIndex(indexFile: string): IndexExport[] {
   let category: string | undefined;
   const sectionRe = /^\s*\/\/\s*([A-ZÁÉÍÓÚ][^\n]*)$/;
   const exportRe =
-    /export\s*\{([^}]*)\}\s*from\s*["']\.\/components\/([A-Za-z0-9.]+)["']/g;
+    /export\s*\{([^}]*)\}\s*from\s*["']\.\/components\/([A-Za-z0-9./]+)["']/g;
   const cardRe = /export\s+(?:declare\s+)?const\s+(Card)\s*:/;
+  const timelineRe = /export\s+(?:declare\s+)?const\s+(Timeline)\s*:/;
 
-  const lines = text.split("\n");
+  // Prettier breaks `export { a, b } from "..."` onto several lines once the
+  // module path grows past its print width. The matcher below is per-line, so
+  // collapse export-from blocks back onto a single line first — otherwise a
+  // lengthening path would silently drop components from the catalog.
+  const normalized = text.replace(
+    /export\s*\{[^{}]*?\}\s*from\s*["'][^"'\n]+["'];?/g,
+    (m) => m.replace(/\s*\n\s*/g, " "),
+  );
+
+  const lines = normalized.split("\n");
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i] as string;
     const sec = line.match(sectionRe);
@@ -75,23 +85,36 @@ export function parseIndex(indexFile: string): IndexExport[] {
       out.push({
         name: "Card",
         kind: "component",
-        file: "Card.svelte",
-        category: "Card composto",
+        file: "card/Card.svelte",
+        category: "Compostos",
       });
       for (const [sub, f] of [
-        ["Header", "CardHeader.svelte"],
-        ["Title", "CardTitle.svelte"],
-        ["Description", "CardDescription.svelte"],
-        ["Content", "CardContent.svelte"],
-        ["Footer", "CardFooter.svelte"],
+        ["Header", "card/CardHeader.svelte"],
+        ["Title", "card/CardTitle.svelte"],
+        ["Description", "card/CardDescription.svelte"],
+        ["Content", "card/CardContent.svelte"],
+        ["Footer", "card/CardFooter.svelte"],
       ] as const) {
         out.push({
           name: sub,
           kind: "component",
           file: f,
-          category: "Card composto",
+          category: "Compostos",
         });
       }
+    } else if (timelineRe.test(line)) {
+      out.push({
+        name: "Timeline",
+        kind: "component",
+        file: "timeline/Timeline.svelte",
+        category: "Compostos",
+      });
+      out.push({
+        name: "Item",
+        kind: "component",
+        file: "timeline/TimelineItem.svelte",
+        category: "Compostos",
+      });
     }
   }
 
@@ -324,7 +347,7 @@ function buildSpecialExport(
     return {
       name,
       kind: "store",
-      file: "src/lib/components/toast.svelte.ts",
+      file: "src/lib/components/feedback/toast.svelte.ts",
       category,
       description:
         "Store de toasts do TabelaWebUI (módulo Svelte 5, `$state`). Chamável " +
@@ -341,7 +364,7 @@ function buildSpecialExport(
   return {
     name,
     kind: "function",
-    file: "src/lib/components/Button.svelte",
+    file: "src/lib/components/actions/Button.svelte",
     category,
     description:
       "Helper de classes do Button pra uso onde um `<Button>` real não cabe " +
@@ -428,14 +451,14 @@ export async function parseComponents(
     const info = parseComponentFile(exp, layout, descriptions);
     out.push(info);
 
-    // Subcomponentes do Card composto: expõem também como Card.Header, etc.
-    if (exp.file === "Card.svelte" && exp.name === "Card") {
+    // Subcomponentes dos compostos: expõem também como Card.Header, etc.
+    if (exp.file === "card/Card.svelte" && exp.name === "Card") {
       for (const [sub, f] of [
-        ["Header", "CardHeader.svelte"],
-        ["Title", "CardTitle.svelte"],
-        ["Description", "CardDescription.svelte"],
-        ["Content", "CardContent.svelte"],
-        ["Footer", "CardFooter.svelte"],
+        ["Header", "card/CardHeader.svelte"],
+        ["Title", "card/CardTitle.svelte"],
+        ["Description", "card/CardDescription.svelte"],
+        ["Content", "card/CardContent.svelte"],
+        ["Footer", "card/CardFooter.svelte"],
       ] as const) {
         const subExp: IndexExport = {
           name: sub,
@@ -447,6 +470,17 @@ export async function parseComponents(
         subInfo.exportedAs = `Card.${sub}`;
         out.push(subInfo);
       }
+    }
+    if (exp.file === "timeline/Timeline.svelte" && exp.name === "Timeline") {
+      const subExp: IndexExport = {
+        name: "Item",
+        kind: "component",
+        file: "timeline/TimelineItem.svelte",
+        category: exp.category,
+      };
+      const subInfo = parseComponentFile(subExp, layout, descriptions);
+      subInfo.exportedAs = "Timeline.Item";
+      out.push(subInfo);
     }
   }
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import type { SelectOption } from './Select.svelte';
+	import type { SelectOption } from '../forms/Select.svelte';
 
 	let {
 		options = [],

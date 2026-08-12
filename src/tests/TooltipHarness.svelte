@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Tooltip from '$lib/components/Tooltip.svelte';
+	import Tooltip from '$lib/components/feedback/Tooltip.svelte';
 
 	// Tooltip takes its trigger as a snippet, so exercising it needs a host
 	// component. Lives under src/tests so svelte-package does not ship it.

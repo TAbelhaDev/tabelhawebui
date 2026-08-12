@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
-import Select from "$lib/components/Select.svelte";
+import Select from "$lib/components/forms/Select.svelte";
 
 const options = [
   { value: "mercado", label: "Mercado" },

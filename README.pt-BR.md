@@ -41,10 +41,16 @@ Importe o tema uma vez no app e use os componentes:
 	import { Card, Table, Badge, Button, Status } from '@tabeladev/tabelawebui';
 </script>
 
-<Card title="Resumo" description="mês atual">
-	<Status kind="success">configurado</Status>
-	<Button variant="primary">+ Nova transação</Button>
-	<Table columns={['Data', 'Descrição']} rows={[{ Data: '01/08', Descrição: 'Mercado' }]} />
+<Card>
+	<Card.Header>
+		<Card.Title>Resumo</Card.Title>
+		<Card.Description>mês atual</Card.Description>
+	</Card.Header>
+	<Card.Content>
+		<Status kind="success">configurado</Status>
+		<Button variant="primary">+ Nova transação</Button>
+		<Table columns={['Data', 'Descrição']} rows={[{ Data: '01/08', Descrição: 'Mercado' }]} />
+	</Card.Content>
 </Card>
 ```
 
@@ -58,7 +64,7 @@ No CSS do app (uma vez):
 
 | Componente           | O que é                                                                                                                                                                                       |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Card`               | painel com header (título/descrição) e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                                                                          |
+| `Card`               | painel com header e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                                                                                             |
 | `TabCard`            | painel "aba de arquivo" (chrome de página)                                                                                                                                                    |
 | `Table`              | tabela com `columns`/`rows`, snippet `cell`, sort, filtro global, selection, loading/skeleton, empty e paginação (com `pageSizeOptions`; `pageSize={0}` mostra todas as linhas sem paginação) |
 | `Badge`              | tag de texto pequena — variantes `default` / `secondary` / `outline`                                                                                                                          |
@@ -77,7 +83,7 @@ No CSS do app (uma vez):
 | `Listbox`            | lista de opções visível (single/múltipla), `filter`, `checkmark`                                                                                                                              |
 | `DatePicker`         | seletor de data/mês com popover calendário, `bind:value`, `min`/`max`, `locale`                                                                                                               |
 | `Toaster`            | renderiza toasts + store `toast`; `position` configurável                                                                                                                                     |
-| `Timeline`           | linha do tempo (`TimelineItem`s com trilho, dot, skills)                                                                                                                                      |
+| `Timeline`           | linha do tempo (`Timeline.Item`s com trilho, dot, skills)                                                                                                                                     |
 | `RuleCard`           | cartão com borda-superior, ícone e prosa serif                                                                                                                                                |
 | `Nav`                | navbar: logo + links em breadcrumb com `/`                                                                                                                                                    |
 | `ThemeToggle`        | alterna `data-theme`/`.dark` + `localStorage`                                                                                                                                                 |

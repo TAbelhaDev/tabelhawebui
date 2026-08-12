@@ -42,10 +42,16 @@ Import the theme once in the app and use the components:
 	import { Card, Table, Badge, Button, Status } from '@tabeladev/tabelawebui';
 </script>
 
-<Card title="Resumo" description="mês atual">
-	<Status kind="success">configurado</Status>
-	<Button variant="primary">+ Nova transação</Button>
-	<Table columns={['Data', 'Descrição']} rows={[{ Data: '01/08', Descrição: 'Mercado' }]} />
+<Card>
+	<Card.Header>
+		<Card.Title>Resumo</Card.Title>
+		<Card.Description>mês atual</Card.Description>
+	</Card.Header>
+	<Card.Content>
+		<Status kind="success">configurado</Status>
+		<Button variant="primary">+ Nova transação</Button>
+		<Table columns={['Data', 'Descrição']} rows={[{ Data: '01/08', Descrição: 'Mercado' }]} />
+	</Card.Content>
 </Card>
 ```
 
@@ -59,7 +65,7 @@ In the app's CSS (once):
 
 | Component            | What it is                                                                                                                                                                                 |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Card`               | panel with header (title/description) and content; composed API `Card.Header`/`Title`/`Description`/`Content`/`Footer`                                                                     |
+| `Card`               | panel with header and content; composed API `Card.Header`/`Title`/`Description`/`Content`/`Footer`                                                                                         |
 | `TabCard`            | "file tab" panel (page chrome)                                                                                                                                                             |
 | `Table`              | table with `columns`/`rows`, `cell` snippet, sort, global filter, selection, loading/skeleton, empty and pagination (with `pageSizeOptions`; `pageSize={0}` shows every row unpaginated)   |
 | `Badge`              | small text tag — `default` / `secondary` / `outline` variants                                                                                                                              |
@@ -78,7 +84,7 @@ In the app's CSS (once):
 | `Listbox`            | visible option list (single/multiple), `filter`, `checkmark`                                                                                                                               |
 | `DatePicker`         | date/month picker with a calendar popover, `bind:value`, `min`/`max`, `locale`                                                                                                             |
 | `Toaster`            | renders toasts + the `toast` store; configurable `position`                                                                                                                                |
-| `Timeline`           | timeline (`TimelineItem`s with rail, dot, skills)                                                                                                                                          |
+| `Timeline`           | timeline (`Timeline.Item`s with rail, dot, skills)                                                                                                                                         |
 | `RuleCard`           | card with a top border, icon and serif prose                                                                                                                                               |
 | `Nav`                | navbar: logo + breadcrumb links separated by `/`                                                                                                                                           |
 | `ThemeToggle`        | toggles `data-theme`/`.dark` + `localStorage`                                                                                                                                              |

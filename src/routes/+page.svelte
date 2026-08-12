@@ -66,7 +66,9 @@
 		<ThemeToggle />
 	</header>
 
-	<Divider />
+	<div class="divider-gap">
+		<Divider />
+	</div>
 
 	<section>
 		<h2>Ações</h2>
@@ -144,8 +146,14 @@
 	<section>
 		<h2>Contêineres</h2>
 		<div class="row wrap">
-			<Card title="Resumo" description="agosto/2026">
-				<p class="muted">R$ 3.180,42 em 42 lançamentos.</p>
+			<Card>
+				<Card.Header>
+					<Card.Title>Resumo</Card.Title>
+					<Card.Description>agosto/2026</Card.Description>
+				</Card.Header>
+				<Card.Content>
+					<p class="muted">R$ 3.180,42 em 42 lançamentos.</p>
+				</Card.Content>
 			</Card>
 			<Panel title="Detalhes" toggleable defaultOpen>
 				<p class="muted">Conteúdo colapsável.</p>
@@ -192,6 +200,10 @@
 	.muted {
 		color: var(--twui-ink-soft, var(--twui-ink));
 		font-size: 0.875rem;
+	}
+
+	.divider-gap {
+		margin: 24px 0;
 	}
 
 	section {

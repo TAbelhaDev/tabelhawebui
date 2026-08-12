@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SelectOption } from './Select.svelte';
+	import type { SelectOption } from '../forms/Select.svelte';
 
 	let {
 		options = [],
