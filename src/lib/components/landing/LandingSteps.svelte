@@ -1,4 +1,7 @@
 <script lang="ts">
+	import Card from '../card/Card.svelte';
+	import CardContent from '../card/CardContent.svelte';
+
 	let {
 		steps,
 		class: className = ''
@@ -11,9 +14,18 @@
 <ol class="twui-landing-steps {className}">
 	{#each steps as step (step.number)}
 		<li class="twui-landing-step">
-			<div class="twui-landing-step-number" style={`color: ${step.color}`}>{step.number}</div>
-			<h3 class="twui-landing-step-title">{step.title}</h3>
-			<p class="twui-landing-step-body">{step.body}</p>
+			<Card>
+				<CardContent>
+					<div
+						class="twui-landing-step-number"
+						style="background:color-mix(in srgb, {step.color} 12%, transparent); color:{step.color}"
+					>
+						{step.number}
+					</div>
+					<h3 class="twui-landing-step-title">{step.title}</h3>
+					<p class="twui-landing-step-body">{step.body}</p>
+				</CardContent>
+			</Card>
 		</li>
 	{/each}
 </ol>
@@ -22,23 +34,39 @@
 	.twui-landing-steps {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 24px;
+		gap: 16px;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
+	.twui-landing-step {
+		display: flex;
+		min-width: 0;
+	}
+
+	.twui-landing-step > :global(.twui-card) {
+		flex: 1;
+	}
+
 	.twui-landing-step-number {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		margin-bottom: 12px;
+		border-radius: 8px;
 		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
-		font-size: 32px;
+		font-size: 16px;
 		font-weight: 700;
 		line-height: 1;
 	}
 
 	.twui-landing-step-title {
-		margin: 12px 0 0;
+		margin: 0;
 		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
-		font-size: 15px;
+		font-size: 14px;
 		font-weight: 600;
 		color: var(--twui-ink);
 	}
