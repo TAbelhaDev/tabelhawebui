@@ -1,11 +1,13 @@
 <script lang="ts">
 	let {
 		name,
+		tagline,
 		license,
 		repoUrl,
 		class: className = ''
 	}: {
 		name: string;
+		tagline?: string;
 		license?: string;
 		repoUrl?: string;
 		class?: string;
@@ -15,6 +17,9 @@
 <footer class="twui-landing-footer {className}">
 	<div class="twui-landing-footer-left">
 		<span class="twui-landing-footer-name">{name}</span>
+		{#if tagline}
+			<span class="twui-landing-footer-tagline">{tagline}</span>
+		{/if}
 		{#if license}
 			<span class="twui-landing-footer-license">{license}</span>
 		{/if}
@@ -61,6 +66,13 @@
 		font-size: 13px;
 		font-weight: 500;
 		color: var(--twui-ink);
+	}
+
+	.twui-landing-footer-tagline {
+		font-family: var(--twui-font-serif, 'Newsreader', Georgia, serif);
+		font-size: 13px;
+		font-style: italic;
+		color: var(--twui-ink-soft);
 	}
 
 	.twui-landing-footer-license {
