@@ -5,6 +5,28 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.0]
+
+### Breaking
+
+- Landing components are exported as a single compound `Landing`:
+  `Landing.Hero`/`Landing.Steps`/`Landing.Features`/`Landing.Roadmap`/
+  `Landing.Footer`. The flat exports (`LandingHero`, `LandingSteps`,
+  `LandingFeatures`, `LandingRoadmap`, `LandingFooter`) no longer exist.
+  Request: `requests/20260811-landing-compound-export.md`.
+
+### Added
+
+- `LandingSteps` now renders each step as a `Card` with the number in a coloured
+  box, matching `LandingFeatures` visual model (API unchanged).
+  Request: `requests/20260811-landing-steps-card.md`.
+- `LandingFooter` gains optional `tagline` prop (name + tagline + license,
+  without repo link). Request: `requests/20260811-landing-footer-tagline.md`.
+- `FileUpload`: file picker with drag-and-drop (`basic`/`advanced`), validation
+  of `accept`/`maxFileSize`/`fileLimit`, per-file progress driven by the
+  consumer, and the `customUpload` + `uploadHandler` pattern — the library
+  performs no upload of its own. Request: `requests/20260811-file-upload.md`.
+
 ## [0.17.0]
 
 ### Breaking

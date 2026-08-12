@@ -1,6 +1,6 @@
 {
   "name": "@tabeladev/mcp-tabelawebui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server para o TabelaWebUI: componentes, tokens e accents consultáveis por coding agents.",
   "type": "module",
   "license": "AGPL-3.0",
