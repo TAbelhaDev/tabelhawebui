@@ -128,6 +128,7 @@ export { default as Eyebrow } from "./components/layout/Eyebrow.svelte";
 export { default as BracketLink } from "./components/layout/BracketLink.svelte";
 export { default as SectionHeading } from "./components/layout/SectionHeading.svelte";
 export { default as TerminalWindow } from "./components/layout/TerminalWindow.svelte";
+export { default as Wordmark } from "./components/layout/Wordmark.svelte";
 
 // Chat
 export { default as ChatMessage } from "./components/chat/ChatMessage.svelte";
@@ -138,6 +139,12 @@ import LandingSteps from "./components/landing/LandingSteps.svelte";
 import LandingFeatures from "./components/landing/LandingFeatures.svelte";
 import LandingRoadmap from "./components/landing/LandingRoadmap.svelte";
 import LandingFooter from "./components/landing/LandingFooter.svelte";
+
+import AppShellRoot from "./components/appshell/AppShell.svelte";
+import AppShellSidebar from "./components/appshell/AppShellSidebar.svelte";
+import AppShellBottomNav from "./components/appshell/AppShellBottomNav.svelte";
+import AppShellContent from "./components/appshell/AppShellContent.svelte";
+import type { AppShellNavItem } from "./components/appshell/types";
 
 // Componente composto: `Landing.Hero`/`Landing.Steps`/`Landing.Features`/
 // `Landing.Roadmap`/`Landing.Footer` — um único export por módulo, sem exports
@@ -155,3 +162,18 @@ export const Landing: typeof LandingHero & {
   Roadmap: LandingRoadmap,
   Footer: LandingFooter,
 });
+
+// AppShell
+export const AppShell: typeof AppShellRoot & {
+  Sidebar: typeof AppShellSidebar;
+  BottomNav: typeof AppShellBottomNav;
+  Content: typeof AppShellContent;
+} = Object.assign(AppShellRoot, {
+  Sidebar: AppShellSidebar,
+  BottomNav: AppShellBottomNav,
+  Content: AppShellContent,
+});
+
+export namespace AppShell {
+  export type NavItem = AppShellNavItem;
+}

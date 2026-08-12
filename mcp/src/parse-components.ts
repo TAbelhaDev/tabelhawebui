@@ -36,6 +36,7 @@ export function parseIndex(indexFile: string): IndexExport[] {
   const cardRe = /export\s+(?:declare\s+)?const\s+(Card)\s*:/;
   const timelineRe = /export\s+(?:declare\s+)?const\s+(Timeline)\s*:/;
   const landingRe = /export\s+(?:declare\s+)?const\s+(Landing)\s*:/;
+  const appShellRe = /export\s+(?:declare\s+)?const\s+(AppShell)\s*:/;
 
   // Prettier breaks `export { a, b } from "..."` onto several lines once the
   // module path grows past its print width. The matcher below is per-line, so
@@ -129,6 +130,25 @@ export function parseIndex(indexFile: string): IndexExport[] {
         ["Features", "landing/LandingFeatures.svelte"],
         ["Roadmap", "landing/LandingRoadmap.svelte"],
         ["Footer", "landing/LandingFooter.svelte"],
+      ] as const) {
+        out.push({
+          name: sub,
+          kind: "component",
+          file: f,
+          category: "Compound",
+        });
+      }
+    } else if (appShellRe.test(line)) {
+      out.push({
+        name: "AppShell",
+        kind: "component",
+        file: "appshell/AppShell.svelte",
+        category: "Compound",
+      });
+      for (const [sub, f] of [
+        ["Sidebar", "appshell/AppShellSidebar.svelte"],
+        ["BottomNav", "appshell/AppShellBottomNav.svelte"],
+        ["Content", "appshell/AppShellContent.svelte"],
       ] as const) {
         out.push({
           name: sub,
@@ -520,6 +540,23 @@ export async function parseComponents(
         };
         const subInfo = parseComponentFile(subExp, layout, descriptions);
         subInfo.exportedAs = `Landing.${sub}`;
+        out.push(subInfo);
+      }
+    }
+    if (exp.file === "appshell/AppShell.svelte" && exp.name === "AppShell") {
+      for (const [sub, f] of [
+        ["Sidebar", "appshell/AppShellSidebar.svelte"],
+        ["BottomNav", "appshell/AppShellBottomNav.svelte"],
+        ["Content", "appshell/AppShellContent.svelte"],
+      ] as const) {
+        const subExp: IndexExport = {
+          name: sub,
+          kind: "component",
+          file: f,
+          category: exp.category,
+        };
+        const subInfo = parseComponentFile(subExp, layout, descriptions);
+        subInfo.exportedAs = `AppShell.${sub}`;
         out.push(subInfo);
       }
     }

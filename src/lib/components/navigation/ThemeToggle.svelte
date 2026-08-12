@@ -5,10 +5,14 @@
 	let {
 		labels = { light: 'Usar tema claro', dark: 'Usar tema escuro' },
 		icons,
+		showLabel = false,
+		label = { light: 'Tema claro', dark: 'Tema escuro' },
 		class: className = ''
 	}: {
 		labels?: { light: string; dark: string };
 		icons?: { sun: Snippet; moon: Snippet };
+		showLabel?: boolean;
+		label?: { light: string; dark: string };
 		class?: string;
 	} = $props();
 
@@ -30,7 +34,7 @@
 
 <button
 	type="button"
-	class="twui-theme-toggle {className}"
+	class="twui-theme-toggle {showLabel ? 'twui-theme-toggle-labeled' : ''} {className}"
 	aria-label={dark ? labels.light : labels.dark}
 	onclick={toggle}
 >
@@ -70,6 +74,9 @@
 			</svg>
 		{/if}
 	{/if}
+	{#if showLabel}
+		<span class="twui-theme-toggle-label-text">{dark ? label.light : label.dark}</span>
+	{/if}
 </button>
 
 <style>
@@ -88,6 +95,20 @@
 
 	.twui-theme-toggle:hover {
 		color: var(--twui-accent);
+	}
+
+	.twui-theme-toggle-labeled {
+		width: auto;
+		height: auto;
+		gap: 8px;
+		padding: 6px 10px;
+	}
+
+	.twui-theme-toggle-label-text {
+		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-size: 14px;
+		line-height: 1;
+		white-space: nowrap;
 	}
 
 	.twui-theme-toggle-icon {
