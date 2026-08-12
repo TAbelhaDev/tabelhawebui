@@ -40,3 +40,53 @@ if (typeof Element !== "undefined" && !Element.prototype.animate) {
     return animation as unknown as Animation;
   };
 }
+
+// jsdom has no DataTransfer, so `new DataTransfer()` blows up in tests that
+// drive file inputs (fireEvent.change) or dropzones (fireEvent.drop). Minimal
+// polyfill: a real `items.add(file)` + a `files` list backed by `File` objects.
+if (typeof DataTransfer === "undefined") {
+  interface PolyItem {
+    kind: "file";
+    type: string;
+    getAsFile: () => File;
+  }
+  interface PolyItemList {
+    length: number;
+    add: (file: File) => PolyItem;
+    remove: (index: number) => void;
+    clear: () => void;
+  }
+  const makeItem = (file: File): PolyItem => ({
+    kind: "file",
+    type: file.type,
+    getAsFile: () => file,
+  });
+  const makeItemList = (files: File[]): PolyItemList => ({
+    get length() {
+      return files.length;
+    },
+    add(file) {
+      files.push(file);
+      return makeItem(file);
+    },
+    remove(index) {
+      files.splice(index, 1);
+    },
+    clear() {
+      files.length = 0;
+    },
+  });
+  class DataTransferPolyfill {
+    dropEffect = "none";
+    files: File[] = [];
+    items: PolyItemList = makeItemList(this.files);
+    clearData() {}
+    setData() {}
+    getData() {
+      return "";
+    }
+  }
+  (
+    globalThis as unknown as { DataTransfer: typeof DataTransferPolyfill }
+  ).DataTransfer = DataTransferPolyfill;
+}

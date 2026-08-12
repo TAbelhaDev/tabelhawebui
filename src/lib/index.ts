@@ -13,6 +13,20 @@ import CardFooter from "./components/card/CardFooter.svelte";
 
 import TimelineRoot from "./components/timeline/Timeline.svelte";
 import TimelineItem from "./components/timeline/TimelineItem.svelte";
+import type { TimelineItemProps } from "./components/timeline/TimelineItem.svelte";
+
+import type {
+  ButtonSize,
+  ButtonVariant,
+} from "./components/actions/Button.svelte";
+
+import type { SelectOption } from "./components/forms/Select.svelte";
+
+import type {
+  FileUploadError,
+  FileUploadHandler,
+  FileUploadMode,
+} from "./components/forms/FileUpload.svelte";
 
 // Componentes compostos: `Card.Header`/`Card.Footer`, `Timeline.Item` — um
 // único export por módulo, sem exports avulsos das partes.
@@ -34,6 +48,10 @@ export const Timeline: typeof TimelineRoot & {
   Item: typeof TimelineItem;
 } = Object.assign(TimelineRoot, { Item: TimelineItem });
 
+export namespace Timeline {
+  export type ItemProps = TimelineItemProps;
+}
+
 // Dados
 export { default as Table } from "./components/table/Table.svelte";
 
@@ -42,6 +60,11 @@ export {
   buttonVariants,
   default as Button,
 } from "./components/actions/Button.svelte";
+
+export namespace Button {
+  export type Variant = ButtonVariant;
+  export type Size = ButtonSize;
+}
 
 // Formulários
 export { default as Input } from "./components/forms/Input.svelte";
@@ -52,6 +75,17 @@ export { default as Radio } from "./components/forms/Radio.svelte";
 export { default as Checkbox } from "./components/forms/Checkbox.svelte";
 export { default as Select } from "./components/forms/Select.svelte";
 export { default as DatePicker } from "./components/forms/DatePicker.svelte";
+export { default as FileUpload } from "./components/forms/FileUpload.svelte";
+
+export namespace Select {
+  export type Option = SelectOption;
+}
+
+export namespace FileUpload {
+  export type Error = FileUploadError;
+  export type Mode = FileUploadMode;
+  export type Handler = FileUploadHandler;
+}
 
 // Escolha
 export { default as Toggle } from "./components/choice/Toggle.svelte";
