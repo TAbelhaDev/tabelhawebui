@@ -5,6 +5,22 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.0]
+
+### Added
+
+- `AppShell`: authenticated app shell as one compound export —
+  `AppShell.Sidebar` (desktop: brand wordmark + nav with icons + theme toggle
+  with label + logout form), `AppShell.BottomNav` (mobile), `AppShell.Content`
+  (`max-w-6xl` container with responsive padding). Responsive at `lg`
+  (1024px). Request: `requests/20260812-app-shell.md`.
+- `Wordmark`: renders `Tabela` in the text color plus a `suffix` in accent,
+  inheriting the context font/size — used in the shell and standalone (auth,
+  marketing, hero). Request: `requests/20260812-app-shell.md`.
+- `ThemeToggle` gains optional `showLabel` + `label` props for a visible
+  "Tema claro"/"Tema escuro" text next to the icon (same
+  `data-theme`/`.dark` + `localStorage` mechanism).
+
 ## [0.18.0]
 
 ### Breaking
