@@ -16,6 +16,10 @@
 
 <style>
 	.twui-card-content {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
 		padding: 16px;
+		min-height: 0;
 	}
 </style>
