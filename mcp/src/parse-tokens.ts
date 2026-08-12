@@ -8,7 +8,7 @@ interface RawVar {
   selector: string;
 }
 
-/** Extrai todas as declarações `--...: valor;` com o seletor do bloco. */
+/** Collects every `--...: value;` declaration with its block selector. */
 function collectVars(css: string): RawVar[] {
   const out: RawVar[] = [];
   const selectorStack: string[] = [];
@@ -163,7 +163,7 @@ function resolveVars(
     }
     return v;
   });
-  // normalize espaços internos de funções css: color-mix( a, b )
+  // normalize inner spaces of css functions: color-mix( a, b )
   out = out.replace(/\(\s+/g, "(").replace(/\s+\)/g, ")");
   return { value: out, resolved: !remainingVar };
 }
@@ -174,10 +174,10 @@ export interface TokenParse {
   defaultAccent: { light: string; dark: string };
 }
 
-/** Parseia `theme.css`: tokens `--twui-*` (light/dark) + accents `data-accent`. */
+/** Parses `theme.css`: `--twui-*` tokens (light/dark) + `data-accent` accents. */
 export function parseTokens(themeCss: string): TokenParse {
   if (!existsSync(themeCss)) {
-    throw new Error(`theme.css não encontrado em ${themeCss}`);
+    throw new Error(`theme.css not found at ${themeCss}`);
   }
   const css = readFileSync(themeCss, "utf8");
   const vars = collectVars(css);

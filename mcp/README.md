@@ -1,32 +1,33 @@
 # @tabeladev/mcp-tabelawebui
 
-Servidor MCP (Model Context Protocol) pro
-[TabelaWebUI](https://github.com/TabelaDev/tabelawebui): expõe os componentes,
-tokens e accents da lib como tools consultáveis por coding agents (Claude,
-Cursor, opencode, etc.). Em vez de chutar props/tokens, o agente consulta a
-API real do pacote instalado — mesmo quem usa a lib publicada no npm, sem o
-repo local.
+MCP (Model Context Protocol) server for
+[TabelaWebUI](https://github.com/TabelaDev/tabelawebui): exposes the library's
+components, tokens and accents as tools that coding agents (Claude, Cursor,
+opencode, etc.) can query. Instead of guessing props/tokens, the agent queries
+the real API of the installed package — even when consuming the npm-published
+lib without a local checkout.
 
-## Como funciona
+## How it works
 
-O servidor localiza o pacote `@tabeladev/tabelawebui` e parseia:
+The server locates the `@tabeladev/tabelawebui` package and parses:
 
-- **Componentes**: da fonte (`src/lib/components/**/*.svelte`, destructuring
-  `$props()` do Svelte 5) ou, no pacote publicado, dos `.d.ts` gerados
-  (`dist/components/**/*.svelte.d.ts`). Extrai props com tipo/default/bindable,
-  snippets, tipos HTML herdados via `...rest` e um exemplo de uso gerado.
-- **Tokens**: do `theme.css` (`--twui-*`), com valor no tema claro (Latte) e
-  escuro (Mocha), resolvendo `var()`/`color-mix` quando possível.
-- **Accents**: dos presets `data-accent` do `theme.css`, com o par Latte/Mocha
-  de cada um + o default (maroon claro / pink escuro).
+- **Components**: from the source (`src/lib/components/**/*.svelte`,
+  Svelte 5 `$props()` destructuring) or, on the published package, from the
+  generated `.d.ts` (`dist/components/**/*.svelte.d.ts`). Extracts props with
+  type/default/bindable, snippets, HTML types inherited via `...rest`, and a
+  generated usage example.
+- **Tokens**: from `theme.css` (`--twui-*`), with light (Latte) and dark
+  (Mocha) values, resolving `var()`/`color-mix` where possible.
+- **Accents**: from the `data-accent` presets in `theme.css`, with the
+  Latte/Mocha pair of each + the default (maroon light / pink dark).
 
-## Instalação e configuração
+## Installation and setup
 
 ```bash
-bun add -g @tabeladev/mcp-tabelawebui    # ou: npx @tabeladev/mcp-tabelawebui
+bun add -g @tabeladev/mcp-tabelawebui    # or: npx @tabeladev/mcp-tabelawebui
 ```
 
-Exemplo no `opencode.json` (ou `claude_desktop_config.json`/`.cursor/mcp.json`):
+Example in `opencode.json` (or `claude_desktop_config.json`/`.cursor/mcp.json`):
 
 ```jsonc
 {
@@ -34,46 +35,46 @@ Exemplo no `opencode.json` (ou `claude_desktop_config.json`/`.cursor/mcp.json`):
     "tabelawebui": {
       "type": "stdio",
       "command": "mcp-tabelawebui",
-      // "args": ["--source", "/caminho/para/checkout/do/tabelawebui"] // opcional
+      // "args": ["--source", "/path/to/tabelawebui/checkout"] // optional
     },
   },
 }
 ```
 
-O servidor resolve o `@tabeladev/tabelawebui` a partir do **diretório de
-trabalho** do processo (sobe o `node_modules`), então rode com o cwd no seu
-projeto que tem a lib instalada. Pra apontar pra um checkout específico (dev),
-use `--source` ou a env `TWUI_MCP_SOURCE`.
+The server resolves `@tabeladev/tabelawebui` from the process's **working
+directory** (walks up `node_modules`), so run it with the cwd in your project
+that has the lib installed. To point at a specific checkout (dev), use
+`--source` or the `TWUI_MCP_SOURCE` env.
 
 ## Tools
 
-| Tool              | O que faz                                                                                       |
-| ----------------- | ----------------------------------------------------------------------------------------------- |
-| `list_components` | Lista componentes/stores/funções exportados, com categoria e descrição                          |
-| `get_component`   | API completa de um componente: props (tipo/default/bindable), snippets, eventos, exemplo de uso |
-| `list_tokens`     | Todos os `--twui-*` agrupados por papel, com valor light/dark                                   |
-| `get_token`       | Valor de um token nos dois temas (aceita `paper` ou `--twui-paper`)                             |
-| `list_accents`    | Accents de `data-accent` com o par Latte/Mocha + default + escape hatch                         |
+| Tool              | What it does                                                                              |
+| ----------------- | ----------------------------------------------------------------------------------------- |
+| `list_components` | Lists exported components/stores/functions, with category and description                 |
+| `get_component`   | Full API of one component: props (type/default/bindable), snippets, events, usage example |
+| `list_tokens`     | All `--twui-*` grouped by role, with light/dark values                                    |
+| `get_token`       | Value of one token in both themes (accepts `paper` or `--twui-paper`)                     |
+| `list_accents`    | `data-accent` accents with the Latte/Mocha pair + default + escape hatch                  |
 
-## Desenvolvimento
+## Development
 
 ```sh
 bun install
 bun run check    # tsc --noEmit
 bun run lint     # prettier --check
-bun run test     # build + smoke test do servidor via stdio
+bun run test     # build + stdio smoke test of the server
 bun run build    # tsc -> dist/
 ```
 
-Publicar:
+Publishing:
 
 ```sh
 bun run build
-npm publish       # ou bun publish (AGPL-3.0, como o @tabeladev/tabelawebui)
+npm publish       # or bun publish (AGPL-3.0, like @tabeladev/tabelawebui)
 ```
 
-## Escopo
+## Scope
 
-- **Só leitura**: informa a API, não gera/scaffolda UI (o agente gera o código).
-- **Só stdio** por ora (sem SSE/HTTP).
-- Não expõe o `toast` store como recurso mutável (só documenta o uso).
+- **Read-only**: reports the API, does not generate/scaffold UI (the agent writes the code).
+- **stdio only** for now (no SSE/HTTP).
+- Does not expose the `toast` store as a mutable resource (only documents usage).

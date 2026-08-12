@@ -2,11 +2,11 @@ export interface PropInfo {
   name: string;
   type: string;
   required: boolean;
-  /** Valor default literal (do destructuring). undefined quando não tem. */
+  /** Literal default value (from destructuring). undefined when none. */
   default?: string;
-  /** Prop bindável (`$bindable(...)`). */
+  /** Bindable prop (`$bindable(...)`). */
   bindable?: boolean;
-  /** Comentário inline no source, quando houver. */
+  /** Inline comment from the source, when present. */
   description?: string;
 }
 
@@ -21,21 +21,21 @@ export type ComponentKind = "component" | "store" | "function";
 export interface ComponentInfo {
   name: string;
   kind: ComponentKind;
-  /** Arquivo que define (relativo à raiz do pacote). */
+  /** Defining file (relative to the package root). */
   file: string;
-  /** Nome público de exportação (ex.: `Card.Header`). */
+  /** Public export name (e.g. `Card.Header`). */
   exportedAs?: string;
-  /** Categoria do README/index (ex.: Form Controls). */
+  /** Category from the README/index (e.g. Form Controls). */
   category?: string;
   description?: string;
   props: PropInfo[];
-  /** Props do tipo Snippet (children, cell, footer, ...). */
+  /** Props of Snippet type (children, cell, footer, ...). */
   snippets: SnippetInfo[];
-  /** Nomes das props bindables. */
+  /** Names of bindable props. */
   bindable: string[];
-  /** Tipos HTML que o componente herda via `...rest` (ex.: HTMLButtonAttributes). */
+  /** HTML types the component inherits via `...rest` (e.g. HTMLButtonAttributes). */
   inherits: string[];
-  /** Exemplo de uso gerado. */
+  /** Generated usage example. */
   usage?: string;
 }
 
@@ -49,11 +49,11 @@ export type TokenGroup =
 export interface TokenInfo {
   name: string;
   group: TokenGroup;
-  /** Valor no tema claro (Latte), resolvendo var() onde possível. */
+  /** Value in the light theme (Latte), resolving var() where possible. */
   light?: string;
-  /** Valor no tema escuro (Mocha). */
+  /** Value in the dark theme (Mocha). */
   dark?: string;
-  /** true quando o valor é um hex/resolvido; false quando é var()/color-mix cru. */
+  /** true when the value is a resolved hex; false when it is raw var()/color-mix. */
   resolved?: boolean;
 }
 
@@ -78,7 +78,7 @@ export interface Catalog {
   components: ComponentInfo[];
   tokens: TokenInfo[];
   accents: AccentInfo[];
-  /** Accent padrão (sem data-accent): maroon no claro, pink no escuro. */
+  /** Default accent (no data-accent): maroon in light, pink in dark. */
   defaultAccent: { light: string; dark: string };
   version?: string;
 }

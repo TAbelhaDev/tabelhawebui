@@ -1,8 +1,7 @@
 /**
- * Utilitários de varredura de texto usados pelos parsers. Tratam strings,
- * template literals (`...${...}`), comentários de linha e bloco, e
- * aninhamento de `()`, `[]`, `{}`, `<>` — pra splitar no topo só onde
- * faz sentido.
+ * Text-scanning helpers used by the parsers. Handle strings, template
+ * literals (`...${...}`), line and block comments, and nesting of `()`, `[]`,
+ * `{}`, `<>` — so splits happen at the top level only, where it makes sense.
  */
 
 export interface Segment {
@@ -45,7 +44,7 @@ function skipString(text: string, start: number, quote: string): number {
   return n;
 }
 
-/** Índices dos separadores que estão no depth 0 (fora de aninhamento). */
+/** Indices of separators at depth 0 (outside nesting). */
 export function findTopLevelSeps(text: string, seps: string): number[] {
   const sepSet = new Set(seps);
   const out: number[] = [];
@@ -70,8 +69,8 @@ export function findTopLevelSeps(text: string, seps: string): number[] {
       continue;
     }
     if (c === "<") {
-      // Genérico de tipo (Array<...>, Record<...>, Snippet<...>): só conta como
-      // abertura se vier depois de identificador (evita `=>`, comparações).
+      // Type generic (Array<...>, Record<...>, Snippet<...>): only counts as an
+      // opening if it follows an identifier (avoids `=>`, comparisons).
       const prev = previousChar(text, i);
       if (prev && /[A-Za-z0-9_$]/.test(prev)) stack.push("<");
       i++;
@@ -111,8 +110,8 @@ function previousChar(text: string, idx: number): string | undefined {
   return undefined;
 }
 
-/** Splita `text` nos separadores de topo. Comentário `//` no fim de uma linha
- *  é preservado dentro do segmento (usado como descrição de prop). */
+/** Splits `text` on the top-level separators. A trailing `//` comment is kept
+ *  inside the segment (used as the prop description). */
 export function splitTopLevel(text: string, seps: string): Segment[] {
   const idx = findTopLevelSeps(text, seps);
   const segs: Segment[] = [];
@@ -125,7 +124,7 @@ export function splitTopLevel(text: string, seps: string): Segment[] {
   return segs.filter((s) => s.value.trim().length > 0);
 }
 
-/** Índice do `close` que casa com o `open` na posição `openIdx`. */
+/** Index of the `close` matching the `open` at `openIdx`. */
 export function matchClose(
   text: string,
   openIdx: number,
@@ -162,13 +161,13 @@ export function matchClose(
   return -1;
 }
 
-/** Índice do separador no topo (depth 0) dentro de `text`, ou -1. */
+/** Index of the top-level (depth 0) separator inside `text`, or -1. */
 export function topLevelIndexOf(text: string, sep: string): number {
   const idx = findTopLevelSeps(text, sep);
   return idx.length > 0 ? (idx[0] as number) : -1;
 }
 
-/** Remove comentários, preservando strings. */
+/** Removes comments, preserving strings. */
 export function stripComments(text: string): string {
   let out = "";
   const n = text.length;
@@ -200,7 +199,7 @@ export function stripComments(text: string): string {
   return out;
 }
 
-/** Extrai o último comentário `//` de uma linha em `text`. */
+/** Extracts the last `//` comment on a line in `text`. */
 export function lastLineComment(text: string): string | undefined {
   const lines = text.split("\n");
   for (let i = lines.length - 1; i >= 0; i--) {
@@ -214,7 +213,7 @@ export function lastLineComment(text: string): string | undefined {
   return undefined;
 }
 
-/** Normaliza whitespace (colapsa quebras de linha e espaços múltiplos). */
+/** Normalizes whitespace (collapses line breaks and repeated spaces). */
 export function collapseWs(text: string): string {
   return text.replace(/\s+/g, " ").trim();
 }

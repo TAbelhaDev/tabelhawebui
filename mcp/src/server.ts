@@ -22,7 +22,7 @@ function err(message: string) {
   };
 }
 
-/** Resumo legível de um componente (tabela na resposta). */
+/** Readable one-line summary of a component (table in the response). */
 function describe(c: ComponentInfo): string {
   const bindable =
     c.bindable.length > 0 ? ` bindable=[${c.bindable.join(", ")}]` : "";
@@ -50,10 +50,10 @@ export async function createServer(
   server.registerTool(
     "list_components",
     {
-      title: "Lista os componentes do TabelaWebUI",
+      title: "List TabelaWebUI components",
       description:
-        "Lista todos os componentes, stores e funções exportados pelo TabelaWebUI, " +
-        "com categoria, kind e descrição. Use antes de get_component pra saber o que existe.",
+        "Lists every component, store and function exported by TabelaWebUI, " +
+        "with category, kind and description. Use before get_component to see what exists.",
       inputSchema: { includeSubcomponents: z.boolean().optional() },
     },
     async ({ includeSubcomponents }) => {
@@ -90,13 +90,13 @@ export async function createServer(
   server.registerTool(
     "get_component",
     {
-      title: "API completa de um componente",
+      title: "Full API of one component",
       description:
-        "Retorna a API completa de um componente do TabelaWebUI: props com tipos, " +
-        "defaults e bindables, snippets, eventos e exemplo de uso. Aceita nome do " +
-        "componente (Button, button, Card.Header, toast, buttonVariants...).",
+        "Returns the full API of a TabelaWebUI component: props with types, " +
+        "defaults and bindables, snippets, events and a usage example. Accepts the " +
+        "component name (Button, button, Card.Header, toast, buttonVariants...).",
       inputSchema: {
-        component: z.string().describe("Nome do componente (case-insensitive)"),
+        component: z.string().describe("Component name (case-insensitive)"),
       },
     },
     async ({ component }) => {
@@ -108,14 +108,12 @@ export async function createServer(
             .map((c) => c.exportedAs ?? c.name)
             .sort()
             .join(", ");
-          return err(
-            `Componente "${component}" não encontrado. Disponíveis: ${names}`,
-          );
+          return err(`Component "${component}" not found. Available: ${names}`);
         }
         const eventsNote = info.inherits.length
-          ? `Eventos de DOM disponíveis via ...rest (props herdadas de ${info.inherits.join(
+          ? `DOM events available via ...rest (props inherited from ${info.inherits.join(
               ", ",
-            )}), ex. on:click, oninput, etc.`
+            )}), e.g. on:click, oninput, etc.`
           : undefined;
         return ok({ component: info, events: eventsNote });
       } catch (e) {
@@ -127,17 +125,17 @@ export async function createServer(
   server.registerTool(
     "list_tokens",
     {
-      title: "Tokens do tema (--twui-*)",
+      title: "Theme tokens (--twui-*)",
       description:
-        "Lista os design tokens do tema (--twui-*) agrupados por papel (semantic, " +
-        "font, shadow, palette-active, palette-full), com valor no tema claro (Latte) " +
-        "e escuro (Mocha). Tokens com var()/color-mix são resolvidos quando possível.",
+        "Lists the theme design tokens (--twui-*) grouped by role (semantic, " +
+        "font, shadow, palette-active, palette-full), with light (Latte) and " +
+        "dark (Mocha) values. Tokens with var()/color-mix are resolved when possible.",
       inputSchema: {
         group: z
           .string()
           .optional()
           .describe(
-            "Filtra por grupo: semantic, font, shadow, palette-active, palette-full",
+            "Filters by group: semantic, font, shadow, palette-active, palette-full",
           ),
       },
     },
@@ -150,7 +148,7 @@ export async function createServer(
         }
         if (tokens.length === 0 && group) {
           return err(
-            `Grupo "${group}" não existe. Grupos: semantic, font, shadow, palette-active, palette-full.`,
+            `Group "${group}" does not exist. Groups: semantic, font, shadow, palette-active, palette-full.`,
           );
         }
         const groups = new Map<string, typeof tokens>();
@@ -188,12 +186,14 @@ export async function createServer(
   server.registerTool(
     "get_token",
     {
-      title: "Valor de um token do tema",
+      title: "Value of one theme token",
       description:
-        "Retorna o valor de um token --twui-* nos dois temas (claro/escuro). Aceita " +
-        'com ou sem o prefixo --twui- (ex.: "paper" ou "--twui-paper").',
+        "Returns the value of a --twui-* token in both themes (light/dark). Accepts " +
+        'with or without the --twui- prefix (e.g. "paper" or "--twui-paper").',
       inputSchema: {
-        token: z.string().describe("Nome do token, com ou sem prefixo --twui-"),
+        token: z
+          .string()
+          .describe("Token name, with or without the --twui- prefix"),
       },
     },
     async ({ token }) => {
@@ -205,7 +205,7 @@ export async function createServer(
         const info = catalog.tokens.find((t) => t.name === normalized);
         if (!info) {
           return err(
-            `Token "${token}" não encontrado. Use list_tokens pra ver os disponíveis.`,
+            `Token "${token}" not found. Use list_tokens to see the available ones.`,
           );
         }
         return ok({
@@ -216,8 +216,8 @@ export async function createServer(
           resolved: info.resolved,
           usage:
             info.group === "palette-full"
-              ? `var(${info.name}) — cru, escolha o flavor manualmente`
-              : `var(${info.name}) — já resolve pelo tema ativo`,
+              ? `var(${info.name}) — raw, pick the flavor manually`
+              : `var(${info.name}) — resolves via the active theme`,
         });
       } catch (e) {
         return err((e as Error).message);
@@ -228,10 +228,10 @@ export async function createServer(
   server.registerTool(
     "list_accents",
     {
-      title: "Accents disponíveis (data-accent)",
+      title: "Available accents (data-accent)",
       description:
-        "Lista os accents selecionáveis via data-accent no <html>, com o par " +
-        "Latte/Mocha de cada um. Include o accent default (sem data-accent) e o " +
+        "Lists the accents selectable via data-accent on <html>, with the " +
+        "Latte/Mocha pair of each. Includes the default accent (no data-accent) and the " +
         "escape hatch --twui-accent.",
       inputSchema: {},
     },
@@ -241,11 +241,11 @@ export async function createServer(
         return ok({
           default: catalog.defaultAccent,
           defaultNote:
-            "Sem data-accent, o accent é maroon no claro e pink no escuro.",
+            "Without data-accent, the accent is maroon in light and pink in dark.",
           accents: catalog.accents,
           usage: '<html data-accent="teal"></html>',
           escapeHatch:
-            "Cor fora da lista: sobrescrever --twui-accent direto no CSS do app.",
+            "Color outside the list: override --twui-accent directly in the app CSS.",
         });
       } catch (e) {
         return err((e as Error).message);

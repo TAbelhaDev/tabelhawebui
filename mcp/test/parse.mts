@@ -43,16 +43,16 @@ assert.deepEqual(
   withDouble.map((e) => e.name),
   "quote style must not change the parsed component list",
 );
-console.log("ok: parseIndex é indiferente ao estilo de aspas");
+console.log("ok: parseIndex is indifferent to quote style");
 
 const emptyPath = join(dir, "index-unrecognized.ts");
 writeFileSync(emptyPath, "export * from './somewhere-else';\n", "utf8");
 assert.throws(
   () => parseIndex(emptyPath),
-  /nenhum export reconhecido/,
+  /no exports recognized/,
   "an unrecognized index must throw, not report an empty library",
 );
-console.log("ok: parseIndex falha alto quando não reconhece o index");
+console.log("ok: parseIndex fails loudly when it does not recognize the index");
 
 const nestedPath = join(dir, "index-nested.ts");
 writeFileSync(
@@ -84,9 +84,9 @@ writeFileSync(
   multilinePath,
   [
     "// Ações",
-    'export {',
+    "export {",
     "  buttonVariants,",
-    '  default as Button,',
+    "  default as Button,",
     '} from "./components/actions/Button.svelte";',
     "",
   ].join("\n"),
@@ -103,4 +103,4 @@ assert.deepEqual(
 );
 console.log("ok: parseIndex parses a prettier-broken multiline export");
 
-console.log("\nTUDO OK");
+console.log("\nALL OK");

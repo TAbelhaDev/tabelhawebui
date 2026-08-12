@@ -1,9 +1,9 @@
 import { spawn } from "node:child_process";
 import assert from "node:assert/strict";
 
-// Smoke test do servidor MCP via stdio. Uso: `bun test` ou
-// `tsx test/client.mts [--source <dir>]`. Sem --source, usa o repo pai
-// (raiz do tabelawebui, onde está o source).
+// Smoke test of the MCP server over stdio. Usage: `bun test` or
+// `tsx test/client.mts [--source <dir>]`. Without --source, uses the parent
+// repo (tabelawebui root, where the source lives).
 const cwd = new URL("..", import.meta.url).pathname;
 const sourceArg = process.argv.includes("--source")
   ? (process.argv[process.argv.indexOf("--source") + 1] as string)
@@ -83,7 +83,7 @@ async function main() {
   const lc = text(
     await send("tools/call", { name: "list_components", arguments: {} }),
   );
-  assert.ok(lc.count > 40, `esperava >40 componentes, veio ${lc.count}`);
+  assert.ok(lc.count > 40, `expected >40 components, got ${lc.count}`);
   assert.ok(lc.components.some((c: any) => c.name === "Button"));
   console.log(`ok: list_components (${lc.count})`);
 
@@ -124,7 +124,7 @@ async function main() {
   const lt = text(
     await send("tools/call", { name: "list_tokens", arguments: {} }),
   );
-  assert.ok(lt.count >= 80, `esperava >=80 tokens, veio ${lt.count}`);
+  assert.ok(lt.count >= 80, `expected >=80 tokens, got ${lt.count}`);
   const accentTok = lt.tokens.find((t: any) => t.name === "--twui-accent");
   assert.ok(accentTok?.light && accentTok?.dark);
   console.log(
@@ -151,12 +151,12 @@ async function main() {
   );
 
   child.kill();
-  console.log("\nTUDO OK");
+  console.log("\nALL OK");
   process.exit(0);
 }
 
 main().catch((e) => {
-  console.error("FALHOU:", e.message);
+  console.error("FAILED:", e.message);
   child.kill();
   process.exit(1);
 });

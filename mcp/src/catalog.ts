@@ -5,8 +5,8 @@ import { parseTokens } from "./parse-tokens.js";
 import type { Catalog } from "./types.js";
 
 /**
- * Localiza o tabelawebui e monta o catálogo completo (componentes, tokens,
- * accents). Resultado é cacheadado — o source é estático durante a sessão.
+ * Locates tabelawebui and builds the full catalog (components, tokens,
+ * accents). The result is cached — the source is static during the session.
  */
 export async function buildCatalog(sourceArg?: string): Promise<Catalog> {
   const layout = locate(sourceArg);

@@ -19,7 +19,7 @@ interface IndexExport {
 }
 
 /**
- * Extrai a lista de exports do index (src/lib/index.ts ou dist/index.d.ts).
+ * Extracts the list of exports from the index (src/lib/index.ts or dist/index.d.ts).
  *
  * Quote style is deliberately not pinned: the regex used to require double
  * quotes, so running prettier with singleQuote over index.ts would have made
@@ -86,7 +86,7 @@ export function parseIndex(indexFile: string): IndexExport[] {
         name: "Card",
         kind: "component",
         file: "card/Card.svelte",
-        category: "Compostos",
+        category: "Compound",
       });
       for (const [sub, f] of [
         ["Header", "card/CardHeader.svelte"],
@@ -99,7 +99,7 @@ export function parseIndex(indexFile: string): IndexExport[] {
           name: sub,
           kind: "component",
           file: f,
-          category: "Compostos",
+          category: "Compound",
         });
       }
     } else if (timelineRe.test(line)) {
@@ -107,13 +107,13 @@ export function parseIndex(indexFile: string): IndexExport[] {
         name: "Timeline",
         kind: "component",
         file: "timeline/Timeline.svelte",
-        category: "Compostos",
+        category: "Compound",
       });
       out.push({
         name: "Item",
         kind: "component",
         file: "timeline/TimelineItem.svelte",
-        category: "Compostos",
+        category: "Compound",
       });
     }
   }
@@ -123,8 +123,8 @@ export function parseIndex(indexFile: string): IndexExport[] {
   // "no components found" into an actionable error.
   if (out.length === 0) {
     throw new Error(
-      `parseIndex: nenhum export reconhecido em ${indexFile}. ` +
-        `O formato do index mudou e o parser precisa acompanhar.`,
+      `parseIndex: no exports recognized in ${indexFile}. ` +
+        `The index format changed and the parser needs to follow.`,
     );
   }
   return out;
@@ -136,7 +136,7 @@ interface ParsedProps {
   inherits: string[];
 }
 
-/** Parseia o type object de props (do `$props()` source ou `$$ComponentProps` dist). */
+/** Parses the props type object (from the `$props()` source or `$$ComponentProps` dist). */
 function parsePropsObject(objBody: string): ParsedProps {
   const props: PropInfo[] = [];
   const segs = splitTopLevel(objBody, ";,");
@@ -169,7 +169,7 @@ function extractInherits(typeText: string): string[] {
   return [...new Set(inherits)];
 }
 
-/** Parseia o destructuring `let { ... }: <type> = $props();` do source .svelte. */
+/** Parses the `let { ... }: <type> = $props();` destructuring from a .svelte source. */
 function parseSourceProps(source: string): ParsedProps {
   const propsPos = source.indexOf("$props(");
   if (propsPos === -1) return { props: [], bindable: [], inherits: [] };
@@ -186,7 +186,7 @@ function parseSourceProps(source: string): ParsedProps {
   let typeText = source.slice(destrClose + 1, equalsIdx).trim();
   if (typeText.startsWith(":")) typeText = typeText.slice(1).trim();
 
-  // --- destructuring: nomes + defaults + bindable ---
+  // --- destructuring: names + defaults + bindable ---
   const bindable: string[] = [];
   const defaults = new Map<string, string>();
   const bindMap = new Map<string, string>();
@@ -259,7 +259,7 @@ function parseSourceProps(source: string): ParsedProps {
 
 const BINDABLE_RE = /Component<[^>]*,\s*\{[^}]*\},\s*((?:"[^"]*"\s*\|?\s*)+)>/;
 
-/** Parseia o `.svelte.d.ts` gerado no dist (props + bindables, sem defaults). */
+/** Parses the `.svelte.d.ts` generated in dist (props + bindables, no defaults). */
 function parseDistProps(dts: string): ParsedProps {
   const propsStart = dts.indexOf("type $$ComponentProps");
   let props: PropInfo[] = [];
@@ -304,7 +304,7 @@ function placeholderForType(type: string): string {
 }
 
 function generateUsage(info: ComponentInfo): string {
-  if (info.kind === "store") return `toast.success('mensagem')`;
+  if (info.kind === "store") return `toast.success('message')`;
   if (info.kind === "function") return `buttonVariants({ variant: 'primary' })`;
   const name = info.exportedAs ?? info.name;
   const snippetNames = new Set(info.snippets.map((s) => s.name));
@@ -333,7 +333,7 @@ function generateUsage(info: ComponentInfo): string {
 
   const attrStr = attrs.length > 0 ? ` ${attrs.join(" ")}` : "";
   return hasChildren
-    ? `<${name}${attrStr}>\n\tconteúdo\n</${name}>`
+    ? `<${name}${attrStr}>\n\tcontent\n</${name}>`
     : `<${name}${attrStr} />`;
 }
 
@@ -350,15 +350,15 @@ function buildSpecialExport(
       file: "src/lib/components/feedback/toast.svelte.ts",
       category,
       description:
-        "Store de toasts do TabelaWebUI (módulo Svelte 5, `$state`). Chamável " +
-        "e com métodos por tipo: `toast(msg)`, `toast.success(msg)`, " +
+        "TabelaWebUI toast store (Svelte 5 module, `$state`). Callable and " +
+        "with per-type methods: `toast(msg)`, `toast.success(msg)`, " +
         "`toast.error(msg)`, `toast.info(msg)`, `toast.warning(msg)`. " +
-        "`<Toaster>` é o único que renderiza.",
+        "`<Toaster>` is the only one that renders.",
       props: [],
       snippets: [],
       bindable: [],
       inherits: [],
-      usage: "toast.success('Salvo com sucesso')",
+      usage: "toast.success('Saved successfully')",
     };
   }
   return {
@@ -367,8 +367,8 @@ function buildSpecialExport(
     file: "src/lib/components/actions/Button.svelte",
     category,
     description:
-      "Helper de classes do Button pra uso onde um `<Button>` real não cabe " +
-      "(ex.: `<span>` decorativo). Retorna a string de classes `twui-button ...`.",
+      "Button class helper for where a real `<Button>` does not fit " +
+      "(e.g. a decorative `<span>`). Returns the `twui-button ...` class string.",
     props: [
       {
         name: "variant",
@@ -390,7 +390,7 @@ function buildSpecialExport(
   };
 }
 
-/** Lê e parseia um componente (source .svelte no repo, .svelte.d.ts no dist). */
+/** Reads and parses one component (source .svelte in the repo, .svelte.d.ts in dist). */
 function parseComponentFile(
   exp: IndexExport,
   layout: SourceLayout,
@@ -431,7 +431,7 @@ function parseComponentFile(
   };
 }
 
-/** Monta o catálogo de componentes a partir do layout localizado. */
+/** Builds the component catalog from the located layout. */
 export async function parseComponents(
   layout: SourceLayout,
   descriptions: Map<string, string>,
@@ -451,7 +451,7 @@ export async function parseComponents(
     const info = parseComponentFile(exp, layout, descriptions);
     out.push(info);
 
-    // Subcomponentes dos compostos: expõem também como Card.Header, etc.
+    // Sub-parts of the composed components: also exposed as Card.Header, etc.
     if (exp.file === "card/Card.svelte" && exp.name === "Card") {
       for (const [sub, f] of [
         ["Header", "card/CardHeader.svelte"],
@@ -484,11 +484,11 @@ export async function parseComponents(
     }
   }
 
-  // exportedAs para componentes com nome de arquivo ≠ nome exportado.
+  // exportedAs for components whose file name ≠ exported name.
   return out.map((c) => ({ ...c, usage: generateUsage({ ...c }) }));
 }
 
-/** Referência de exportação pra lookup (nome, minúsculo). Prioriza nome exato. */
+/** Export reference for lookup (name, lowercased). Prefers an exact name. */
 export function componentByName(
   components: ComponentInfo[],
   name: string,

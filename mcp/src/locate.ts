@@ -24,13 +24,13 @@ export function parseArgs(argv: string[]): CliArgs {
   return args;
 }
 
-/** Onde buscar o pacote: env TWUI_MCP_SOURCE > --source > resolução de cwd. */
+/** Where to look for the package: env TWUI_MCP_SOURCE > --source > cwd resolution. */
 function resolveRoot(sourceArg?: string): string | undefined {
   if (sourceArg) return resolve(process.cwd(), sourceArg);
   const env = process.env.TWUI_MCP_SOURCE;
   if (env) return resolve(process.cwd(), env);
 
-  // cwd é o repo tabelawebui (ex.: rodando de dentro dele)
+  // cwd is the tabelawebui repo (e.g. running from inside it)
   const cwdPkg = join(process.cwd(), "package.json");
   if (existsSync(cwdPkg)) {
     try {
@@ -41,12 +41,12 @@ function resolveRoot(sourceArg?: string): string | undefined {
     }
   }
 
-  // Resolve `@tabeladev/tabelawebui` a partir do cwd (sobe node_modules).
+  // Resolve `@tabeladev/tabelawebui` from cwd (walks up node_modules).
   try {
     const entry = require.resolve("@tabeladev/tabelawebui", {
       paths: [process.cwd()],
     });
-    // entry aponta pra dist/index.js (ou theme.css) — a raiz é o pacote.
+    // entry points at dist/index.js (or theme.css) — the package root is its dirname.
     const pkgJson = findPackageJson(dirname(entry));
     if (pkgJson) return dirname(pkgJson);
   } catch {
@@ -121,13 +121,13 @@ function describeLayout(root: string): SourceLayout {
   };
 }
 
-/** Localiza a fonte do tabelawebui (repo checkout ou pacote publicado). */
+/** Locates the tabelawebui source (repo checkout or published package). */
 export function locate(sourceArg?: string): SourceLayout {
   const root = resolveRoot(sourceArg);
   if (!root) {
     throw new Error(
-      "tabelawebui não encontrado. Instale o pacote no projeto (bun add @tabeladev/tabelawebui) " +
-        "ou aponte pra um checkout com TWUI_MCP_SOURCE ou --source <dir>.",
+      "tabelawebui not found. Install the package in the project (bun add @tabeladev/tabelawebui) " +
+        "or point at a checkout with TWUI_MCP_SOURCE or --source <dir>.",
     );
   }
   return describeLayout(root);

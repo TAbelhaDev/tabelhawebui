@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { collapseWs } from "./scan.js";
 
-/** Extrai descrições da tabela de componentes do README. */
+/** Extracts descriptions from the component table in the README. */
 export async function parseReadmeDescriptions(
   readmeFile?: string,
 ): Promise<Map<string, string>> {
