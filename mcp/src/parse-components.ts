@@ -35,6 +35,7 @@ export function parseIndex(indexFile: string): IndexExport[] {
     /export\s*\{([^}]*)\}\s*from\s*["']\.\/components\/([A-Za-z0-9./]+)["']/g;
   const cardRe = /export\s+(?:declare\s+)?const\s+(Card)\s*:/;
   const timelineRe = /export\s+(?:declare\s+)?const\s+(Timeline)\s*:/;
+  const landingRe = /export\s+(?:declare\s+)?const\s+(Landing)\s*:/;
 
   // Prettier breaks `export { a, b } from "..."` onto several lines once the
   // module path grows past its print width. The matcher below is per-line, so
@@ -115,6 +116,27 @@ export function parseIndex(indexFile: string): IndexExport[] {
         file: "timeline/TimelineItem.svelte",
         category: "Compound",
       });
+    } else if (landingRe.test(line)) {
+      out.push({
+        name: "Landing",
+        kind: "component",
+        file: "landing/LandingHero.svelte",
+        category: "Compound",
+      });
+      for (const [sub, f] of [
+        ["Hero", "landing/LandingHero.svelte"],
+        ["Steps", "landing/LandingSteps.svelte"],
+        ["Features", "landing/LandingFeatures.svelte"],
+        ["Roadmap", "landing/LandingRoadmap.svelte"],
+        ["Footer", "landing/LandingFooter.svelte"],
+      ] as const) {
+        out.push({
+          name: sub,
+          kind: "component",
+          file: f,
+          category: "Compound",
+        });
+      }
     }
   }
 
@@ -481,6 +503,25 @@ export async function parseComponents(
       const subInfo = parseComponentFile(subExp, layout, descriptions);
       subInfo.exportedAs = "Timeline.Item";
       out.push(subInfo);
+    }
+    if (exp.file === "landing/LandingHero.svelte" && exp.name === "Landing") {
+      for (const [sub, f] of [
+        ["Hero", "landing/LandingHero.svelte"],
+        ["Steps", "landing/LandingSteps.svelte"],
+        ["Features", "landing/LandingFeatures.svelte"],
+        ["Roadmap", "landing/LandingRoadmap.svelte"],
+        ["Footer", "landing/LandingFooter.svelte"],
+      ] as const) {
+        const subExp: IndexExport = {
+          name: sub,
+          kind: "component",
+          file: f,
+          category: exp.category,
+        };
+        const subInfo = parseComponentFile(subExp, layout, descriptions);
+        subInfo.exportedAs = `Landing.${sub}`;
+        out.push(subInfo);
+      }
     }
   }
 

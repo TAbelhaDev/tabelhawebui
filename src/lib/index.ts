@@ -133,8 +133,25 @@ export { default as TerminalWindow } from "./components/layout/TerminalWindow.sv
 export { default as ChatMessage } from "./components/chat/ChatMessage.svelte";
 
 // Seções de landing
-export { default as LandingHero } from "./components/landing/LandingHero.svelte";
-export { default as LandingSteps } from "./components/landing/LandingSteps.svelte";
-export { default as LandingFeatures } from "./components/landing/LandingFeatures.svelte";
-export { default as LandingRoadmap } from "./components/landing/LandingRoadmap.svelte";
-export { default as LandingFooter } from "./components/landing/LandingFooter.svelte";
+import LandingHero from "./components/landing/LandingHero.svelte";
+import LandingSteps from "./components/landing/LandingSteps.svelte";
+import LandingFeatures from "./components/landing/LandingFeatures.svelte";
+import LandingRoadmap from "./components/landing/LandingRoadmap.svelte";
+import LandingFooter from "./components/landing/LandingFooter.svelte";
+
+// Componente composto: `Landing.Hero`/`Landing.Steps`/`Landing.Features`/
+// `Landing.Roadmap`/`Landing.Footer` — um único export por módulo, sem exports
+// avulsos das partes (mesma convenção de `Card` e `Timeline`).
+export const Landing: typeof LandingHero & {
+  Hero: typeof LandingHero;
+  Steps: typeof LandingSteps;
+  Features: typeof LandingFeatures;
+  Roadmap: typeof LandingRoadmap;
+  Footer: typeof LandingFooter;
+} = Object.assign(LandingHero, {
+  Hero: LandingHero,
+  Steps: LandingSteps,
+  Features: LandingFeatures,
+  Roadmap: LandingRoadmap,
+  Footer: LandingFooter,
+});
