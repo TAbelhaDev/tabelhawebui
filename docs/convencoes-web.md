@@ -1,7 +1,8 @@
 # Convenções dos apps web da TabelaDev
 
 Regras comuns aos apps SvelteKit que consomem o `@tabeladev/tabelawebui`. Hoje:
-**tabelafin** (aberto) e **tabelarpgdk/apps/site** (fechado).
+**tabelafin** (aberto), **tabelarpgdk/apps/site** (fechado) e **tabelahub**
+(aberto, o site/hub da TabelaDev).
 
 Mora aqui porque a lib é a única dependência que todos compartilham, aberto ou fechado.
 Cada repo tem um `AGENTS.md` que **aponta** pra este arquivo e guarda só o que é
