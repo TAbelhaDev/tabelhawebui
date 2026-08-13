@@ -11,7 +11,7 @@
 </script>
 
 <ul class="twui-timeline {className}">
-	{#each items as item, i (item.title)}
+	{#each items as item, i (item.key ?? i)}
 		<TimelineItem {...item} isLast={i === items.length - 1} />
 	{/each}
 </ul>

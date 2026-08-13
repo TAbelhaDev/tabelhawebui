@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.20.0]
+
+### Fixed
+
+- `Timeline` keyed `{#each}` no longer crashes on duplicate `item.title`
+  (Svelte `each_key_duplicate` during hydration). Items can now provide an
+  optional stable unique `key` (`Timeline.ItemProps.key`); when omitted it
+  falls back to the item index. Fixes blank `teaching` section in the
+  portfolio, which has two entries titled `Math Teacher`.
+
 ## [0.19.0]
 
 ### Added

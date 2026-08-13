@@ -1,6 +1,8 @@
 <script module lang="ts">
 	export type TimelineItemProps = {
 		title: string;
+		/** Stable unique key for Svelte's keyed `{#each}`. Falls back to the item index when omitted. */
+		key?: string;
 		subtitle?: string;
 		date?: string;
 		start?: string;
