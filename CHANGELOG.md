@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.20.1]
+
+### Fixed
+
+- `AppShell` sidebar: the theme toggle now aligns left with the rest of the
+  footer (perfil / tema / sair) instead of centering its content. The footer
+  override lost the cascade to `ThemeToggle`'s own `justify-content: center`
+  (equal specificity, later source order); the selector now pins the footer
+  context so `flex-start` + `width: 100%` always win, matching the nav items.
+
 ## [0.20.0]
 
 ### Fixed

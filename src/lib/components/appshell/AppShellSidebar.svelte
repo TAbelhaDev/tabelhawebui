@@ -178,9 +178,10 @@
 		color: var(--twui-ink);
 	}
 
-	:global(.twui-appshell-sidebar .twui-appshell-sidebar-theme) {
+	:global(.twui-appshell-sidebar .twui-appshell-sidebar-footer .twui-appshell-sidebar-theme) {
 		width: 100%;
 		justify-content: flex-start;
+		gap: 12px;
 		padding: 6px 8px;
 		border-left: 2px solid transparent;
 	}
