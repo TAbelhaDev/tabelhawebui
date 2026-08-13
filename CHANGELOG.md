@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.21.0]
+
+### Added
+
+- `Landing.Hero`, `Landing.Steps`, `Landing.Features` and `SectionHeading`
+  gain an optional `justify` prop: when `true`, the serif prose paragraph(s)
+  (`--twui-landing-hero-lead`, `--twui-landing-step-body`,
+  `--twui-landing-feature-body`, `--twui-section-heading-lead`) get
+  `text-align: justify` + `text-justify: inter-word`. Default `false` (left).
+  Titles, eyebrows and mono notes stay left-aligned in both cases. Request:
+  `requests/20260813-landing-justify.md`.
+
 ## [0.20.1]
 
 ### Fixed

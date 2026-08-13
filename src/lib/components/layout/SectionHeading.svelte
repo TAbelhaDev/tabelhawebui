@@ -3,11 +3,13 @@
 		eyebrow,
 		title,
 		lead,
+		justify = false,
 		class: className = ''
 	}: {
 		eyebrow: string;
 		title: string;
 		lead?: string;
+		justify?: boolean;
 		class?: string;
 	} = $props();
 </script>
@@ -16,7 +18,7 @@
 	<div class="twui-landing-eyebrow">{eyebrow}</div>
 	<h2 class="twui-section-heading-title">{title}</h2>
 	{#if lead}
-		<p class="twui-section-heading-lead">{lead}</p>
+		<p class="twui-section-heading-lead {justify ? 'twui-section-heading-lead-justify' : ''}">{lead}</p>
 	{/if}
 </div>
 
@@ -46,5 +48,10 @@
 		font-size: 17px;
 		line-height: 1.6;
 		color: var(--twui-ink-soft);
+	}
+
+	.twui-section-heading-lead-justify {
+		text-align: justify;
+		text-justify: inter-word;
 	}
 </style>

@@ -4,9 +4,11 @@
 
 	let {
 		steps,
+		justify = false,
 		class: className = ''
 	}: {
 		steps: Array<{ number: string; color: string; title: string; body: string }>;
+		justify?: boolean;
 		class?: string;
 	} = $props();
 </script>
@@ -23,7 +25,7 @@
 						{step.number}
 					</div>
 					<h3 class="twui-landing-step-title">{step.title}</h3>
-					<p class="twui-landing-step-body">{step.body}</p>
+					<p class="twui-landing-step-body {justify ? 'twui-landing-step-body-justify' : ''}">{step.body}</p>
 				</CardContent>
 			</Card>
 		</li>
@@ -77,6 +79,11 @@
 		font-size: 15px;
 		line-height: 1.55;
 		color: var(--twui-ink-soft);
+	}
+
+	.twui-landing-step-body-justify {
+		text-align: justify;
+		text-justify: inter-word;
 	}
 
 	@media (min-width: 640px) {

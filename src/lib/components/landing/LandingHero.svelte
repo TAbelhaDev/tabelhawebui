@@ -7,6 +7,7 @@
 		lead,
 		actions,
 		note,
+		justify = false,
 		class: className = ''
 	}: {
 		eyebrow?: string;
@@ -14,6 +15,7 @@
 		lead?: string;
 		actions?: Snippet;
 		note?: string;
+		justify?: boolean;
 		class?: string;
 	} = $props();
 </script>
@@ -30,7 +32,7 @@
 		{/if}
 	</h1>
 	{#if lead}
-		<p class="twui-landing-hero-lead">{lead}</p>
+		<p class="twui-landing-hero-lead {justify ? 'twui-landing-hero-lead-justify' : ''}">{lead}</p>
 	{/if}
 	{#if actions}
 		<div class="twui-landing-hero-actions">{@render actions()}</div>
@@ -67,6 +69,11 @@
 		font-size: 18px;
 		line-height: 1.6;
 		color: var(--twui-ink-soft);
+	}
+
+	.twui-landing-hero-lead-justify {
+		text-align: justify;
+		text-justify: inter-word;
 	}
 
 	.twui-landing-hero-actions {

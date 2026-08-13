@@ -5,6 +5,7 @@
 
 	let {
 		features,
+		justify = false,
 		class: className = ''
 	}: {
 		// icon é um Snippet (ex. `icon: () => <Icon class="..." />`). Não usar
@@ -17,6 +18,7 @@
 			title: string;
 			body: string;
 		}>;
+		justify?: boolean;
 		class?: string;
 	} = $props();
 </script>
@@ -32,7 +34,7 @@
 					{@render feature.icon()}
 				</div>
 				<h3 class="twui-landing-feature-title">{feature.title}</h3>
-				<p class="twui-landing-feature-body">{feature.body}</p>
+				<p class="twui-landing-feature-body {justify ? 'twui-landing-feature-body-justify' : ''}">{feature.body}</p>
 			</CardContent>
 		</Card>
 	{/each}
@@ -69,6 +71,11 @@
 		font-size: 15px;
 		line-height: 1.55;
 		color: var(--twui-ink-soft);
+	}
+
+	.twui-landing-feature-body-justify {
+		text-align: justify;
+		text-justify: inter-word;
 	}
 
 	@media (min-width: 640px) {
