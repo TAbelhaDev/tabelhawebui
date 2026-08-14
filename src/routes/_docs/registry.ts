@@ -226,6 +226,23 @@ export const components: ComponentDoc[] = [
     ],
   ),
 
+  generic(
+    "TagInput",
+    "Formulários",
+    "Campo de tags: chips removíveis, autocomplete das opções e criar-na-hora.",
+    [
+      {
+        label: "Padrão",
+        props: {
+          options: ["Viagem SP", "PC novo", "Aniversário"],
+          value: ["Viagem SP"],
+          placeholder: "Adicione uma tag…",
+        },
+        code: '<TagInput options={options} placeholder="Adicione uma tag…" />',
+      },
+    ],
+  ),
+
   // ── Escolha ─────────────────────────────────────────────────────────────
   generic(
     "Toggle",

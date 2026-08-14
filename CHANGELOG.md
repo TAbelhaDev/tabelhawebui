@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.22.0]
+
+### Added
+
+- `TagInput`: tag/etiqueta field combining removable chips, autocomplete/filter
+  over existing `options` (string list) and create-on-the-fly — typing a value
+  that is not among the options and confirming it (Enter or the `createLabel`
+  action) adds it as a new tag. Backspace on an empty input removes the last
+  chip; combobox/listbox keyboard navigation. Bindable `value: string[]`,
+  optional `label`/`name`/`placeholder`/`createLabel`. Request:
+  `requests/20260814-tag-input.md`.
+
 ## [0.21.0]
 
 ### Added

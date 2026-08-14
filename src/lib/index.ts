@@ -76,6 +76,7 @@ export { default as Checkbox } from "./components/forms/Checkbox.svelte";
 export { default as Select } from "./components/forms/Select.svelte";
 export { default as DatePicker } from "./components/forms/DatePicker.svelte";
 export { default as FileUpload } from "./components/forms/FileUpload.svelte";
+export { default as TagInput } from "./components/forms/TagInput.svelte";
 
 export namespace Select {
   export type Option = SelectOption;
