@@ -1,3 +1,11 @@
+<script module lang="ts">
+	// Module-level counter, shared by every Dialog instance: the page scroll
+	// stays locked while ANY dialog is open, and is only restored when the last
+	// one closes — a nested dialog (e.g. onboarding → install modal) must not
+	// unlock the background while the outer one is still up.
+	let openCount = 0;
+</script>
+
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { tick } from 'svelte';
@@ -22,6 +30,20 @@
 		'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 	let panelEl = $state<HTMLDivElement | undefined>();
+
+	$effect(() => {
+		if (!open) return;
+		openCount += 1;
+		if (openCount === 1) {
+			document.body.style.overflow = 'hidden';
+		}
+		return () => {
+			openCount -= 1;
+			if (openCount === 0) {
+				document.body.style.overflow = '';
+			}
+		};
+	});
 
 	$effect(() => {
 		if (!open) return;

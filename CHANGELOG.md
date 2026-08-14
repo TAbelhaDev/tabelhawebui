@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.23.0]
+
+### Fixed
+
+- `Dialog` now locks the page scroll while open (module-level counter, so a
+  nested dialog keeps the background locked until the last one closes) and
+  restores it on close/unmount — a fixed overlay previously let the content
+  scroll behind the modal. Request: `requests/20260814-dialog-scroll-lock.md`.
+
 ## [0.22.0]
 
 ### Added
