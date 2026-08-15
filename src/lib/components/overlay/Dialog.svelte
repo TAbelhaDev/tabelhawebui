@@ -13,6 +13,7 @@
 	let {
 		open = $bindable(false),
 		title,
+		size = 'md',
 		closeLabel = 'Fechar',
 		children,
 		footer,
@@ -20,6 +21,7 @@
 	}: {
 		open?: boolean;
 		title?: string;
+		size?: 'sm' | 'md' | 'lg';
 		closeLabel?: string;
 		children: Snippet;
 		footer?: Snippet;
@@ -85,7 +87,7 @@
 		}}
 	>
 		<div
-			class="twui-dialog {className}"
+			class="twui-dialog twui-dialog-{size} {className}"
 			role="dialog"
 			aria-modal="true"
 			aria-label={title}
@@ -128,12 +130,22 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		max-width: 480px;
 		max-height: 85vh;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);
 		box-shadow: var(--twui-shadow-offset, 3px 3px 0 0 var(--twui-rule));
 		outline: none;
+	}
+
+	/* The `size` prop maps to a max-width; the `class` prop still wins over it. */
+	.twui-dialog-sm {
+		max-width: 480px;
+	}
+	.twui-dialog-md {
+		max-width: 640px;
+	}
+	.twui-dialog-lg {
+		max-width: 800px;
 	}
 
 	.twui-dialog-header {
@@ -169,6 +181,12 @@
 	.twui-dialog-body {
 		padding: 16px;
 		overflow-y: auto;
+		/* The native scrollbar breaks the mono aesthetic; scrolling still works
+		   by keyboard/wheel, the indicator is just hidden (same as the Select). */
+		scrollbar-width: none;
+	}
+	.twui-dialog-body::-webkit-scrollbar {
+		display: none;
 	}
 
 	.twui-dialog-footer {

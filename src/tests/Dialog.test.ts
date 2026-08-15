@@ -32,6 +32,18 @@ describe("Dialog", () => {
     expect(document.body.style.overflow).toBe("");
   });
 
+  it("applies the size class to the panel", async () => {
+    const user = userEvent.setup();
+    render(DialogHarness, { size: "lg" });
+
+    await user.click(screen.getByTestId("open"));
+    const dialog = await screen.findByRole("dialog");
+    expect(dialog.classList.contains("twui-dialog-lg")).toBe(true);
+    expect(dialog.classList.contains("twui-dialog-md")).toBe(false);
+
+    await user.click(screen.getByTestId("close"));
+  });
+
   it("keeps the scroll locked while a nested dialog is still open", async () => {
     const user = userEvent.setup();
     render(DialogHarness, { nested: true });

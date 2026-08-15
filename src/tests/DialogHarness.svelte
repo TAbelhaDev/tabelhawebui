@@ -1,7 +1,10 @@
 <script lang="ts">
 	import Dialog from "$lib/components/overlay/Dialog.svelte";
 
-	let { nested = false }: { nested?: boolean } = $props();
+	let {
+		nested = false,
+		size = "md",
+	}: { nested?: boolean; size?: "sm" | "md" | "lg" } = $props();
 	let a = $state(false);
 	let b = $state(false);
 </script>
@@ -14,7 +17,7 @@
 	<button type="button" data-testid="close-b" onclick={() => (b = false)}>fechar-b</button>
 {/if}
 
-<Dialog bind:open={a}>
+<Dialog bind:open={a} {size}>
 	<p>dialog a</p>
 	{#snippet footer()}
 		<button type="button" data-testid="footer-close" onclick={() => (a = false)}>fechar</button>

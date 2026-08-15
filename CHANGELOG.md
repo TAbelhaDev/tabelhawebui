@@ -5,6 +5,22 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.24.0]
+
+### Added
+
+- `Dialog` gets a `size` prop (`sm`/`md`/`lg` → max-width 480/640/800, default
+  `md`); the `class` prop still wins over it. The body's native scrollbar is
+  hidden (scroll by keyboard/wheel still works), matching the mono aesthetic.
+
+### Fixed
+
+- `Select` dropdown now positions itself `fixed` (from the trigger's rect) and
+  re-positions on scroll/resize, so the list escapes any `overflow` ancestor —
+  inside a `Dialog` it floats on top of the modal instead of being clipped by
+  the body's `overflow-y: auto`. Flips above the trigger when there is no room
+  below.
+
 ## [0.23.0]
 
 ### Fixed

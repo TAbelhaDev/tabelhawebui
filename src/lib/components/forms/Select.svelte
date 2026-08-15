@@ -29,6 +29,8 @@
 
 	let open = $state(false);
 	let rootEl = $state<HTMLDivElement | undefined>();
+	let popoverEl = $state<HTMLDivElement | undefined>();
+	let popoverRect = $state<{ top: number; left: number; width: number } | null>(null);
 	let activeIndex = $state(-1);
 	let query = $state('');
 
@@ -38,6 +40,42 @@
 			? options.filter((o) => o.label.toLowerCase().includes(query.trim().toLowerCase()))
 			: options
 	);
+
+	// Fixed positioning: the popover escapes any `overflow` ancestor (a dialog
+	// body with `overflow-y: auto` would otherwise clip the list), so the
+	// dropdown floats on top of the modal instead of being contained in it.
+	const popoverStyle = $derived(
+		popoverRect
+			? `position: fixed; top: ${popoverRect.top}px; left: ${popoverRect.left}px; width: ${popoverRect.width}px;`
+			: 'position: fixed;'
+	);
+
+	function positionPopover() {
+		if (!rootEl) return;
+		const rect = rootEl.getBoundingClientRect();
+		const height = popoverEl?.offsetHeight ?? 0;
+		// Flip above the trigger when there is not enough room below (the
+		// popover opens down by default).
+		const spaceBelow = window.innerHeight - rect.bottom - 4;
+		const openUp = height > 0 && spaceBelow < height && rect.top > height;
+		const top = openUp ? rect.top - height - 4 : rect.bottom + 4;
+		popoverRect = { top, left: rect.left, width: rect.width };
+	}
+
+	// While open, follow the trigger: reposition on any scroll (capture — the
+	// dialog body scrolls too) and on resize, so the list stays glued to the
+	// select instead of drifting.
+	$effect(() => {
+		if (!open) return;
+		positionPopover();
+		const onReposition = () => positionPopover();
+		window.addEventListener('scroll', onReposition, true);
+		window.addEventListener('resize', onReposition);
+		return () => {
+			window.removeEventListener('scroll', onReposition, true);
+			window.removeEventListener('resize', onReposition);
+		};
+	});
 
 	function clickOutside(node: HTMLElement, callback: () => void) {
 		function handler(e: MouseEvent) {
@@ -125,6 +163,8 @@
 			class="twui-select-popover"
 			role="listbox"
 			transition:fade={{ duration: 100 }}
+			bind:this={popoverEl}
+			style={popoverStyle}
 		>
 			{#if filter}
 				<div class="twui-select-filter">
@@ -217,11 +257,9 @@
 	}
 
 	.twui-select-popover {
-		position: absolute;
-		top: calc(100% + 4px);
-		right: 0;
-		left: 0;
-		z-index: 50;
+		/* position/coordinates come inline (fixed, computed from the trigger's
+		   rect) so the list escapes any overflow ancestor — see popoverStyle. */
+		z-index: 60;
 		max-height: 240px;
 		overflow-y: auto;
 		/* Esconde a scrollbar nativa (feia no mono) mantendo o scroll do
