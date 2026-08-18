@@ -17,6 +17,7 @@
 ## 3. IA e provedores terceiros
 
 Quando você configura uma chave de API:
+
 - A chave fica criptografada no banco de dados.
 - As requisições são feitas diretamente do seu navegador ou do seu servidor (se self-hosted).
 - **Não** temos acesso ao conteúdo das suas interações com o provedor de IA.
@@ -24,6 +25,7 @@ Quando você configura uma chave de API:
 ## 4. Open Finance / dados financeiros
 
 Se você optar por conectar contas via Open Finance:
+
 - As credenciais ficam criptografadas.
 - Os dados de transações são armazenados apenas no seu banco de dados.
 - **Não** acessamos suas contas bancárias diretamente.

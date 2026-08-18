@@ -15,6 +15,7 @@
 ## 3. Uso da IA
 
 Quando você opta por usar uma chave de API de provedor de IA:
+
 - Você é responsável pela escolha do provedor, pelo uso da chave e pelos custos associados.
 - Os resultados gerados por IA são providos "como estão", sem garantia de precisão.
 
