@@ -13,13 +13,7 @@
 </script>
 
 <span class="twui-badge twui-badge-{variant} {className}">
-	{#if variant === 'success' || variant === 'danger' || variant === 'info' || variant === 'warn'}
-		<span class="twui-badge-bracket">[</span>
-	{/if}
-	{@render children()}
-	{#if variant === 'success' || variant === 'danger' || variant === 'info' || variant === 'warn'}
-		<span class="twui-badge-bracket">]</span>
-	{/if}
+	[&nbsp;{@render children()}&nbsp;]
 </span>
 
 <style>
@@ -47,29 +41,21 @@
 
 	.twui-badge-success {
 		background: color-mix(in oklab, var(--twui-signal, #22c55e) 10%, transparent);
-		border-color: var(--twui-signal, #22c55e);
 		color: var(--twui-signal, #22c55e);
 	}
 
 	.twui-badge-danger {
 		background: color-mix(in oklab, var(--twui-danger) 10%, transparent);
-		border-color: var(--twui-danger);
 		color: var(--twui-danger);
 	}
 
 	.twui-badge-info {
 		background: color-mix(in oklab, var(--twui-accent) 10%, transparent);
-		border-color: var(--twui-accent);
 		color: var(--twui-accent);
 	}
 
 	.twui-badge-warn {
 		background: color-mix(in oklab, var(--twui-warning, #f59e0b) 10%, transparent);
-		border-color: var(--twui-warning, #f59e0b);
 		color: var(--twui-warning, #f59e0b);
-	}
-
-	.twui-badge-bracket {
-		color: var(--twui-ink-faint);
 	}
 </style>
