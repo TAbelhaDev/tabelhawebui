@@ -1,7 +1,7 @@
-// tabelawebui — tema + chrome compartilhado dos apps web.
+// tabelawebui — shared theme + chrome for web apps.
 //
-// Uso:
-//   import '@tabeladev/tabelawebui/theme.css';  // uma vez no app (ou em cada app da família)
+// Usage:
+//   import '@tabeladev/tabelawebui/theme.css';  // once in the app (or in each app in the family)
 //   import { Card, Table, Badge, Button, Toaster } from '@tabeladev/tabelawebui';
 
 import CardRoot from "./components/card/Card.svelte";
@@ -29,8 +29,8 @@ import type {
   FileUploadMode,
 } from "./components/forms/FileUpload.svelte";
 
-// Componentes compostos: `Card.Header`/`Card.Footer`, `Timeline.Item` — um
-// único export por módulo, sem exports avulsos das partes.
+// Compound components: `Card.Header`/`Card.Footer`, `Timeline.Item` — one
+// single export per module, no loose exports of parts.
 export const Card: typeof CardRoot & {
   Header: typeof CardHeader;
   Title: typeof CardTitle;
@@ -55,10 +55,10 @@ export namespace Timeline {
   export type ItemProps = TimelineItemProps;
 }
 
-// Dados
+// Data
 export { default as Table } from "./components/table/Table.svelte";
 
-// Ações
+// Actions
 export {
   buttonVariants,
   default as Button,
@@ -69,7 +69,7 @@ export namespace Button {
   export type Size = ButtonSize;
 }
 
-// Formulários
+// Forms
 export { default as Input } from "./components/forms/Input.svelte";
 export { default as Textarea } from "./components/forms/Textarea.svelte";
 export { default as Label } from "./components/forms/Label.svelte";
@@ -91,7 +91,7 @@ export namespace FileUpload {
   export type Handler = FileUploadHandler;
 }
 
-// Escolha
+// Choice
 export { default as Toggle } from "./components/choice/Toggle.svelte";
 export { default as Rating } from "./components/choice/Rating.svelte";
 export { default as MultiSelect } from "./components/choice/MultiSelect.svelte";
@@ -115,7 +115,7 @@ export { default as Sidebar } from "./components/overlay/Sidebar.svelte";
 export { default as Dropdown } from "./components/overlay/Dropdown.svelte";
 export { default as FloatingActionPill } from "./components/overlay/FloatingActionPill.svelte";
 
-// Navegação / estrutura
+// Navigation / structure
 export { default as Tabs } from "./components/navigation/Tabs.svelte";
 export { default as Accordion } from "./components/navigation/Accordion.svelte";
 export { default as Stepper } from "./components/navigation/Stepper.svelte";
@@ -138,7 +138,7 @@ export { default as Wordmark } from "./components/layout/Wordmark.svelte";
 // Chat
 export { default as ChatMessage } from "./components/chat/ChatMessage.svelte";
 
-// Seções de landing
+// Landing sections
 import LandingRoot from "./components/landing/Landing.svelte";
 import LandingHero from "./components/landing/LandingHero.svelte";
 import LandingSteps from "./components/landing/LandingSteps.svelte";
@@ -157,10 +157,10 @@ import AppShellBottomNav from "./components/appshell/AppShellBottomNav.svelte";
 import AppShellContent from "./components/appshell/AppShellContent.svelte";
 import type { AppShellNavItem } from "./components/appshell/types";
 
-// Componente composto: `Landing` (root wrapper com gradiente) com sub-componentes:
+// Compound component: `Landing` (root wrapper with gradient) with sub-components:
 // `Landing.Hero`, `Landing.Steps`, `Landing.Features`, `Landing.Roadmap`,
-// `Landing.Section`, `Landing.Section.Heading` — um único export por módulo,
-// sem exports avulsos das partes (mesma convenção de `Card` e `Timeline`).
+// `Landing.Section`, `Landing.Section.Heading` — one single export per module,
+// no loose exports of parts (same convention as `Card` and `Timeline`).
 export const Landing: typeof LandingRoot & {
   Hero: typeof LandingHero;
   Steps: typeof LandingSteps;

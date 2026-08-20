@@ -2,11 +2,11 @@
 	import type { Snippet } from 'svelte';
 
 	let {
-		variant = 'default',
+		variant = 'base',
 		children,
 		class: className = ''
 	}: {
-		variant?: 'default' | 'danger';
+		variant?: 'base' | 'danger';
 		children: Snippet;
 		class?: string;
 	} = $props();

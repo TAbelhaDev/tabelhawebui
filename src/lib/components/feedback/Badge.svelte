@@ -2,11 +2,11 @@
 	import type { Snippet } from 'svelte';
 
 	let {
-		variant = 'default',
+		variant = 'primary',
 		children,
 		class: className = ''
 	}: {
-		variant?: 'default' | 'secondary' | 'outline' | 'success' | 'danger' | 'info' | 'warn';
+		variant?: 'primary' | 'secondary' | 'outline' | 'success' | 'danger' | 'info' | 'warn';
 		children: Snippet;
 		class?: string;
 	} = $props();
@@ -26,6 +26,11 @@
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 		line-height: 1.4;
+	}
+
+	.twui-badge-primary {
+		background: color-mix(in oklab, var(--twui-accent) 12%, transparent);
+		color: var(--twui-accent);
 	}
 
 	.twui-badge-secondary {

@@ -487,7 +487,7 @@ export async function parseComponents(
       continue;
     }
     if (exp.category === undefined) {
-      // Grupo inicial do index (Table..Button) não tem comentário de seção.
+      // Initial group in the index (Table..Button) has no section comment.
       exp.category = "Core";
     }
     const info = parseComponentFile(exp, layout, descriptions);

@@ -1,13 +1,13 @@
 /*
- * tabelawebui — tema Catppuccin + estética "reading someone's source file".
- * Mesmo design system do portfolio e do tabelatuiui: mono leva a estrutura,
- * bordas afiadas.
+ * tabelawebui — Catppuccin theme + "reading someone's source file" aesthetic.
+ * Same design system as the portfolio and tabelatuiui: mono carries the structure,
+ * sharp borders.
  *
- * Uso: importe uma vez no app e as custom properties viram o tema global.
+ * Usage: import once in the app and the custom properties become the global theme.
  *   @import '@tabeladev/tabelawebui/theme.css';
  *
- * O accent é sobrescrevível por app via CSS var --twui-accent (ou herdando
- * do seu próprio [data-theme='dark']).
+ * The accent is overridable per app via CSS var --twui-accent (or inheriting
+ * from its own [data-theme='dark']).
  */
 
 @layer twui-theme {
@@ -32,15 +32,15 @@
     );
     --twui-danger: #d20f39;
 
-    /* Fontes */
+    /* Fonts */
     --twui-font-mono:
       "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --twui-font-serif: "Newsreader", ui-serif, Georgia, serif;
 
-    /* Sombra "impressa" (hard offset) — popover/toast/dropdown */
+    /* "Printed" shadow (hard offset) — popover/toast/dropdown */
     --twui-shadow-offset: 3px 3px 0 0 var(--twui-rule);
 
-    /* Catppuccin Latte — escala completa */
+    /* Catppuccin Latte — full scale */
     --twui-latte-base: #eff1f5;
     --twui-latte-mantle: #e6e9ef;
     --twui-latte-crust: #dce0e8;
@@ -54,7 +54,7 @@
     --twui-latte-subtext1: #5c5f77;
     --twui-latte-text: #4c4f69;
 
-    /* Catppuccin Latte cru (pra gráficos, badges, etc.) */
+    /* Catppuccin Latte raw (for charts, badges, etc.) */
     --twui-latte-rosewater: #dc8a78;
     --twui-latte-flamingo: #dd7878;
     --twui-latte-pink: #ea76cb;
@@ -93,7 +93,7 @@
     );
     --twui-danger: #f38ba8;
 
-    /* Catppuccin Mocha — escala completa */
+    /* Catppuccin Mocha — full scale */
     --twui-mocha-base: #1e1e2e;
     --twui-mocha-mantle: #181825;
     --twui-mocha-crust: #11111b;
@@ -107,7 +107,7 @@
     --twui-mocha-subtext1: #bac2de;
     --twui-mocha-text: #cdd6f4;
 
-    /* Catppuccin Mocha cru */
+    /* Catppuccin Mocha raw */
     --twui-mocha-rosewater: #f5e0dc;
     --twui-mocha-flamingo: #f2cdcd;
     --twui-mocha-pink: #f5c2e7;
@@ -124,9 +124,9 @@
     --twui-mocha-lavender: #b4befe;
   }
 
-  /* Paleta por flavor, consumível via var(--twui-<flavor>-<color>) nos
-	   componentes que precisam de cores discretas. Escolha baseada no tema
-	   ativo é responsabilidade do app (ou do componente que conhece o tema). */
+  /* Per-flavor palette, consumed via var(--twui-<flavor>-<color>) in
+	   components that need discrete colors. Choosing based on the active
+	   theme is the app's responsibility (or the component that knows the theme). */
   :root,
   [data-theme="light"] {
     --twui-base: var(--twui-latte-base);
@@ -189,9 +189,9 @@
     --twui-lavender: var(--twui-mocha-lavender);
   }
 
-  /* Accent por app — escolha via data-accent no <html> (ex: data-accent="teal").
-     O --twui-accent-soft deriva automaticamente (color-mix) e os semânticos
-     signal/danger não mudam. Sem data-accent, fica o default (marrom / pink). */
+  /* Per-app accent — choose via data-accent on <html> (e.g. data-accent="teal").
+     --twui-accent-soft derives automatically (color-mix) and the semantic
+     signal/danger don't change. Without data-accent, falls back to default (maroon / pink). */
   :root[data-accent="maroon"] {
     --twui-accent: var(--twui-latte-maroon);
   }

@@ -1,8 +1,8 @@
 import type { PropInfo } from "./types";
 
-// Lê o source de cada componente via import.meta.glob (?raw) e extrai as
-// props da anotação de tipo do `$props()`. Mesma técnica do parser MCP, numa
-// versão enxuta que roda no bundle do site (sem node:fs).
+// Reads each component's source via import.meta.glob (?raw) and extracts
+// props from the `$props()` type annotation. Same technique as the MCP parser,
+// in a leaner version that runs in the site bundle (no node:fs).
 
 function matchingBrace(text: string, open: number): number {
   let depth = 0;

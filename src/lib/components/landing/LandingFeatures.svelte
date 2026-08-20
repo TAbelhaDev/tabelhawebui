@@ -8,9 +8,9 @@
 		justify = false,
 		class: className = ''
 	}: {
-		// icon é um Snippet (ex. `icon: () => <Icon class="..." />`). Não usar
-		// Component direto: não há como distinguir snippet de componente em
-		// runtime no Svelte 5 (quebraria no SSR).
+		// icon is a Snippet (e.g. `icon: () => <Icon class="..." />`). Don't use
+		// a Component directly: there's no way to distinguish snippet from component in
+		// Svelte 5 runtime (would break on SSR).
 		features: Array<{
 			icon: Snippet;
 			iconBg?: string;

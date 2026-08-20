@@ -49,7 +49,7 @@ import {
 } from "$lib";
 import type { Component } from "svelte";
 
-// Componentes que precisam de preview custom (estrutura com snippets/estado).
+// Components that need a custom preview (structure with snippets/state).
 import CardPreview from "./previews/CardPreview.svelte";
 import TimelinePreview from "./previews/TimelinePreview.svelte";
 import LandingPreview from "./previews/LandingPreview.svelte";

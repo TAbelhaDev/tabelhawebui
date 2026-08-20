@@ -262,8 +262,8 @@
 		z-index: 60;
 		max-height: 240px;
 		overflow-y: auto;
-		/* Esconde a scrollbar nativa (feia no mono) mantendo o scroll do
-		   teclado/roda — a lista é curta e o indicador não agrega. */
+		/* Hide the native scrollbar (ugly in mono) while keeping keyboard/wheel
+		   scroll — the list is short and the indicator adds nothing. */
 		scrollbar-width: none;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);

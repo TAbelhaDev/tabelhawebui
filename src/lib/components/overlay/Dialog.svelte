@@ -54,8 +54,8 @@
 				open = false;
 				return;
 			}
-			// Focus trap (WCAG 2.4.3): Tab circula dentro do modal, sem
-			// escapar pro conteúdo atrás do overlay.
+			// Focus trap (WCAG 2.4.3): Tab cycles within the modal, without
+			// escaping to the content behind the overlay.
 			if (e.key !== 'Tab' || !panelEl) return;
 			const focusable = Array.from(panelEl.querySelectorAll<HTMLElement>(FOCUSABLE));
 			if (focusable.length === 0) return;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	// Coluna: string simples (key == label) ou { key, label, width, sortable }.
+	// Column: simple string (key == label) or { key, label, width, sortable }.
 	type Column = string | { key: string; label?: string; width?: string; sortable?: boolean };
 
 	function colKey(col: Column): string {
@@ -23,20 +23,20 @@
 		cell,
 		children,
 		widths,
-		// Ordenação
+		// Sorting
 		sortable = false,
-		// Filtro global
+		// Global filter
 		filterable = false,
 		filterFields = [],
-		// Seleção de linha
+		// Row selection
 		selection,
 		selected = $bindable([]),
 		rowKey,
-		// Estados
+		// States
 		loading = false,
 		skeletonRows = 5,
 		empty,
-		// Paginação
+		// Pagination
 		pageSize = $bindable(10),
 		pageSizeOptions,
 		pageReport = '{currentPage} de {totalPages}',
@@ -58,14 +58,14 @@
 		rows?: Array<Record<string, unknown>>;
 		cell?: Snippet<[row: Record<string, unknown>, key: string]>;
 		children?: Snippet;
-		// Proporções relativas de largura por coluna, ex. [4, 1, 2, 3].
+		// Relative width proportions per column, e.g. [4, 1, 2, 3].
 		widths?: number[];
-		// Ordenação: clicar no header cicla nenhum → asc → desc.
+		// Sorting: clicking the header cycles none → asc → desc.
 		sortable?: boolean;
-		// Filtro global: caixa de busca acima da tabela.
+		// Global filter: search box above the table.
 		filterable?: boolean;
 		filterFields?: string[];
-		// Seleção de linha: 'single' | 'multiple'.
+		// Row selection: 'single' | 'multiple'.
 		selection?: 'single' | 'multiple';
 		selected?: Array<Record<string, unknown>>;
 		rowKey?: string;
@@ -90,7 +90,7 @@
 		class?: string;
 	} = $props();
 
-	// --- largura das colunas ---
+	// --- column widths ---
 	const total = $derived(widths?.reduce((a, b) => a + b, 0) ?? 0);
 	function colWidthPercent(i: number): string | undefined {
 		if (!widths || total === 0) return undefined;
@@ -121,7 +121,7 @@
 		return String(a ?? '').localeCompare(String(b ?? ''));
 	}
 
-	// --- filtro global ---
+	// --- global filter ---
 	let query = $state('');
 	const filterableKeys = $derived(
 		filterable && filterFields.length > 0 ? filterFields : columns?.map(colKey) ?? []
@@ -139,9 +139,9 @@
 		sortField ? [...filteredRows].sort((a, b) => compare(a[sortField!], b[sortField!]) * (sortOrder === 'asc' ? 1 : -1)) : filteredRows
 	);
 
-	// --- paginação ---
-	// pageSize=0 significa "sem paginação, mostra todas as linhas". Evita
-	// slice((p-1)*0, p*0) = slice(0,0) = [] e divisão por zero em totalPages.
+	// --- pagination ---
+	// pageSize=0 means "no pagination, show all rows". Avoids
+	// slice((p-1)*0, p*0) = slice(0,0) = [] and division by zero in totalPages.
 	const noPagination = $derived(!pageSize || pageSize <= 0);
 	const totalRecords = $derived(sortedRows.length);
 	const totalPages = $derived(
@@ -183,7 +183,7 @@
 			.replace('{totalPages}', String(totalPages));
 	}
 
-	// --- seleção ---
+	// --- selection ---
 	function isSelected(row: Record<string, unknown>): boolean {
 		return selected.some((s) => (rowKey ? s[rowKey] === row[rowKey] : s === row));
 	}

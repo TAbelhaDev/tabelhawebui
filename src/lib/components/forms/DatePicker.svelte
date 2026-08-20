@@ -61,12 +61,12 @@
 	}
 
 	function pick(iso: string) {
-		// No modo month o valor é YYYY-MM: o dia clicado só indica o mês.
+		// In month mode the value is YYYY-MM: the clicked day only indicates the month.
 		value = mode === 'month' ? iso.slice(0, 7) : iso;
 		open = false;
 	}
 
-	// Navegação sempre mês a mês (em ambos os modos).
+	// Navigation always month by month (in both modes).
 	function prev() {
 		viewMonth -= 1;
 		if (viewMonth < 0) {
@@ -90,7 +90,7 @@
 		})
 	);
 
-	// Headers do grid alinhados ao getDay() (0=Domingo): 7/jan/2024 é domingo.
+	// Grid headers aligned to getDay() (0=Sunday): Jan 7, 2024 is a Sunday.
 	const weekdays = $derived(
 		Array.from({ length: 7 }, (_, i) =>
 			new Intl.DateTimeFormat(locale, { weekday: 'narrow' }).format(new Date(2024, 0, 7 + i))
@@ -99,7 +99,7 @@
 
 	const days = $derived.by(() => {
 		const first = new Date(viewYear, viewMonth, 1);
-		const startDow = first.getDay(); // 0=Domingo
+		const startDow = first.getDay(); // 0=Sunday
 		const count = new Date(viewYear, viewMonth + 1, 0).getDate();
 		const cells: Array<{ iso: string; day: number; inMonth: boolean }> = [];
 		for (let i = 0; i < startDow; i++) {

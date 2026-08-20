@@ -1,6 +1,6 @@
-// Toast simples e autocontido — substitui o svelte-sonner. O store é um
-// módulo Svelte 5 (`$state` em .svelte.js) importável de qualquer lugar; o
-// <Toaster> do tabelawebui é o único que renderiza.
+// Simple, self-contained toast — replaces svelte-sonner. The store is a
+// Svelte 5 module (`$state` in .svelte.js) importable from anywhere; the
+// <Toaster> from tabelawebui is the only one that renders.
 
 export type ToastKind = "success" | "error" | "info" | "warning";
 
@@ -26,7 +26,7 @@ function push(
 ) {
   const id = nextId++;
   toasts.current.push({ id, kind, message, action: opts?.action });
-  // Auto-dismiss (exceto toasts com action, tipo "nova versão disponível").
+  // Auto-dismiss (except toasts with action, like "new version available").
   if (!opts?.action) {
     setTimeout(() => dismiss(id), 4000);
   }
@@ -42,7 +42,7 @@ export interface ToastApi {
   warning(message: string): void;
 }
 
-// Chamável (`toast('msg', opts)`) e com métodos (`toast.success('msg')`).
+// Callable (`toast('msg', opts)`) and with methods (`toast.success('msg')`).
 export const toast: ToastApi = Object.assign(
   (message: string, opts?: ToastOptions) => push("info", message, opts),
   {

@@ -1,12 +1,12 @@
 <script module lang="ts">
-	export type ButtonVariant = 'default' | 'primary' | 'ghost' | 'danger' | 'outline';
-	export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon-sm';
+	export type ButtonVariant = 'primary' | 'ghost' | 'danger' | 'outline';
+	export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon-sm';
 
-	// Função de classes pra uso onde não cabe um <Button> real (ex. <span> decorativo).
+	// Variant class helper for use where a real <Button> doesn't fit (e.g. decorative <span>).
 	export function buttonVariants(
 		opts: { variant?: ButtonVariant; size?: ButtonSize } = {}
 	): string {
-		const { variant = 'default', size = 'default' } = opts;
+		const { variant = 'primary', size = 'md' } = opts;
 		return `twui-button twui-button-${variant} twui-button-${size}`;
 	}
 </script>
@@ -16,8 +16,8 @@
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 
 	let {
-		variant = 'default',
-		size = 'default',
+		variant = 'primary',
+		size = 'md',
 		href,
 		loading = false,
 		children,
@@ -65,7 +65,6 @@
 		align-items: center;
 		justify-content: center;
 		gap: 6px;
-		padding: 6px 16px;
 		border: 1px solid transparent;
 		background: transparent;
 		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
@@ -105,6 +104,11 @@
 		font-size: 13px;
 	}
 
+	.twui-button-md {
+		padding: 6px 16px;
+		font-size: 14px;
+	}
+
 	.twui-button-lg {
 		padding: 8px 24px;
 		font-size: 14px;
@@ -116,26 +120,16 @@
 		padding: 0;
 	}
 
-	.twui-button-default {
-		background: var(--twui-accent);
-		border-color: var(--twui-accent);
-		color: var(--twui-paper);
-	}
-
-	.twui-button-default:hover:not(:disabled) {
-		background: color-mix(in oklab, var(--twui-accent) 85%, black);
-		border-color: color-mix(in oklab, var(--twui-accent) 85%, black);
-	}
-
 	.twui-button-primary {
-		background: var(--twui-accent);
+		background: color-mix(in oklab, var(--twui-accent) 12%, transparent);
 		border-color: var(--twui-accent);
-		color: var(--twui-paper);
+		color: var(--twui-accent);
 	}
 
 	.twui-button-primary:hover:not(:disabled) {
-		background: color-mix(in oklab, var(--twui-accent) 85%, black);
-		border-color: color-mix(in oklab, var(--twui-accent) 85%, black);
+		background: color-mix(in oklab, var(--twui-accent) 25%, transparent);
+		border-color: var(--twui-accent);
+		color: var(--twui-accent);
 	}
 
 	.twui-button-ghost {
