@@ -94,7 +94,7 @@
 		margin: 0;
 		background: var(--twui-paper);
 		color: var(--twui-ink);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 	}
 
 	.twui-docs-shell {

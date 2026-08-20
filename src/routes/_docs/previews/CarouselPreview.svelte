@@ -41,13 +41,13 @@
 	}
 
 	.twui-docs-carousel-title {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		color: var(--twui-ink);
 	}
 
 	.twui-docs-carousel-body {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 	}

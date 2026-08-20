@@ -28,7 +28,7 @@
 
 <style>
 	.twui-docs-tabs-value {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 11px;
 		color: var(--twui-ink-faint);
 	}

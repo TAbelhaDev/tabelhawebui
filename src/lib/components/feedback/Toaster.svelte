@@ -87,7 +87,7 @@
 
 	.twui-toast-message {
 		flex: 1;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink);
 	}
@@ -96,7 +96,7 @@
 		border: 1px solid var(--twui-accent);
 		background: var(--twui-accent-soft);
 		padding: 4px 8px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-accent);
 		cursor: pointer;

@@ -53,7 +53,7 @@
 		align-items: center;
 		gap: 2px;
 		padding: 4px 16px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		line-height: 1.2;
 		color: var(--twui-ink-soft);

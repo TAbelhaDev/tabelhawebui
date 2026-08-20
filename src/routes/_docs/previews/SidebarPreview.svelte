@@ -21,7 +21,7 @@
 <style>
 	.twui-docs-side-text {
 		margin: 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink);
 	}

@@ -140,7 +140,7 @@
 		flex-wrap: wrap;
 		align-items: baseline;
 		gap: 0 12px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-faint);
 	}
@@ -175,7 +175,7 @@
 
 	.twui-timeline-subtitle {
 		margin: 2px 0 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 	}
@@ -209,7 +209,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 4px 12px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 	}

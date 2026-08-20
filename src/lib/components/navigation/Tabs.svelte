@@ -58,7 +58,7 @@
 		border: none;
 		border-bottom: 2px solid transparent;
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink-soft);
 		cursor: pointer;

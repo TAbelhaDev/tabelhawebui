@@ -44,7 +44,7 @@
 
 <style>
 	.twui-landing-eyebrow {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -53,7 +53,7 @@
 
 	.twui-landing-hero-title {
 		margin: 16px 0 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 40px;
 		font-weight: 700;
 		line-height: 1.15;
@@ -85,7 +85,7 @@
 
 	.twui-landing-hero-note {
 		margin: 16px 0 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-faint);
 	}

@@ -159,13 +159,13 @@
 		border-radius: 50%;
 		background: var(--twui-accent);
 		color: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		font-weight: 700;
 	}
 
 	.twui-docs-appshell-name {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink-soft);
 	}

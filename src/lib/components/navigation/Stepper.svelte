@@ -77,7 +77,7 @@
 		padding: 0;
 		border: none;
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		cursor: pointer;
 	}
 

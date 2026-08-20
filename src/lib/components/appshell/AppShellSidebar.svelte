@@ -118,7 +118,7 @@
 		gap: 12px;
 		padding: 6px 8px;
 		border-left: 2px solid transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		line-height: 1.4;
 		color: var(--twui-ink-soft);
@@ -165,7 +165,7 @@
 		border: none;
 		border-left: 2px solid transparent;
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		line-height: 1.4;
 		color: var(--twui-danger);

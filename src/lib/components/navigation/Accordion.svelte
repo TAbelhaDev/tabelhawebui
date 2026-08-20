@@ -77,7 +77,7 @@
 		padding: 12px 16px;
 		border: none;
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		font-weight: 500;
 		text-align: left;

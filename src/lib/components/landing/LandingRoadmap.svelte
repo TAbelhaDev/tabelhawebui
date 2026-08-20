@@ -35,7 +35,7 @@
 		gap: 6px;
 		padding: 4px 10px;
 		border: 1px solid var(--twui-rule);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 	}

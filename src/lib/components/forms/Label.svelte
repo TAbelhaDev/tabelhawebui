@@ -22,7 +22,7 @@
 	.twui-label {
 		display: inline-flex;
 		align-items: center;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		font-weight: 500;
 		color: var(--twui-ink);

@@ -16,7 +16,7 @@
 
 <style>
 	.twui-eyebrow {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		text-transform: uppercase;
 		color: var(--twui-ink-faint);

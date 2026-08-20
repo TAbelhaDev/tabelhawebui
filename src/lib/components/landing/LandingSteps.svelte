@@ -59,7 +59,7 @@
 		height: 36px;
 		margin-bottom: 12px;
 		border-radius: 8px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 16px;
 		font-weight: 700;
 		line-height: 1;
@@ -67,7 +67,7 @@
 
 	.twui-landing-step-title {
 		margin: 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		font-weight: 600;
 		color: var(--twui-ink);

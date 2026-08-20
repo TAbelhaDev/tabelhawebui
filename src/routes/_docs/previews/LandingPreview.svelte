@@ -7,16 +7,25 @@
 		{ number: '02', color: 'var(--twui-signal)', title: 'Monte', body: 'Combine módulos e temas do seu jeito.' }
 	];
 
-	const code = `<Landing.Hero
-	eyebrow="Sistema modular"
-	title={heroTitle}
-	lead="Um componente, várias combinações."
-	actions={heroActions}
-/>
-<Landing.Steps {steps} />
-<Landing.Features {features} />
-<Landing.Roadmap {items} />
-<Landing.Footer name="TabelaWebUI" tagline="Design system" />`;
+	const code = `<Landing>
+	<Landing.Hero
+		eyebrow="Sistema modular"
+		title={heroTitle}
+		lead="Um componente, várias combinações."
+	>
+		{#snippet actions()}...{/snippet}
+	</Landing.Hero>
+
+	<Landing.Section>
+		<Landing.Section.Heading eyebrow="Como funciona" title="Dois passos." />
+		<Landing.Steps {steps} />
+	</Landing.Section>
+
+	<Landing.Section>
+		<Landing.Section.Heading eyebrow="Recursos" title="O que tem." />
+		<Landing.Features {features} />
+	</Landing.Section>
+</Landing>`;
 </script>
 
 {#snippet heroTitle()}
@@ -27,8 +36,8 @@
 	<span aria-hidden="true">✦</span>
 {/snippet}
 
-<ExampleCard label="Hero + Steps + Features + Roadmap + Footer" code={code}>
-	<div class="twui-docs-landing-wrap">
+<ExampleCard label="Landing compound" code={code}>
+	<Landing>
 		<Landing.Hero
 			eyebrow="Sistema modular"
 			title={heroTitle}
@@ -39,28 +48,23 @@
 				<Button variant="primary" size="sm">Começar</Button>
 			{/snippet}
 		</Landing.Hero>
-		<Landing.Steps {steps} />
-		<Landing.Features
-			features={[
-				{
-					icon: sparkles,
-					iconBg: 'color-mix(in srgb, var(--twui-accent) 12%, transparent)',
-					iconColor: 'var(--twui-accent)',
-					title: 'Componentes',
-					body: 'Formulários, feedback, overlays e navegação prontos.'
-				}
-			]}
-		/>
-		<Landing.Roadmap items={[{ icon: sparkles, label: 'Mais componentes' }]} />
-		<Landing.Footer name="TabelaWebUI" tagline="Design system" license="AGPL-3.0" />
-	</div>
+		<Landing.Section>
+			<Landing.Section.Heading eyebrow="Como funciona" title="Dois passos." />
+			<Landing.Steps {steps} />
+		</Landing.Section>
+		<Landing.Section>
+			<Landing.Section.Heading eyebrow="Recursos" title="O que tem." />
+			<Landing.Features
+				features={[
+					{
+						icon: sparkles,
+						iconBg: 'color-mix(in srgb, var(--twui-accent) 12%, transparent)',
+						iconColor: 'var(--twui-accent)',
+						title: 'Componentes',
+						body: 'Formulários, feedback, overlays e navegação prontos.'
+					}
+				]}
+			/>
+		</Landing.Section>
+	</Landing>
 </ExampleCard>
-
-<style>
-	.twui-docs-landing-wrap {
-		width: 100%;
-		max-width: 26rem;
-		display: flex;
-		flex-direction: column;
-	}
-</style>

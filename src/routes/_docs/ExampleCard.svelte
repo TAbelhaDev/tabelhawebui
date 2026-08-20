@@ -63,7 +63,7 @@
 	}
 
 	.twui-docs-example-label {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 11px;
 		color: var(--twui-ink-faint);
 	}
@@ -72,7 +72,7 @@
 		border: none;
 		background: transparent;
 		padding: 2px 4px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 11px;
 		color: var(--twui-accent);
 		cursor: pointer;

@@ -135,7 +135,7 @@
 	.twui-docs-import pre {
 		margin: 0;
 		padding: 8px 12px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 	}
@@ -162,7 +162,7 @@
 	.twui-docs-table {
 		width: 100%;
 		border-collapse: collapse;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 	}
 

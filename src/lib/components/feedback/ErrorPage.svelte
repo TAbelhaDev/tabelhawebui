@@ -48,7 +48,7 @@
 	}
 
 	.twui-error-code {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 88px;
 		font-weight: 700;
 		line-height: 1;
@@ -57,7 +57,7 @@
 
 	.twui-error-title {
 		margin: 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 16px;
 		font-weight: 600;
 		color: var(--twui-ink);
@@ -66,7 +66,7 @@
 	.twui-error-description {
 		margin: 0;
 		max-width: 420px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink-soft);
 	}
@@ -85,7 +85,7 @@
 		border: 1px solid var(--twui-accent);
 		background: var(--twui-accent);
 		padding: 8px 16px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		font-weight: 500;
 		color: var(--twui-paper);

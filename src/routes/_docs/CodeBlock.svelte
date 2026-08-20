@@ -45,7 +45,7 @@
 		margin: 0;
 		padding: 12px 84px 12px 12px;
 		overflow-x: auto;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		line-height: 1.6;
 		color: var(--twui-ink);
@@ -59,7 +59,7 @@
 		padding: 3px 8px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 11px;
 		color: var(--twui-ink-soft);
 		cursor: pointer;

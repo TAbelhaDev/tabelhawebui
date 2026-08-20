@@ -66,21 +66,17 @@
 		justify-content: center;
 		gap: 6px;
 		padding: 6px 16px;
-		border: 1px solid var(--twui-rule);
+		border: 1px solid transparent;
 		background: transparent;
 		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
 		font-size: 14px;
-		color: var(--twui-ink);
+		font-weight: 500;
 		cursor: pointer;
 		text-decoration: none;
 		transition:
 			background-color 0.15s ease,
 			color 0.15s ease,
 			border-color 0.15s ease;
-	}
-
-	.twui-button:hover:not(:disabled) {
-		background: var(--twui-paper);
 	}
 
 	.twui-button:disabled {
@@ -120,19 +116,30 @@
 		padding: 0;
 	}
 
-	.twui-button-primary {
-		border-color: var(--twui-accent);
-		background: var(--twui-accent-soft);
-		font-weight: 500;
-		color: var(--twui-accent);
-	}
-
-	.twui-button-primary:hover:not(:disabled) {
+	.twui-button-default {
 		background: var(--twui-accent);
+		border-color: var(--twui-accent);
 		color: var(--twui-paper);
 	}
 
+	.twui-button-default:hover:not(:disabled) {
+		background: color-mix(in oklab, var(--twui-accent) 85%, black);
+		border-color: color-mix(in oklab, var(--twui-accent) 85%, black);
+	}
+
+	.twui-button-primary {
+		background: var(--twui-accent);
+		border-color: var(--twui-accent);
+		color: var(--twui-paper);
+	}
+
+	.twui-button-primary:hover:not(:disabled) {
+		background: color-mix(in oklab, var(--twui-accent) 85%, black);
+		border-color: color-mix(in oklab, var(--twui-accent) 85%, black);
+	}
+
 	.twui-button-ghost {
+		background: transparent;
 		border-color: transparent;
 		color: var(--twui-ink-soft);
 	}
@@ -143,6 +150,7 @@
 	}
 
 	.twui-button-danger {
+		background: transparent;
 		border-color: var(--twui-danger);
 		color: var(--twui-danger);
 	}
@@ -153,6 +161,7 @@
 	}
 
 	.twui-button-outline {
+		background: transparent;
 		border-color: var(--twui-ink-soft);
 		color: var(--twui-ink);
 	}

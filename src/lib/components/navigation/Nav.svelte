@@ -54,7 +54,7 @@
 	}
 
 	.twui-nav-logo {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		font-weight: 500;
 		white-space: nowrap;
@@ -74,7 +74,7 @@
 		column-gap: 4px;
 		row-gap: 8px;
 		padding: 0 20px 16px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 	}
 

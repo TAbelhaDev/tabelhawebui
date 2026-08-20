@@ -17,7 +17,7 @@
 <style>
 	.twui-card-description {
 		margin: 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 	}

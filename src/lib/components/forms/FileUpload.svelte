@@ -329,7 +329,7 @@
 		padding: 16px;
 		border: 1px dashed var(--twui-rule);
 		background: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		color: var(--twui-ink);
 		text-align: center;
@@ -367,7 +367,7 @@
 	}
 
 	.twui-fileupload-choose-label {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		font-weight: 500;
 	}
@@ -422,7 +422,7 @@
 	}
 
 	.twui-fileupload-item-name {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 		overflow: hidden;
@@ -431,7 +431,7 @@
 	}
 
 	.twui-fileupload-item-size {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 10px;
 		color: var(--twui-ink-faint);
 	}
@@ -446,7 +446,7 @@
 		padding: 0;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 10px;
 		line-height: 1;
 		color: var(--twui-ink-soft);
@@ -468,7 +468,7 @@
 		padding: 6px 12px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 		cursor: pointer;

@@ -10,16 +10,15 @@
 	} = $props();
 </script>
 
-<h2 class="twui-card-title {className}">
+<div class="twui-card-action {className}">
 	{@render children()}
-</h2>
+</div>
 
 <style>
-	.twui-card-title {
-		margin: 0;
-		font-family: var(--twui-font-mono);
-		font-size: 14px;
-		font-weight: 600;
-		color: var(--twui-ink);
+	.twui-card-action {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 16px;
 	}
 </style>

@@ -47,7 +47,7 @@
 
 	.twui-progress-label {
 		padding: 0 6px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 10px;
 		line-height: 1;
 		color: var(--twui-paper);

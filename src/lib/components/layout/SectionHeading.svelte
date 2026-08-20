@@ -24,7 +24,7 @@
 
 <style>
 	.twui-landing-eyebrow {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
@@ -33,7 +33,7 @@
 
 	.twui-section-heading-title {
 		margin: 12px 0 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 28px;
 		font-weight: 700;
 		letter-spacing: -0.01em;

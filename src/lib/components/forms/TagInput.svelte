@@ -205,7 +205,7 @@
 	.twui-tag-input-label {
 		display: inline-flex;
 		margin-bottom: 6px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		font-weight: 500;
 		color: var(--twui-ink);
@@ -235,7 +235,7 @@
 		padding: 2px 4px 2px 8px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink);
 	}
@@ -271,7 +271,7 @@
 		padding: 4px;
 		border: none;
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		color: var(--twui-ink);
 		outline: none;
@@ -314,7 +314,7 @@
 		padding: 6px 10px;
 		border: none;
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		text-align: left;
 		color: var(--twui-ink);

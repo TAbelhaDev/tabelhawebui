@@ -59,7 +59,7 @@
 
 	.twui-landing-feature-title {
 		margin: 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		font-weight: 600;
 		color: var(--twui-ink);

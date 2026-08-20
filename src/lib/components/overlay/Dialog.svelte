@@ -137,15 +137,15 @@
 		outline: none;
 	}
 
-	/* The `size` prop maps to a max-width; the `class` prop still wins over it. */
+	/* The `size` prop maps to Tailwind max-width values; the `class` prop still wins. */
 	.twui-dialog-sm {
-		max-width: 480px;
+		max-width: 448px; /* max-w-md */
 	}
 	.twui-dialog-md {
-		max-width: 640px;
+		max-width: 576px; /* max-w-xl */
 	}
 	.twui-dialog-lg {
-		max-width: 800px;
+		max-width: 768px; /* max-w-3xl */
 	}
 
 	.twui-dialog-header {
@@ -159,7 +159,7 @@
 
 	.twui-dialog-title {
 		margin: 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		font-weight: 600;
 		color: var(--twui-ink);

@@ -348,7 +348,7 @@
 	.twui-table {
 		width: 100%;
 		border-collapse: collapse;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		color: var(--twui-ink);
 	}
@@ -459,7 +459,7 @@
 		padding: 8px 12px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		color: var(--twui-ink);
 		outline: none;
@@ -502,7 +502,7 @@
 		padding: 4px 8px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 		cursor: pointer;
@@ -525,7 +525,7 @@
 		padding: 0 6px;
 		border: 1px solid var(--twui-rule);
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 		cursor: pointer;

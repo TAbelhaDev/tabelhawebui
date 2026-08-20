@@ -50,7 +50,7 @@
 		align-items: center;
 		gap: 8px;
 		cursor: pointer;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		color: var(--twui-ink);
 	}

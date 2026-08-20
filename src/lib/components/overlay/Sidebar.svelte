@@ -201,7 +201,7 @@
 	.twui-sidebar-collapse-toggle {
 		border: 1px solid var(--twui-rule);
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		line-height: 1;
 		color: var(--twui-ink-faint);
@@ -215,7 +215,7 @@
 
 	.twui-sidebar-title {
 		margin: 0;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		font-weight: 600;
 		color: var(--twui-ink);

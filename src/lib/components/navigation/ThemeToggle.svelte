@@ -105,7 +105,7 @@
 	}
 
 	.twui-theme-toggle-label-text {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		line-height: 1;
 		white-space: nowrap;

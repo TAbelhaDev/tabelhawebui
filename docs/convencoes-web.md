@@ -92,16 +92,23 @@ avisar.
 
 ## Landing
 
-- Composta **só** de primitivas da lib: `Landing.Hero` / `.Steps` / `.Features` /
-  `.Roadmap` / `.Footer`, mais `SectionHeading`, `Button` e `RuleCard`. Sem componente de
-  seção local.
+- Composta **só** de primitivas da lib: `<Landing>` (root wrapper com gradiente),
+  `Landing.Hero` / `.Steps` / `.Features` / `.Roadmap`, `Landing.Section` /
+  `Landing.Section.Heading`, mais `Button` e `RuleCard`. Sem componente de seção local.
+- `<Landing>` absorve o wrapper do gradiente (`--gradient-hero`) e o layout interno
+  (`gap-24 px-6 pt-16 pb-8 md:pt-24`). A página só declara `<Landing>` e seus filhos.
+- `<Landing.Section>` substitui o `<section class="flex flex-col gap-8">` + `<SectionHeading>`
+  boilerplate. `<Landing.Section.Heading>` carrega `eyebrow`, `title`, `lead`, `justify`.
+- **Footer da landing não é componente de seção.** O footer vive no
+  `+layout.svelte` do grupo `(marketing)/` via `MarketingShell`, não na página.
+  A página só tem o conteúdo (`{#snippet children()}` dentro de `<MarketingShell>`).
 - Página monolítica — não quebrar em componentes locais só por tamanho.
 - **Todo** dado de seção vira `const` array no `<script>` (`steps`, `features`, `roadmap`,
   …). Nunca literal inline no atributo. Arrays podem referenciar os `{#snippet}` de ícone
   declarados abaixo no template: snippets viram declarações de função e são içadas.
 - Snippet de slot passa como **filho** do componente (`{#snippet actions()}` dentro de
   `<Landing.Hero>`), não como prop de topo.
-- `Landing.Footer` leva `repoUrl` só em produto aberto.
+- `MarketingShell` leva `footerRepoUrl` só em produto aberto.
 
 ## SEO
 

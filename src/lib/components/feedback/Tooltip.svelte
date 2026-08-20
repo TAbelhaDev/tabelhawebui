@@ -78,7 +78,7 @@
 		padding: 4px 8px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 11px;
 		/* A long label used to run off the viewport under white-space: nowrap. */
 		max-width: min(16rem, 60vw);

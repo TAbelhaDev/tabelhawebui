@@ -244,7 +244,7 @@
 		padding: 8px 12px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		text-align: left;
 		color: var(--twui-ink);
@@ -298,7 +298,7 @@
 	}
 
 	.twui-date-nav-label {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		font-weight: 500;
 		color: var(--twui-ink);
@@ -329,7 +329,7 @@
 	}
 
 	.twui-date-weekdays span {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 11px;
 		text-align: center;
 		color: var(--twui-ink-faint);
@@ -348,7 +348,7 @@
 		height: 30px;
 		border: 1px solid transparent;
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 		cursor: pointer;

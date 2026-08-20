@@ -41,7 +41,7 @@
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		letter-spacing: 0.025em;
 		text-transform: uppercase;

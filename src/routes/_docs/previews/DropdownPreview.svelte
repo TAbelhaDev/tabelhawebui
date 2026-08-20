@@ -31,7 +31,7 @@
 		padding: 6px 12px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper-raised);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 		cursor: pointer;
@@ -53,7 +53,7 @@
 		border: none;
 		background: transparent;
 		padding: 6px 8px;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink);
 		text-align: left;

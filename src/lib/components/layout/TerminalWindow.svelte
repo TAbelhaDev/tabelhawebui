@@ -66,7 +66,7 @@
 	}
 
 	.twui-terminal-title {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 12px;
 		color: var(--twui-ink-soft);
 	}
@@ -74,7 +74,7 @@
 	.twui-terminal-body {
 		padding: 16px;
 		background: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink);
 	}

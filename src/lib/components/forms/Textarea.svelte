@@ -30,7 +30,7 @@
 		padding: 8px 12px;
 		border: 1px solid var(--twui-rule);
 		background: var(--twui-paper);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		line-height: 1.5;
 		color: var(--twui-ink);

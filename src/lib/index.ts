@@ -10,6 +10,7 @@ import CardTitle from "./components/card/CardTitle.svelte";
 import CardDescription from "./components/card/CardDescription.svelte";
 import CardContent from "./components/card/CardContent.svelte";
 import CardFooter from "./components/card/CardFooter.svelte";
+import CardAction from "./components/card/CardAction.svelte";
 
 import TimelineRoot from "./components/timeline/Timeline.svelte";
 import TimelineItem from "./components/timeline/TimelineItem.svelte";
@@ -36,12 +37,14 @@ export const Card: typeof CardRoot & {
   Description: typeof CardDescription;
   Content: typeof CardContent;
   Footer: typeof CardFooter;
+  Action: typeof CardAction;
 } = Object.assign(CardRoot, {
   Header: CardHeader,
   Title: CardTitle,
   Description: CardDescription,
   Content: CardContent,
   Footer: CardFooter,
+  Action: CardAction,
 });
 
 export const Timeline: typeof TimelineRoot & {
@@ -120,6 +123,7 @@ export { default as Carousel } from "./components/navigation/Carousel.svelte";
 export { default as Nav } from "./components/navigation/Nav.svelte";
 export { default as ThemeToggle } from "./components/navigation/ThemeToggle.svelte";
 export { default as TabCard } from "./components/navigation/TabCard.svelte";
+export { default as InstructionSteps } from "./components/navigation/InstructionSteps.svelte";
 
 // Layout
 export { default as Panel } from "./components/layout/Panel.svelte";
@@ -135,11 +139,17 @@ export { default as Wordmark } from "./components/layout/Wordmark.svelte";
 export { default as ChatMessage } from "./components/chat/ChatMessage.svelte";
 
 // Seções de landing
+import LandingRoot from "./components/landing/Landing.svelte";
 import LandingHero from "./components/landing/LandingHero.svelte";
 import LandingSteps from "./components/landing/LandingSteps.svelte";
 import LandingFeatures from "./components/landing/LandingFeatures.svelte";
 import LandingRoadmap from "./components/landing/LandingRoadmap.svelte";
-import LandingFooter from "./components/landing/LandingFooter.svelte";
+import LandingSection from "./components/landing/LandingSection.svelte";
+import LandingSectionHeading from "./components/landing/LandingSectionHeading.svelte";
+
+// Marketing shell
+import MarketingShellRoot from "./components/marketing/MarketingShell.svelte";
+import MarketingShellFooter from "./components/marketing/MarketingShellFooter.svelte";
 
 import AppShellRoot from "./components/appshell/AppShell.svelte";
 import AppShellSidebar from "./components/appshell/AppShellSidebar.svelte";
@@ -147,21 +157,33 @@ import AppShellBottomNav from "./components/appshell/AppShellBottomNav.svelte";
 import AppShellContent from "./components/appshell/AppShellContent.svelte";
 import type { AppShellNavItem } from "./components/appshell/types";
 
-// Componente composto: `Landing.Hero`/`Landing.Steps`/`Landing.Features`/
-// `Landing.Roadmap`/`Landing.Footer` — um único export por módulo, sem exports
-// avulsos das partes (mesma convenção de `Card` e `Timeline`).
-export const Landing: typeof LandingHero & {
+// Componente composto: `Landing` (root wrapper com gradiente) com sub-componentes:
+// `Landing.Hero`, `Landing.Steps`, `Landing.Features`, `Landing.Roadmap`,
+// `Landing.Section`, `Landing.Section.Heading` — um único export por módulo,
+// sem exports avulsos das partes (mesma convenção de `Card` e `Timeline`).
+export const Landing: typeof LandingRoot & {
   Hero: typeof LandingHero;
   Steps: typeof LandingSteps;
   Features: typeof LandingFeatures;
   Roadmap: typeof LandingRoadmap;
-  Footer: typeof LandingFooter;
-} = Object.assign(LandingHero, {
+  Section: typeof LandingSection & {
+    Heading: typeof LandingSectionHeading;
+  };
+} = Object.assign(LandingRoot, {
   Hero: LandingHero,
   Steps: LandingSteps,
   Features: LandingFeatures,
   Roadmap: LandingRoadmap,
-  Footer: LandingFooter,
+  Section: Object.assign(LandingSection, {
+    Heading: LandingSectionHeading,
+  }),
+});
+
+// MarketingShell
+export const MarketingShell: typeof MarketingShellRoot & {
+  Footer: typeof MarketingShellFooter;
+} = Object.assign(MarketingShellRoot, {
+  Footer: MarketingShellFooter,
 });
 
 // AppShell

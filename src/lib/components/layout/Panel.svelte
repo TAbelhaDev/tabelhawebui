@@ -75,7 +75,7 @@
 		border: none;
 		border-bottom: 1px solid var(--twui-rule);
 		background: transparent;
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		font-weight: 500;
 		text-align: left;

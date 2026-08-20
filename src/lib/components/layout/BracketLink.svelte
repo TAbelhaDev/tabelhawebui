@@ -22,7 +22,7 @@
 
 <style>
 	.twui-bracketlink {
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 14px;
 		color: var(--twui-ink);
 		text-decoration: none;

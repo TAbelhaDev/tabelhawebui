@@ -59,7 +59,7 @@
 		border: 1px solid var(--twui-rule);
 		border-left-width: 3px;
 		background: var(--twui-paper-raised);
-		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
+		font-family: var(--twui-font-mono);
 		font-size: 13px;
 		color: var(--twui-ink);
 	}
