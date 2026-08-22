@@ -21,4 +21,11 @@
 		gap: 8px;
 		padding: 12px 16px;
 	}
+
+	:global(.twui-card-header) > .twui-card-action {
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 8px;
+		padding: 0;
+	}
 </style>

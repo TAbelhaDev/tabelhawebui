@@ -70,6 +70,7 @@
 		font-family: var(--twui-font-mono, 'JetBrains Mono', monospace);
 		font-size: 14px;
 		font-weight: 500;
+		white-space: nowrap;
 		cursor: pointer;
 		text-decoration: none;
 		transition:
@@ -139,7 +140,7 @@
 	}
 
 	.twui-button-ghost:hover:not(:disabled) {
-		background: transparent;
+		background: color-mix(in oklab, var(--twui-ink-soft) 10%, transparent);
 		color: var(--twui-ink);
 	}
 
@@ -150,8 +151,8 @@
 	}
 
 	.twui-button-danger:hover:not(:disabled) {
-		background: var(--twui-danger);
-		color: var(--twui-paper);
+		background: color-mix(in oklab, var(--twui-danger) 15%, transparent);
+		color: var(--twui-danger);
 	}
 
 	.twui-button-outline {
