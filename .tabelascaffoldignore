@@ -3,5 +3,7 @@
 # gera notas de release — sobrescrever aqui quebraria a publicação.
 .github/workflows/release.yml
 
-# CI próprio: roda os testes do sub-pacote mcp/ além dos da lib.
-.github/workflows/ci.yml
+# CI próprio: roda os testes do sub-pacote mcp/ além dos da lib. O scaffold
+# passou a gerar ci-web.yml (não mais ci.yml) para o category "web" — isento
+# o novo destino aqui.
+.github/workflows/ci-web.yml

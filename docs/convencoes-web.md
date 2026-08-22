@@ -172,12 +172,15 @@ e `--gradient-hero` (o tabelafin ficou meses com `green` e gradiente maroon).
 
 ## Estrutura open-source
 
-O `tabelascaffold --stack web` (LICENSE, badges, CONTRIBUTING bilíngue, CHANGELOG, CI,
-templates de issue/PR) se aplica **só a repo aberto**.
+O `tabelascaffold --github --web` (LICENSE, badges, CONTRIBUTING bilíngue, CHANGELOG,
+templates de issue/PR) se aplica **só a repo aberto**. `--web` sozinho (sem `--github`)
+dá só a estrutura de CI, sem a metadata open-source — desde que as categorias do
+scaffold viraram independentes, um repo fechado pode adotar isso sem ganhar LICENSE/
+CONTRIBUTING junto.
 
-- **tabelafin** — aberto, recebe.
-- **tabelarpgdk** — fechado, **não recebe**. É decisão, não pendência: nada de tratar a
-  ausência de CI ali como débito herdado desta convenção.
+- **tabelafin** — aberto, recebe `--github --web`.
+- **tabelarpgdk** — fechado, **não recebe** nenhuma categoria hoje. É decisão, não
+  pendência: nada de tratar a ausência de CI ali como débito herdado desta convenção.
 
 ---
 
