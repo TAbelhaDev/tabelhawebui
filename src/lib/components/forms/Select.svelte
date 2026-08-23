@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { clickOutside } from '../../actions/click-outside';
+	import { comboboxKeydown } from '../../actions/combobox-keyboard-nav';
 
 	export type SelectOption = { value: string; label: string; disabled?: boolean };
 
@@ -77,16 +79,6 @@
 		};
 	});
 
-	function clickOutside(node: HTMLElement, callback: () => void) {
-		function handler(e: MouseEvent) {
-			if (!node.contains(e.target as Node)) callback();
-		}
-		document.addEventListener('pointerdown', handler);
-		return {
-			destroy: () => document.removeEventListener('pointerdown', handler)
-		};
-	}
-
 	function toggle() {
 		if (disabled) return;
 		open = !open;
@@ -102,23 +94,15 @@
 		open = false;
 	}
 
-	function onKeydown(e: KeyboardEvent) {
-		if (disabled) return;
-		if (e.key === 'Escape') open = false;
-		if (e.key === 'ArrowDown') {
-			e.preventDefault();
-			if (!open) return toggle();
-			activeIndex = Math.min(activeIndex + 1, visibleOptions.length - 1);
-		}
-		if (e.key === 'ArrowUp') {
-			e.preventDefault();
-			activeIndex = Math.max(activeIndex - 1, 0);
-		}
-		if (e.key === 'Enter' && open && activeIndex >= 0) {
-			e.preventDefault();
-			selectOption(visibleOptions[activeIndex]);
-		}
-	}
+	const onKeydown = comboboxKeydown({
+		get open() { return open; },
+		get activeIndex() { return activeIndex; },
+		get itemCount() { return visibleOptions.length; },
+		onActiveIndexChange: (i) => (activeIndex = i),
+		onClose: () => (open = false),
+		onConfirm: (i) => selectOption(visibleOptions[i]),
+		onOpen: () => toggle()
+	});
 </script>
 
 <div

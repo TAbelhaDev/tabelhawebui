@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { lockScroll } from '../../actions/scroll-lock';
+	import { trapFocus } from '../../actions/focus-trap';
 
 	let {
 		open = $bindable(false),
@@ -31,6 +33,9 @@
 	} = $props();
 
 	let isMobile = $state(false);
+	let panelEl = $state<HTMLDivElement | undefined>();
+
+	const isModal = $derived(mode === 'overlay' || isMobile);
 
 	$effect(() => {
 		const mq = window.matchMedia('(max-width: 768px)');
@@ -40,13 +45,16 @@
 		return () => mq.removeEventListener('change', update);
 	});
 
+	// Scroll-lock: only when in modal mode (overlay / mobile).
 	$effect(() => {
-		if (!open) return;
-		const onKey = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') open = false;
-		};
-		document.addEventListener('keydown', onKey);
-		return () => document.removeEventListener('keydown', onKey);
+		if (!open || !isModal) return;
+		return lockScroll();
+	});
+
+	// Focus trap: only when in modal mode.
+	$effect(() => {
+		if (!open || !isModal || !panelEl) return;
+		return trapFocus(panelEl, () => (open = false));
 	});
 
 	const reduced = () =>
@@ -73,7 +81,7 @@
 </script>
 
 {#if open}
-	{#if overlay && (mode === 'overlay' || isMobile)}
+	{#if overlay && isModal}
 		<div
 			class="twui-sidebar-overlay"
 			role="presentation"
@@ -87,8 +95,10 @@
 	<div
 		class="twui-sidebar twui-sidebar-{position} {mode === 'push' ? 'twui-sidebar-push' : ''} {collapsible ? 'twui-sidebar-collapsible' : ''} {collapsible && collapsed ? 'twui-sidebar-collapsed' : ''} {className}"
 		role="dialog"
-		aria-modal={mode === 'overlay' || isMobile}
+		aria-modal={isModal}
 		aria-label={title}
+		tabindex="-1"
+		bind:this={panelEl}
 		transition:drawerTransition
 	>
 		<div class="twui-sidebar-header">
@@ -130,6 +140,7 @@
 		background: var(--twui-paper-raised);
 		border: 1px solid var(--twui-rule);
 		box-shadow: var(--twui-shadow-offset, 3px 3px 0 0 var(--twui-rule));
+		outline: none;
 	}
 
 	.twui-sidebar-left,
@@ -239,5 +250,9 @@
 		flex: 1;
 		padding: 16px;
 		overflow-y: auto;
+		scrollbar-width: none;
+	}
+	.twui-sidebar-body::-webkit-scrollbar {
+		display: none;
 	}
 </style>

@@ -5,6 +5,45 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.26.0]
+
+### Added
+
+- `PageHeader` component: standardised page header with `title`, optional
+  `subtitle` (auto-prefixed with `//`), and optional `action` snippet on the
+  right. Replaces duplicated header markup across app pages.
+  Request: `requests/20260823-page-header.md`.
+- `StatTile` component: stat card with `label`, `value`, optional `href` (turns
+  label into a link), `valueClass` for colour overrides, and `footer` snippet
+  for deltas/sub-labels. Replaces repeated Card blocks in dashboards.
+  Request: `requests/20260823-stat-tile.md`.
+- Shared Svelte actions exported from the package: `clickOutside`, `lockScroll`,
+  `trapFocus`, `comboboxKeydown`. Used internally by Dialog, Sidebar, Select,
+  TagInput, DatePicker, MultiSelect, and Dropdown.
+  Request: `requests/20260823-click-outside-action.md`,
+  `requests/20260823-combobox-keyboard-nav.md`.
+
+### Changed
+
+- `Dialog` gains an `animate` prop (default `true`) for overlay fade (150ms)
+  and panel scale/fade (160ms easeOutCubic) transitions. Respects
+  `prefers-reduced-motion: reduce`.
+  Request: `requests/20260823-overlay-animations.md`.
+- `FloatingActionPill` gains an `animate` prop (default `true`) for scale+fade
+  entry/exit (150ms). Respects `prefers-reduced-motion: reduce`.
+  Request: `requests/20260823-overlay-animations.md`.
+- `Sidebar` in overlay/mobile mode now has the same accessibility as `Dialog`:
+  focus trap (Tab cycles inside the panel) and coordinated scroll-lock (shared
+  counter with Dialog, so closing one does not unlock scroll while the other is
+  still open). `mode="push"` is unaffected.
+  Request: `requests/20260823-sidebar-accessibility-parity.md`.
+- `Dropdown`, `Select`, `TagInput`, `DatePicker` and `MultiSelect` now import
+  the shared `clickOutside` action instead of each declaring their own.
+  Request: `requests/20260823-click-outside-action.md`.
+- `Select` and `TagInput` now use the shared `comboboxKeydown` helper for
+  ArrowUp/Down/Enter/Escape keyboard navigation.
+  Request: `requests/20260823-combobox-keyboard-nav.md`.
+
 ## [0.24.0]
 
 ### Added

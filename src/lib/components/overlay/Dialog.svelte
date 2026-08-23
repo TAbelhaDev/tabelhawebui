@@ -1,20 +1,15 @@
-<script module lang="ts">
-	// Module-level counter, shared by every Dialog instance: the page scroll
-	// stays locked while ANY dialog is open, and is only restored when the last
-	// one closes — a nested dialog (e.g. onboarding → install modal) must not
-	// unlock the background while the outer one is still up.
-	let openCount = 0;
-</script>
-
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { tick } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { lockScroll } from '../../actions/scroll-lock';
+	import { trapFocus } from '../../actions/focus-trap';
 
 	let {
 		open = $bindable(false),
 		title,
 		size = 'md',
 		closeLabel = 'Fechar',
+		animate = true,
 		children,
 		footer,
 		class: className = ''
@@ -23,58 +18,42 @@
 		title?: string;
 		size?: 'sm' | 'md' | 'lg';
 		closeLabel?: string;
+		animate?: boolean;
 		children: Snippet;
 		footer?: Snippet;
 		class?: string;
 	} = $props();
 
-	const FOCUSABLE =
-		'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
-
 	let panelEl = $state<HTMLDivElement | undefined>();
+
+	const reduced = () =>
+		typeof window !== 'undefined' &&
+		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	function overlayTransition(node: HTMLElement) {
+		if (!animate || reduced()) return fade(node, { duration: 0 });
+		return fade(node, { duration: 150 });
+	}
+
+	const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+	function panelTransition(node: HTMLElement) {
+		if (!animate || reduced()) return fade(node, { duration: 0 });
+		return {
+			duration: 160,
+			easing: easeOutCubic,
+			css: (t: number) => `transform: scale(${0.95 + t * 0.05}); opacity: ${t};`
+		};
+	}
 
 	$effect(() => {
 		if (!open) return;
-		openCount += 1;
-		if (openCount === 1) {
-			document.body.style.overflow = 'hidden';
-		}
-		return () => {
-			openCount -= 1;
-			if (openCount === 0) {
-				document.body.style.overflow = '';
-			}
-		};
+		return lockScroll();
 	});
 
 	$effect(() => {
-		if (!open) return;
-		const onKey = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') {
-				open = false;
-				return;
-			}
-			// Focus trap (WCAG 2.4.3): Tab cycles within the modal, without
-			// escaping to the content behind the overlay.
-			if (e.key !== 'Tab' || !panelEl) return;
-			const focusable = Array.from(panelEl.querySelectorAll<HTMLElement>(FOCUSABLE));
-			if (focusable.length === 0) return;
-			const first = focusable[0];
-			const last = focusable[focusable.length - 1];
-			if (e.shiftKey && document.activeElement === first) {
-				e.preventDefault();
-				last.focus();
-			} else if (!e.shiftKey && document.activeElement === last) {
-				e.preventDefault();
-				first.focus();
-			}
-		};
-		document.addEventListener('keydown', onKey);
-		tick().then(() => {
-			const first = panelEl?.querySelector<HTMLElement>(FOCUSABLE);
-			(first ?? panelEl)?.focus();
-		});
-		return () => document.removeEventListener('keydown', onKey);
+		if (!open || !panelEl) return;
+		return trapFocus(panelEl, () => (open = false));
 	});
 </script>
 
@@ -82,6 +61,7 @@
 	<div
 		class="twui-dialog-overlay"
 		role="presentation"
+		transition:overlayTransition
 		onpointerdown={(e) => {
 			if (e.target === e.currentTarget) open = false;
 		}}
@@ -93,6 +73,7 @@
 			aria-label={title}
 			tabindex="-1"
 			bind:this={panelEl}
+			transition:panelTransition
 		>
 			<div class="twui-dialog-header">
 				{#if title}

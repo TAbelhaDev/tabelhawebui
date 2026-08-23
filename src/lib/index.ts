@@ -64,6 +64,12 @@ export {
   default as Button,
 } from "./components/actions/Button.svelte";
 
+// Shared actions (Svelte actions + helpers)
+export { clickOutside } from "./actions/click-outside";
+export { lockScroll } from "./actions/scroll-lock";
+export { trapFocus } from "./actions/focus-trap";
+export { comboboxKeydown } from "./actions/combobox-keyboard-nav";
+
 export namespace Button {
   export type Variant = ButtonVariant;
   export type Size = ButtonSize;
@@ -134,6 +140,8 @@ export { default as BracketLink } from "./components/layout/BracketLink.svelte";
 export { default as SectionHeading } from "./components/layout/SectionHeading.svelte";
 export { default as TerminalWindow } from "./components/layout/TerminalWindow.svelte";
 export { default as Wordmark } from "./components/layout/Wordmark.svelte";
+export { default as PageHeader } from "./components/layout/PageHeader.svelte";
+export { default as StatTile } from "./components/layout/StatTile.svelte";
 
 // Chat
 export { default as ChatMessage } from "./components/chat/ChatMessage.svelte";

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { clickOutside } from '../../actions/click-outside';
 
 	let {
 		value = $bindable(''),
@@ -37,16 +38,6 @@
 	const today = new Date();
 	let viewYear = $state(today.getFullYear());
 	let viewMonth = $state(today.getMonth()); // 0-11
-
-	function clickOutside(node: HTMLElement, callback: () => void) {
-		function handler(e: MouseEvent) {
-			if (!node.contains(e.target as Node)) callback();
-		}
-		document.addEventListener('pointerdown', handler);
-		return {
-			destroy: () => document.removeEventListener('pointerdown', handler)
-		};
-	}
 
 	function toggle() {
 		if (disabled) return;

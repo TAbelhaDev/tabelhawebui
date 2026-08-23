@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { clickOutside } from '../../actions/click-outside';
 
 	let {
 		trigger,
@@ -15,27 +16,9 @@
 
 	let open = $state(false);
 	let rootEl = $state<HTMLDivElement | undefined>();
-
-	// Fecha com pointerdown fora do componente ou com Esc.
-	function closeOnOutside(node: HTMLElement, callback: () => void) {
-		function onPointer(e: PointerEvent) {
-			if (!node.contains(e.target as Node)) callback();
-		}
-		function onKey(e: KeyboardEvent) {
-			if (e.key === 'Escape') callback();
-		}
-		document.addEventListener('pointerdown', onPointer);
-		document.addEventListener('keydown', onKey);
-		return {
-			destroy() {
-				document.removeEventListener('pointerdown', onPointer);
-				document.removeEventListener('keydown', onKey);
-			}
-		};
-	}
 </script>
 
-<div class="twui-dropdown {className}" bind:this={rootEl} use:closeOnOutside={() => (open = false)}>
+<div class="twui-dropdown {className}" bind:this={rootEl} use:clickOutside={() => (open = false)}>
 	<button
 		type="button"
 		class="twui-dropdown-trigger"

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { clickOutside } from '../../actions/click-outside';
+	import { comboboxKeydown } from '../../actions/combobox-keyboard-nav';
 
 	let {
 		options = [],
@@ -45,14 +47,6 @@
 	);
 	const matches = $derived(canCreate ? [...filtered, trimmedQuery] : filtered);
 
-	function clickOutside(node: HTMLElement, callback: () => void) {
-		function handler(e: PointerEvent) {
-			if (!node.contains(e.target as Node)) callback();
-		}
-		document.addEventListener('pointerdown', handler);
-		return { destroy: () => document.removeEventListener('pointerdown', handler) };
-	}
-
 	function addTag(tag: string) {
 		const trimmed = tag.trim();
 		if (!trimmed || value.includes(trimmed)) {
@@ -69,12 +63,19 @@
 		value = value.filter((v) => v !== tag);
 	}
 
-	function onKeydown(e: KeyboardEvent) {
+	const onKeydown = comboboxKeydown({
+		get open() { return open; },
+		get activeIndex() { return activeIndex; },
+		get itemCount() { return matches.length; },
+		onActiveIndexChange: (i) => (activeIndex = i),
+		onClose: () => (open = false),
+		onConfirm: (i) => addTag(matches[i]),
+		onOpen: () => { open = true; }
+	});
+
+	function handleKeydown(e: KeyboardEvent) {
 		if (disabled) return;
-		if (e.key === 'Escape') {
-			open = false;
-			return;
-		}
+		onKeydown(e);
 		if (e.key === 'Enter') {
 			e.preventDefault();
 			if (open && activeIndex >= 0 && matches[activeIndex] !== undefined) {
@@ -83,17 +84,6 @@
 				addTag(query);
 			}
 			inputEl?.focus();
-			return;
-		}
-		if (e.key === 'ArrowDown') {
-			e.preventDefault();
-			open = true;
-			activeIndex = Math.min(activeIndex + 1, matches.length - 1);
-			return;
-		}
-		if (e.key === 'ArrowUp') {
-			e.preventDefault();
-			activeIndex = Math.max(activeIndex - 1, -1);
 			return;
 		}
 		if (e.key === 'Backspace' && query === '' && value.length > 0) {
@@ -137,7 +127,7 @@
 			aria-expanded={open}
 			aria-autocomplete="list"
 			aria-label={ariaLabel ?? label}
-			onkeydown={onKeydown}
+			onkeydown={handleKeydown}
 			onfocus={() => (open = true)}
 			oninput={() => {
 				open = true;

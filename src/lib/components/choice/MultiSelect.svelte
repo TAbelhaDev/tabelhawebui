@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import type { SelectOption } from '../forms/Select.svelte';
+	import { clickOutside } from '../../actions/click-outside';
 
 	let {
 		options = [],
@@ -36,14 +37,6 @@
 			? options.filter((o) => o.label.toLowerCase().includes(query.trim().toLowerCase()))
 			: options
 	);
-
-	function clickOutside(node: HTMLElement, callback: () => void) {
-		function handler(e: PointerEvent) {
-			if (!node.contains(e.target as Node)) callback();
-		}
-		document.addEventListener('pointerdown', handler);
-		return { destroy: () => document.removeEventListener('pointerdown', handler) };
-	}
 
 	function toggle() {
 		if (disabled) return;

@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import { fade, scale } from 'svelte/transition';
 
 	let {
 		position = 'bottom-right',
 		expanded = false,
+		animate = true,
 		label,
 		expandedLabel = 'Fechar',
 		children,
@@ -13,11 +15,21 @@
 	}: {
 		position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 		expanded?: boolean;
+		animate?: boolean;
 		label: string;
 		expandedLabel?: string;
 		children: Snippet;
 		class?: string;
 	} & HTMLButtonAttributes = $props();
+
+	const reduced = () =>
+		typeof window !== 'undefined' &&
+		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	function pillTransition(node: HTMLElement) {
+		if (!animate || reduced()) return fade(node, { duration: 0 });
+		return scale(node, { duration: 150, easing: (t) => 1 - Math.pow(1 - t, 3) });
+	}
 </script>
 
 <button
@@ -25,6 +37,7 @@
 	class="twui-floating-action-pill twui-floating-action-pill-{position} {className}"
 	aria-label={expanded ? expandedLabel : label}
 	aria-expanded={expanded}
+	transition:pillTransition
 	{...rest}
 >
 	{@render children()}
