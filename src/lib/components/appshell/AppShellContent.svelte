@@ -3,14 +3,17 @@
 
 	let {
 		children,
+		pad = true,
 		class: className = ''
 	}: {
 		children: Snippet;
+		/** When false, skip the built-in padding so a child `Page.Shell` owns spacing. */
+		pad?: boolean;
 		class?: string;
 	} = $props();
 </script>
 
-<main class="twui-appshell-content {className}">
+<main class="twui-appshell-content {className}" class:twui-appshell-content-nopad={!pad}>
 	{@render children()}
 </main>
 
@@ -27,5 +30,9 @@
 		.twui-appshell-content {
 			padding: 2rem;
 		}
+	}
+
+	.twui-appshell-content-nopad {
+		padding: 0;
 	}
 </style>

@@ -5,6 +5,42 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.28.0]
+
+### Added
+
+- `Prose` component: self-contained markdown/article typography (serif body,
+  mono headings with `//` prefix, accent links and inline code, justified with
+  hyphenation). No dependency on `@tailwindcss/typography`, so the prose styling
+  lives in one place instead of being duplicated per app.
+- `MarketingShell` `nav` prop: pass `{ href, label }[]` and the active route is
+  derived inside the lib (`/` is exact; others match by prefix). Removes the
+  need for each app to reimplement the active-link helper.
+- `PageHeader` `subtitle` now accepts a `Snippet` as well as a `string`.
+- `PageHeader` header aligns the back/action button to the title baseline
+  (`align-items: baseline`) instead of center.
+
+### Fixed
+
+- `PageHeader` `prefix` snippet (e.g. a date badge) now renders, since it was
+  previously only shown when a `subtitle` was present. Pass a `subtitle`
+  snippet to pair the prefix with custom content.
+
+## [0.27.0]
+
+### Added
+
+- `PageShell` component: standard page container with consistent padding and
+  vertical gap. Replaces manual `mx-auto max-w-3xl px-6 pt-14 pb-8` wrappers.
+- `Card.Header` accepts optional `title` and `description` snippets. When
+  provided, title stacks above description; `children` render as a side action.
+  Legacy API (children only) remains unchanged.
+
+### Fixed
+
+- `Button` outline variant: hover now changes `border-color` to accent, not
+  just background.
+
 ## [0.26.0]
 
 ### Added

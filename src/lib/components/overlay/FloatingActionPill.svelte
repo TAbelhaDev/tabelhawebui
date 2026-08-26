@@ -7,8 +7,8 @@
 		position = 'bottom-right',
 		expanded = false,
 		animate = true,
-		label,
-		expandedLabel = 'Fechar',
+		ariaLabel,
+		ariaExpandedLabel = 'Fechar',
 		children,
 		class: className = '',
 		...rest
@@ -16,8 +16,8 @@
 		position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 		expanded?: boolean;
 		animate?: boolean;
-		label: string;
-		expandedLabel?: string;
+		ariaLabel: string;
+		ariaExpandedLabel?: string;
 		children: Snippet;
 		class?: string;
 	} & HTMLButtonAttributes = $props();
@@ -35,7 +35,7 @@
 <button
 	type="button"
 	class="twui-floating-action-pill twui-floating-action-pill-{position} {className}"
-	aria-label={expanded ? expandedLabel : label}
+	aria-label={expanded ? ariaExpandedLabel : ariaLabel}
 	aria-expanded={expanded}
 	transition:pillTransition
 	{...rest}

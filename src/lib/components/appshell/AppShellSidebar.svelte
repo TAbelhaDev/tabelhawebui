@@ -1,11 +1,10 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
 	import Wordmark from '../layout/Wordmark.svelte';
 	import ThemeToggle from '../navigation/ThemeToggle.svelte';
 	import { isPathActive } from './utils';
 	import type { AppShellNavItem } from './types';
 
-	let {
+		let {
 		brand = { prefix: 'Tabela', suffix: '' },
 		navItems = [],
 		currentPath = '',
@@ -13,11 +12,11 @@
 		profile,
 		class: className = ''
 	}: {
-		brand?: { prefix: string; suffix: string };
+		brand?: { prefix?: string; suffix?: string };
 		navItems?: AppShellNavItem[];
 		currentPath?: string;
 		logoutAction?: string;
-		profile?: Snippet;
+		profile?: AppShellNavItem;
 		class?: string;
 	} = $props();
 </script>
@@ -45,7 +44,17 @@
 	<div class="twui-appshell-sidebar-sep" role="presentation"></div>
 	<div class="twui-appshell-sidebar-footer">
 		{#if profile}
-			<div class="twui-appshell-sidebar-profile">{@render profile()}</div>
+			{@const active = isPathActive(currentPath, profile.href)}
+			<a
+				href={profile.href}
+				class="twui-appshell-nav-item twui-appshell-sidebar-profile {active
+					? 'twui-appshell-nav-item-active'
+					: ''}"
+				aria-current={active ? 'page' : undefined}
+			>
+				{#if profile.icon}{@render profile.icon()}{/if}
+				<span>{profile.label}</span>
+			</a>
 		{/if}
 		<ThemeToggle showLabel class="twui-appshell-sidebar-theme" />
 		{#if logoutAction}
@@ -149,7 +158,6 @@
 
 	.twui-appshell-sidebar-profile {
 		display: flex;
-		padding: 2px 8px 4px;
 	}
 
 	.twui-appshell-sidebar-logout-form {

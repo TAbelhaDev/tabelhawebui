@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import { lockScroll } from '../../actions/scroll-lock';
 	import { trapFocus } from '../../actions/focus-trap';
+	import DialogActions from './DialogActions.svelte';
 
 	let {
 		open = $bindable(false),
@@ -12,6 +13,8 @@
 		animate = true,
 		children,
 		footer,
+		footerStart,
+		footerEnd,
 		class: className = ''
 	}: {
 		open?: boolean;
@@ -20,7 +23,12 @@
 		closeLabel?: string;
 		animate?: boolean;
 		children: Snippet;
+		/** Full custom footer: rendered as-is inside the docked bar. */
 		footer?: Snippet;
+		/** Secondary action (dismiss/back), docked left. */
+		footerStart?: Snippet;
+		/** Primary action(s), docked right. */
+		footerEnd?: Snippet;
 		class?: string;
 	} = $props();
 
@@ -86,11 +94,22 @@
 			<div class="twui-dialog-body">
 				{@render children()}
 			</div>
-			{#if footer}
-				<div class="twui-dialog-footer">
+		{#if footer || footerStart || footerEnd}
+			<div class="twui-dialog-footer">
+				{#if footer}
 					{@render footer()}
-				</div>
-			{/if}
+				{:else}
+					<DialogActions>
+						{#snippet start()}
+							{#if footerStart}{@render footerStart()}{/if}
+						{/snippet}
+						{#snippet end()}
+							{#if footerEnd}{@render footerEnd()}{/if}
+						{/snippet}
+					</DialogActions>
+				{/if}
+			</div>
+		{/if}
 		</div>
 	</div>
 {/if}

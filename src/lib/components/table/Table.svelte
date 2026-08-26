@@ -416,7 +416,7 @@
 		background: var(--twui-accent-soft);
 	}
 
-	.twui-table-empty {
+	.twui-table td.twui-table-empty {
 		padding: 24px 16px;
 		text-align: center;
 		font-size: 13px;

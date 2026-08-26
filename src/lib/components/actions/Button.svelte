@@ -163,6 +163,7 @@
 
 	.twui-button-outline:hover:not(:disabled) {
 		background: var(--twui-accent-soft);
+		border-color: var(--twui-accent);
 		color: var(--twui-accent);
 	}
 </style>

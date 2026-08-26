@@ -70,11 +70,8 @@
 	>
 {/snippet}
 
-{#snippet profile()}
-	<span class="twui-docs-appshell-profile">
-		<span class="twui-docs-appshell-avatar">I</span>
-		<span class="twui-docs-appshell-name">Ian</span>
-	</span>
+{#snippet profileIcon()}
+	<span class="twui-docs-appshell-avatar">I</span>
 {/snippet}
 
 <ExampleCard
@@ -88,7 +85,7 @@
 			{navItems}
 			currentPath="/campaigns"
 			logoutAction="/auth/signout"
-			{profile}
+			profile={{ href: '/profile', label: 'Ian', icon: profileIcon }}
 		>
 			<div class="twui-docs-appshell-page">
 				<h3 class="twui-docs-appshell-title">Campanhas</h3>

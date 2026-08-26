@@ -12,14 +12,17 @@
 		logoutAction = '',
 		profile,
 		children,
+		pad = true,
 		class: className = ''
 	}: {
-		brand?: { prefix: string; suffix: string };
+		brand?: { prefix?: string; suffix?: string };
 		navItems?: AppShellNavItem[];
 		currentPath?: string;
 		logoutAction?: string;
-		profile?: Snippet;
+		profile?: AppShellNavItem;
 		children: Snippet;
+		/** When false, the content area skips its built-in padding. */
+		pad?: boolean;
 		class?: string;
 	} = $props();
 </script>
@@ -27,7 +30,7 @@
 <div class="twui-appshell {className}">
 	<AppShellSidebar {brand} {navItems} {currentPath} {logoutAction} {profile} />
 	<div class="twui-appshell-body">
-		<AppShellContent>{@render children()}</AppShellContent>
+		<AppShellContent {pad}>{@render children()}</AppShellContent>
 	</div>
 	<AppShellBottomNav {navItems} {currentPath} />
 </div>

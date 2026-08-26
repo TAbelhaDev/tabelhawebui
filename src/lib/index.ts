@@ -12,6 +12,9 @@ import CardContent from "./components/card/CardContent.svelte";
 import CardFooter from "./components/card/CardFooter.svelte";
 import CardAction from "./components/card/CardAction.svelte";
 
+import List from "./components/list/List.svelte";
+import ListItem from "./components/list/ListItem.svelte";
+
 import TimelineRoot from "./components/timeline/Timeline.svelte";
 import TimelineItem from "./components/timeline/TimelineItem.svelte";
 import type { TimelineItemProps } from "./components/timeline/TimelineItem.svelte";
@@ -54,6 +57,9 @@ export const Timeline: typeof TimelineRoot & {
 export namespace Timeline {
   export type ItemProps = TimelineItemProps;
 }
+
+// Lists
+export { List, ListItem };
 
 // Data
 export { default as Table } from "./components/table/Table.svelte";
@@ -116,7 +122,15 @@ export { default as Toaster } from "./components/feedback/Toaster.svelte";
 export { toast } from "./components/feedback/toast.svelte.js";
 
 // Overlay
-export { default as Dialog } from "./components/overlay/Dialog.svelte";
+import DialogRoot from "./components/overlay/Dialog.svelte";
+import DialogActions from "./components/overlay/DialogActions.svelte";
+
+// Compound: `Dialog` with `Dialog.Actions` — one single export per module,
+// no loose exports of parts (same convention as `Card` and `Timeline`).
+// `Dialog.Actions` is for components that render INSIDE a dialog body and own
+// their buttons; dialog owners use the docked `footerStart`/`footerEnd`.
+export const Dialog: typeof DialogRoot & { Actions: typeof DialogActions } =
+  Object.assign(DialogRoot, { Actions: DialogActions });
 export { default as Sidebar } from "./components/overlay/Sidebar.svelte";
 export { default as Dropdown } from "./components/overlay/Dropdown.svelte";
 export { default as FloatingActionPill } from "./components/overlay/FloatingActionPill.svelte";
@@ -142,6 +156,22 @@ export { default as TerminalWindow } from "./components/layout/TerminalWindow.sv
 export { default as Wordmark } from "./components/layout/Wordmark.svelte";
 export { default as PageHeader } from "./components/layout/PageHeader.svelte";
 export { default as StatTile } from "./components/layout/StatTile.svelte";
+export { default as Prose } from "./components/layout/Prose.svelte";
+
+// Page compound component
+import PageShell from "./components/layout/PageShell.svelte";
+import PageHeader from "./components/layout/PageHeader.svelte";
+import PageSeo from "./components/layout/PageSeo.svelte";
+
+export const Page: typeof PageShell & {
+  Header: typeof PageHeader;
+  Seo: typeof PageSeo;
+  Shell: typeof PageShell;
+} = Object.assign(PageShell, {
+  Header: PageHeader,
+  Seo: PageSeo,
+  Shell: PageShell,
+});
 
 // Chat
 export { default as ChatMessage } from "./components/chat/ChatMessage.svelte";
