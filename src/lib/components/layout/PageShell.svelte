@@ -18,7 +18,7 @@
 	.twui-page-shell {
 		display: flex;
 		flex-direction: column;
-		gap: 40px;
+		gap: 20px;
 		padding: 56px 24px 32px;
 		width: 100%;
 	}
