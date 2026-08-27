@@ -18,7 +18,7 @@
 	} = $props();
 
 	const register = getContext<(() => number) | undefined>('twui-instruction-step');
-	const stepNumber = n ?? (register ? register() : 1);
+	const stepNumber = $derived(n ?? (register ? register() : 1));
 </script>
 
 <CardRoot class="twui-instruction-step" variant="base">
@@ -83,10 +83,6 @@
 	.twui-instruction-step-content {
 		font-size: 13px;
 		color: var(--twui-ink-soft);
-	}
-
-	.twui-instruction-step-content > * + * {
-		margin-top: 8px;
 	}
 
 	/* Only bare <code>/<kbd>/<a> (no class) get auto-styled, so callers
