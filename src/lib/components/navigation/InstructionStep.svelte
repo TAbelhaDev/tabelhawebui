@@ -81,7 +81,7 @@
 	/* Block (not flex column) so inline <code>/<kbd>/<a> flow normally
 	   instead of each becoming its own full-width line. */
 	.twui-instruction-step-content {
-		font-size: 13px;
+		font-size: 14px;
 		color: var(--twui-ink-soft);
 	}
 
