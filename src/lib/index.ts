@@ -143,7 +143,10 @@ export { default as Carousel } from "./components/navigation/Carousel.svelte";
 export { default as Nav } from "./components/navigation/Nav.svelte";
 export { default as ThemeToggle } from "./components/navigation/ThemeToggle.svelte";
 export { default as TabCard } from "./components/navigation/TabCard.svelte";
-export { default as InstructionSteps } from "./components/navigation/InstructionSteps.svelte";
+import InstructionSteps from "./components/navigation/InstructionSteps.svelte";
+import InstructionStep from "./components/navigation/InstructionStep.svelte";
+export const Instruction = { Steps: InstructionSteps, Step: InstructionStep };
+export { InstructionSteps, InstructionStep };
 
 // Layout
 export { default as Panel } from "./components/layout/Panel.svelte";
