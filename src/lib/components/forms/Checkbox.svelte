@@ -8,6 +8,7 @@
 		value,
 		disabled = false,
 		label,
+		onchange,
 		...rest
 	}: HTMLInputAttributes & {
 		checked?: boolean;
@@ -26,7 +27,10 @@
 		{value}
 		{disabled}
 		checked={checked}
-		onchange={(e) => (checked = e.currentTarget.checked)}
+		onchange={(e) => {
+			checked = e.currentTarget.checked;
+			onchange?.(e);
+		}}
 		class="twui-choice-input"
 	/>
 	<span class="twui-choice-box" aria-hidden="true"></span>
