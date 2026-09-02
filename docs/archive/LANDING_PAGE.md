@@ -1,29 +1,29 @@
-# Generalizar a landing page no tabelawebui — relatório de requisição
+# Generalizar a landing page no tabelhawebui — relatório de requisição
 
 > **Objetivo deste documento:** servir de prompt para um agente trabalhar no
-> repo `tabelawebui` (~/codigo/pessoal/tabelawebui). Ele descreve a
+> repo `tabelhawebui` (~/codigo/pessoal/tabelhawebui). Ele descreve a
 > oportunidade de generalizar a landing page — hoje duplicada nos apps da
 > família — em componentes compartilhados na lib, o que já existe, o que
 > implementar e os critérios de aceite.
 >
-> **Contexto:** o `tabelawebui` está publicado no npm (`^0.1.1`) e já é
-> consumido pelo TabelaCal e pelo TabelaFin (`file:`/npm). O padrão de
-> integração está estabelecido (ver `INTEGRACAO_TABELAWEBUI.md`). A família
-> tem 7 apps (tabelaedu, tabelaos, tabelaradar, tabelarkanban, tabelarpgdk,
-> tabelafin, tabelacal) — todos terão landing.
+> **Contexto:** o `tabelhawebui` está publicado no npm (`^0.1.1`) e já é
+> consumido pelo TAbelhaCal e pelo TAbelhaFin (`file:`/npm). O padrão de
+> integração está estabelecido (ver `INTEGRACAO_TABELHAWEBUI.md`). A família
+> tem 7 apps (tabelhaedu, tabelhaos, tabelharadar, tabelharkanban, tabelharpgdk,
+> tabelhafin, tabelhacal) — todos terão landing.
 
 ---
 
 ## 1. O problema
 
-Os apps TabelaCal e TabelaFin têm landing pages **quase idênticas**, copiadas
+Os apps TAbelhaCal e TAbelhaFin têm landing pages **quase idênticas**, copiadas
 entre si. A estrutura é a mesma; só mudam o nome do app, a copy, o conteúdo do
 terminal, os arrays de dados e URLs. Como a família tem 7 apps e todos vão
 precisar de landing, esse copy-paste vai se multiplicar.
 
-### Comparação atual (TabelaCal `src/routes/+page.svelte`, ~225 linhas; TabelaFin ~263 linhas)
+### Comparação atual (TAbelhaCal `src/routes/+page.svelte`, ~225 linhas; TAbelhaFin ~263 linhas)
 
-| Bloco                                                  | TabelaCal                             | TabelaFin                       |
+| Bloco                                                  | TAbelhaCal                             | TAbelhaFin                       |
 | ------------------------------------------------------ | ------------------------------------- | ------------------------------- |
 | Hero (eyebrow + h1 + parágrafo + 2 CTAs + nota)        | sim                                   | sim                             |
 | Terminal de demonstração (`aria-hidden`)               | sim                                   | sim                             |
@@ -41,7 +41,7 @@ usados.
 
 ---
 
-## 2. O que já existe no tabelawebui e deve ser reaproveitado
+## 2. O que já existe no tabelhawebui e deve ser reaproveitado
 
 - `Button` — com `variant` (`primary`/`outline`/`ghost`/...), `size`
   (`lg`/`sm`/...), `href` (renderiza `<a>`).
@@ -73,20 +73,20 @@ arquivo `.svelte` por componente):
 
 1. **`LandingHero`**
    - Props sugeridas: `eyebrow?: string`, `title?: string` (ou `title?: Snippet`
-     para permitir h1 multi-linha/`text-balance` — TabelaCal usa `text-balance`
-     numa string, TabelaFin usa 3 `<span class="block">`), `lead?: string`,
+     para permitir h1 multi-linha/`text-balance` — TAbelhaCal usa `text-balance`
+     numa string, TAbelhaFin usa 3 `<span class="block">`), `lead?: string`,
      `actions?: Snippet` (os CTAs), `note?: string` (a nota sob os CTAs).
    - Render: eyebrow uppercase mono `text-accent-ink`, h1 grande mono bold,
      lead `text-ink-soft`, actions + note.
 2. **`LandingSteps`**
    - Props: `steps: Array<{ number: string; color: string; title: string; body: string }>`
-     (o TabelaCal usa `number: '01'` + `color: 'text-ctp-mauve'` etc.).
+     (o TAbelhaCal usa `number: '01'` + `color: 'text-ctp-mauve'` etc.).
    - Render: grid `sm:grid-cols-2 lg:grid-cols-4`, número mono grande colorido,
      título, body.
 3. **`LandingFeatures`**
    - Props: `features: Array<{ icon: Component; bgClass: string; textClass: string; title: string; body: string }>`
      (ou `icon?: Snippet` pra não depender de `Component` importado — decidir
-     pela convenção da lib; TabelaCal passa `feature.icon` como componente
+     pela convenção da lib; TAbelhaCal passa `feature.icon` como componente
      lucide e usa `bgClass`/`textClass` com `ctp-*`).
    - Render: grid `sm:grid-cols-2 lg:grid-cols-3` de `Card` com
      `Card.Content`, ícone num quadrado `size-9 rounded-lg` com bg, título,
@@ -104,7 +104,7 @@ variant="ghost" size="sm"` com ícone + "Ver o código".
    - Props: `title: string`, `children?: Snippet`.
    - Render: container com borda, barra de 3 bolinhas coloridas
      (ctp-red/yellow/green), título mono, conteúdo.
-   - Nota: TabelaCal usa `rounded-2xl`, TabelaFin `rounded-lg` — decidir o
+   - Nota: TAbelhaCal usa `rounded-2xl`, TAbelhaFin `rounded-lg` — decidir o
      radius padrão da lib (consistência com o tema).
 7. **`SectionHeading`** (mover da duplicação dos apps para a lib)
    - Props: `eyebrow: string`, `title: string`, `lead?: string`.
@@ -123,18 +123,18 @@ muito mais flexibilidade.
 
 ## 4. Diferenças entre os dois apps que precisam ser acomodadas
 
-- **Header**: TabelaFin embute o header (logo + ThemeToggle + "Começar") na
-  própria landing, com container `border-x border-rule`. TabelaCal usa o
+- **Header**: TAbelhaFin embute o header (logo + ThemeToggle + "Começar") na
+  própria landing, com container `border-x border-rule`. TAbelhaCal usa o
   `AppHeader` do `+layout.svelte` (sticky, com nav Chat/Eventos quando logado).
   → **Não** generalizar o header na lib: é específico do app (navegação
   logada/logada, rotas). O componente de seção de landing cobre só o conteúdo.
-- **Tokens no markup**: TabelaFin já usa tokens da lib direto
-  (`border-rule`, `text-ink-soft`, `bg-paper`); TabelaCal ainda usa tokens
+- **Tokens no markup**: TAbelhaFin já usa tokens da lib direto
+  (`border-rule`, `text-ink-soft`, `bg-paper`); TAbelhaCal ainda usa tokens
   shadcn no markup da landing (`border-border`, `text-muted-foreground`,
   `text-foreground`, `bg-background`). → os componentes da lib devem usar os
-  tokens `--twui-*`, e o TabelaCal ajusta seu markup/local no consumo.
-- **`text-balance` / h1 multi-linha**: TabelaCal usa `text-balance` em string;
-  TabelaFin usa 3 `<span class="block">`. → `LandingHero.title` deve aceitar
+  tokens `--twui-*`, e o TAbelhaCal ajusta seu markup/local no consumo.
+- **`text-balance` / h1 multi-linha**: TAbelhaCal usa `text-balance` em string;
+  TAbelhaFin usa 3 `<span class="block">`. → `LandingHero.title` deve aceitar
   snippet (`title?: Snippet`) para suportar os dois, sem perder o fallback de
   string.
 - **Terminal**: o conteúdo interno é 100% específico do app (mock do
@@ -158,7 +158,7 @@ muito mais flexibilidade.
 - `LandingHero.title` aceita string e snippet; `LandingFeatures`/`LandingRoadmap`
   aceitam ícone como componente ou snippet.
 - Build da lib (`bun run build`) passa e `dist/` atualizado.
-- Regressão visual: nada que o TabelaFin/TabelaCal já usam quebra; os novos
+- Regressão visual: nada que o TAbelhaFin/TAbelhaCal já usam quebra; os novos
   componentes são aditivos.
 - (Opcional) README da lib documenta o uso das seções de landing com um
   exemplo mínimo.
@@ -167,9 +167,9 @@ muito mais flexibilidade.
 
 ## 6. Depois da implementação (consumo nos apps)
 
-1. TabelaCal e TabelaFin trocam os blocos duplicados da landing pelos
+1. TAbelhaCal e TAbelhaFin trocam os blocos duplicados da landing pelos
    componentes da lib (na versão publicada, ex. `^0.2.0`).
-2. TabelaCal ajusta tokens shadcn → `--twui-*` onde necessário no markup da
+2. TAbelhaCal ajusta tokens shadcn → `--twui-*` onde necessário no markup da
    landing.
 3. Remove `TerminalWindow.svelte` e `SectionHeading.svelte` de
    `src/lib/components/` dos apps.

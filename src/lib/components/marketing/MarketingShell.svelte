@@ -6,7 +6,7 @@
 	import MarketingShellFooter from './MarketingShellFooter.svelte';
 
 	let {
-		prefix = 'Tabela',
+		prefix = 'TAbelha',
 		suffix = '',
 		brandHref = '/',
 		header,

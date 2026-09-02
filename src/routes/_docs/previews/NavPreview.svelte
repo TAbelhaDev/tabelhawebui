@@ -13,7 +13,7 @@
 </script>
 
 {#snippet logo()}
-	<span class="twui-docs-nav-logo">tabela<span style="color: var(--twui-accent);">fin</span></span>
+	<span class="twui-docs-nav-logo">tabelha<span style="color: var(--twui-accent);">fin</span></span>
 {/snippet}
 
 {#snippet trailing()}

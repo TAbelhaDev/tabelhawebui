@@ -2,7 +2,7 @@
 
 > **O que é:** o [PrimeNG](https://github.com/primefaces/primeng) (MIT, ~100
 > componentes) é o maior componente UI Angular do mercado. Este documento mapeia
-> o que vale a pena **absorver** pro `tabelawebui` (Svelte 5, só tokens
+> o que vale a pena **absorver** pro `tabelhawebui` (Svelte 5, só tokens
 > `--twui-*`, zero dependência) e o que **não** vale.
 >
 > **Método:** absorver **modelo de API, UX e acessibilidade** — não código
@@ -24,7 +24,7 @@
 | `Label`            | label nativo do Angular                                                                             | —                                                                               | Não                                    |
 | `Select`           | `pSelect` (`optionLabel`/`optionValue`, `filter` buscável, `editable`, `showClear`)                 | `filter`; opções heterogêneas sem mapear                                        | Parcial: `filter`                      |
 | `Radio`/`Checkbox` | `pRadioButton`/`pCheckbox` (hidden input + indicador)                                               | Mesmo padrão que o nosso                                                        | Não                                    |
-| `DatePicker`       | `pDatePicker` (`showTime`, `selectionMode` range, `disabledDays`/`disabledDates`, `numberOfMonths`) | Range, datetime, dias desabilitados                                             | Futuro (relevante pro tabelacal)       |
+| `DatePicker`       | `pDatePicker` (`showTime`, `selectionMode` range, `disabledDays`/`disabledDates`, `numberOfMonths`) | Range, datetime, dias desabilitados                                             | Futuro (relevante pro tabelhacal)       |
 | `Toaster`/`toast`  | `pToast` (`position`, `sticky`, `life`, `closable`)                                                 | `position` configurável; `sticky`                                               | Sim: `position` + `sticky`             |
 | `Timeline`         | `pTimeline` (`align`, `layout`, templates `opposite`/`marker`/`content`)                            | Flexível via templates                                                          | Não (o nosso é tailored pro portfolio) |
 | `Divider`          | `pDivider` (`layout` h/v, `type` dashed/dotted, `align`, texto central)                             | Vertical, dashed/dotted, label central                                          | Sim (barato)                           |
@@ -43,7 +43,7 @@ e (c) micro-UX de overlay (fechar por fora/Esc). Detalhado abaixo.
 1. **`Dropdown`** — fechar no `pointerdown` fora + `Esc` (hoje `<details>` fica
    aberto até outro toggle). Também `aria-expanded`/foco no menu.
 2. **`Input`/`Textarea`** — prop `invalid?: boolean` → borda `--twui-danger` +
-   `aria-invalid`. (Padrão: forms do tabelaedu/TabelaFin.)
+   `aria-invalid`. (Padrão: forms do tabelhaedu/TAbelhaFin.)
 3. **`Button`** — prop `loading?: boolean` → disabled + spinner inline
    (barato, reusa o `--twui-*`).
 4. **`Panel`** — `toggleable` (colapsável com chevron) e `title`/`header`.
@@ -77,7 +77,7 @@ e (c) micro-UX de overlay (fechar por fora/Esc). Detalhado abaixo.
 | `Accordion`        | múltiplos painéis, `value`/multiple, `disabled`, chevron                                                                       |
 | `Rating`           | `value`/`readonly`/`cancel`; estrelas com tokens                                                                               |
 | `Sidebar`/`Drawer` | `visible` bindable, `position` (left/right/top/bottom), overlay + `aria-modal`                                                 |
-| `Stepper`          | passos com `value`/`linear`, para onboarding (tabelaedu)                                                                       |
+| `Stepper`          | passos com `value`/`linear`, para onboarding (tabelhaedu)                                                                       |
 | `Carousel`         | `value`/`page` + navegação; pra landing                                                                                        |
 | `MultiSelect`      | `options`+`optionLabel`/`optionValue`, `display` (comma/chip), `showClear`, `filter`, combobox+listbox a11y                    |
 | `Listbox`          | `options`, `multiple`+`checkbox`, `checkmark`, `filter`, listbox role                                                          |
@@ -118,7 +118,7 @@ e (c) micro-UX de overlay (fechar por fora/Esc). Detalhado abaixo.
 ## 6. Ordem sugerida
 
 1. Melhorias nos existentes (seção 2) + **Table v2**.
-2. `Tabs`, `Toggle`, `Skeleton`, `ProgressBar` (baratos, tabelaedu destrava).
+2. `Tabs`, `Toggle`, `Skeleton`, `ProgressBar` (baratos, tabelhaedu destrava).
 3. `Dialog` + `Tooltip` (overlay, tira dep do bits-ui).
 4. Tier 2 (Message, Accordion, Rating, Sidebar/Drawer, Stepper, Carousel,
    MultiSelect, Listbox) conforme demanda dos apps.

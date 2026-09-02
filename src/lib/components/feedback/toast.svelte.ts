@@ -1,6 +1,6 @@
 // Simple, self-contained toast — replaces svelte-sonner. The store is a
 // Svelte 5 module (`$state` in .svelte.js) importable from anywhere; the
-// <Toaster> from tabelawebui is the only one that renders.
+// <Toaster> from tabelhawebui is the only one that renders.
 
 export type ToastKind = "success" | "error" | "info" | "warning";
 

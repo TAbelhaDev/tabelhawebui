@@ -1,25 +1,25 @@
-# Prompt — primitivos de formulário faltantes pro tabelaedu (tabelawebui)
+# Prompt — primitivos de formulário faltantes pro tabelhaedu (tabelhawebui)
 
 > Prompt pronto pra colar numa sessão do opencode rodando na raiz de
-> `~/codigo/pessoal/tabelawebui`. Objetivo: implementar na lib os dois
-> primitivos que o app **tabelaedu** precisa pra concluir a conversão de UI, e
+> `~/codigo/pessoal/tabelhawebui`. Objetivo: implementar na lib os dois
+> primitivos que o app **tabelhaedu** precisa pra concluir a conversão de UI, e
 > que a lib **ainda não tem**.
 >
-> Regra geral de todo componente (ver `IMPLEMENTACAO-TABELAWEBUI.md`): Svelte 5
+> Regra geral de todo componente (ver `IMPLEMENTACAO-TABELHAWEBUI.md`): Svelte 5
 > autocontido, `<style>` escopado, classes `twui-*`, **só tokens `--twui-*`**
-> (zero Tailwind, zero dependência), exportado no `src/lib/index.ts` + tabela do
+> (zero Tailwind, zero dependência), exportado no `src/lib/index.ts` + tabelha do
 > `README.md` + `CHANGELOG.md`. Validar com `bun run check && bun run lint && bun run build`.
 
 ---
 
 ## 1. Contexto
 
-O `tabelaedu` (monorepo SvelteKit, app principal `webapp`) integrou o
-`tabelawebui@0.3.1` via um **shim** (`@tabelaedu/ui` re-exporta a lib mantendo a
+O `tabelhaedu` (monorepo SvelteKit, app principal `webapp`) integrou o
+`tabelhawebui@0.3.1` via um **shim** (`@tabelhaedu/ui` re-exporta a lib mantendo a
 API de namespace que os apps usavam). A **fundação** da integração já está
 feita:
 
-- Tema aplicado (`@import 'tabelawebui/theme.css'` + mapeamento dos tokens
+- Tema aplicado (`@import 'tabelhawebui/theme.css'` + mapeamento dos tokens
   `--twui-*` pros nomes shadcn).
 - Shell de app: `Nav` (breadcrumb) + `ThemeToggle` + `Dropdown` de usuário +
   `<Toaster />` montado.
@@ -32,7 +32,7 @@ Essa conversão está **bloqueada por dois primitivos que a lib não tem**:
 
 ## 2. Task 1 — `Textarea`
 
-Origem de necessidade: o tabelaedu tem **8 páginas** com `<textarea>` cru
+Origem de necessidade: o tabelhaedu tem **8 páginas** com `<textarea>` cru
 (questão QDB, simulado, redações, comunidade, notebooks, atendimento). A lib
 só tem `Input` (que é `<input>`). Criar `Textarea.svelte` **espelhando a
 convenção do `Input.svelte`**:
@@ -93,7 +93,7 @@ Markup + estilo (idênticos ao `Input` na intenção):
 
 ## 3. Task 2 — `Radio` / `Checkbox` (primitivos de escolha)
 
-Origem de necessidade: o simulado do tabelaedu usa `<input type="radio">` nativo
+Origem de necessidade: o simulado do tabelhaedu usa `<input type="radio">` nativo
 dentro de labels. A lib não tem nenhum primitivo de escolha estilizado.
 
 Design proposto (2 componentes, ou 1 `Choice` + variante `type` — à sua
@@ -192,15 +192,15 @@ Estilo (bordas afiadas, accent nunca azul, foco por `:has()` ou focus-visible):
 1. `src/lib/index.ts`: `export { default as Textarea } from "./components/Textarea.svelte";`
    `export { default as Radio } from "./components/Radio.svelte";`
    `export { default as Checkbox } from "./components/Checkbox.svelte";`
-2. `README.md`: adicionar `Textarea`, `Radio`, `Checkbox` na tabela de componentes.
+2. `README.md`: adicionar `Textarea`, `Radio`, `Checkbox` na tabelha de componentes.
 3. `CHANGELOG.md`: entrada em `[Unreleased] → Adicionado`.
 
 ## 5. Critérios de aceite
 
 - `bun run check && bun run lint && bun run build` passam (svelte-package gera `dist/`).
-- **Regressão:** nada do que o TabelaFin / tabelacal / portfolio já usam quebra
+- **Regressão:** nada do que o TAbelhaFin / tabelhacal / portfolio já usam quebra
   (os componentes são novos — não tocam nos existentes).
-- O `tabelaedu` (consumidor via `file:` ou `^0.3.1`) resolve `Textarea`/`Radio`/
+- O `tabelhaedu` (consumidor via `file:` ou `^0.3.1`) resolve `Textarea`/`Radio`/
   `Checkbox` do `dist/` e typechecka.
 - Convention check: Svelte 5, `<style>` escopado, `twui-*`, só tokens `--twui-*`,
   zero Tailwind/dependência.
@@ -208,6 +208,6 @@ Estilo (bordas afiadas, accent nunca azul, foco por `:has()` ou focus-visible):
 ## 6. Referências
 
 - Modelo de convenção: `src/lib/components/Input.svelte` (mais próximo possível).
-- Regras gerais: `IMPLEMENTACAO-TABELAWEBUI.md`.
-- Consumidor que destrava depois disso: prompt de conversão de UI do tabelaedu
-  em `UI-TABELAEDU-PROMPT.md` (página-a-página dos inputs crus → componentes).
+- Regras gerais: `IMPLEMENTACAO-TABELHAWEBUI.md`.
+- Consumidor que destrava depois disso: prompt de conversão de UI do tabelhaedu
+  em `UI-TABELHAEDU-PROMPT.md` (página-a-página dos inputs crus → componentes).

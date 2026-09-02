@@ -17,8 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Adicionado
 
-- Servidor MCP (`@tabeladev/mcp-tabelawebui`) via stdio transport
-  (`@modelcontextprotocol/sdk`), consultando o pacote `tabelawebui`
+- Servidor MCP (`@tabelhadev/mcp-tabelhawebui`) via stdio transport
+  (`@modelcontextprotocol/sdk`), consultando o pacote `tabelhawebui`
   instalado (repo checkout ou dist publicado).
 - Tools: `list_components`, `get_component`, `list_tokens`, `get_token`,
   `list_accents`.

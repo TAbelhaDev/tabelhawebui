@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>{doc ? `${doc.name} — TabelaWebUI` : 'Componente não encontrado'}</title>
+	<title>{doc ? `${doc.name} — TAbelhaWebUI` : 'Componente não encontrado'}</title>
 </svelte:head>
 
 {#if !doc}
@@ -37,7 +37,7 @@
 			<p class="twui-docs-desc">{doc.description}</p>
 
 			<div class="twui-docs-import">
-				<pre><code>import &#123; {doc.name} &#125; from '@tabeladev/tabelawebui';</code></pre>
+				<pre><code>import &#123; {doc.name} &#125; from '@tabelhadev/tabelhawebui';</code></pre>
 			</div>
 		</header>
 

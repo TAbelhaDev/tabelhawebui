@@ -1,8 +1,8 @@
-# Plano de implementação consolidado — tabelawebui
+# Plano de implementação consolidado — tabelhawebui
 
-> Consolida os 3 relatórios: `TABELAWEBUI-COVERAGE.md` (portfolio), `INTEGRACAO_TABELAWEBUI.md` (tabelacal), `MIGRATION-TABELAFIN.md` (TabelaFin).
+> Consolida os 3 relatórios: `TABELHAWEBUI-COVERAGE.md` (portfolio), `INTEGRACAO_TABELHAWEBUI.md` (tabelhacal), `MIGRATION-TABELHAFIN.md` (TAbelhaFin).
 >
-> **Regra geral de todo componente:** Svelte 5 autocontido, `<style>` escopado, classes `twui-*`, **só tokens `--twui-*`** (zero Tailwind, zero dependência), exportado no `src/lib/index.js` + tabela do `README.md` + `CHANGELOG.md`. Validar ao final com `bun run check && bun run lint && bun run build`.
+> **Regra geral de todo componente:** Svelte 5 autocontido, `<style>` escopado, classes `twui-*`, **só tokens `--twui-*`** (zero Tailwind, zero dependência), exportado no `src/lib/index.js` + tabelha do `README.md` + `CHANGELOG.md`. Validar ao final com `bun run check && bun run lint && bun run build`.
 
 ---
 
@@ -73,7 +73,7 @@ body {
 
 ---
 
-## 2. Componentes novos — chrome/portfolio (TABELAWEBUI-COVERAGE) — FALTA
+## 2. Componentes novos — chrome/portfolio (TABELHAWEBUI-COVERAGE) — FALTA
 
 ### 2.1. `TabCard` — painel "aba de arquivo" (mais signature)
 
@@ -126,7 +126,7 @@ Props: `labels?: { light: string; dark: string }` (aria-label; i18n do app), `ic
 
 - Lê `document.documentElement.getAttribute('data-theme')`; toggle seta `data-theme` no `<html>` **e** `localStorage.setItem('theme', next)`.
 - Botão: `flex size-8 items-center justify-center text-ink-soft hover:text-accent`; ícone Sun (tema escuro) / Moon (tema claro).
-- (TabelaFin usa classe `.dark` — o toggle deve atender `data-theme` **e** `.dark` para não quebrar o mode-watcher.)
+- (TAbelhaFin usa classe `.dark` — o toggle deve atender `data-theme` **e** `.dark` para não quebrar o mode-watcher.)
 
 ### 2.6. `Dropdown` (menu via `<details>`)
 
@@ -160,7 +160,7 @@ API atual: `variant: 'default' | 'primary' | 'ghost' | 'danger'`, sem size, sem 
 - **`size`**: `'default' | 'sm' | 'lg' | 'icon-sm'` (sm ~h-7, lg ~h-9, icon-sm ~size-7, default ~h-8).
 - **`href`**: quando presente, renderizar `<a>` (link) — como o Button shadcn.
 - **`variant="outline"`**: borda `--twui-rule` + hover de fundo. (`danger` já cobre `destructive`.)
-- **Exportar `buttonVariants()`** como função de classes (tabelacal usa `buttonVariants({ size: 'sm' })` em `<span>` decorativo).
+- **Exportar `buttonVariants()`** como função de classes (tabelhacal usa `buttonVariants({ size: 'sm' })` em `<span>` decorativo).
 - API antiga (`default`/`primary`/`ghost`/`danger`) **não pode quebrar**.
 
 ### 4.2. `Card` — API composta
@@ -176,7 +176,7 @@ Manter a API simples atual (`title`/`description`/`header`/`children`) **intacta
 
 ### 4.3. `Badge` — variantes
 
-- **`variant: 'default' | 'secondary' | 'outline'`**, sem quebrar o uso sem variante (TabelaFin usa sem variant, só `class`).
+- **`variant: 'default' | 'secondary' | 'outline'`**, sem quebrar o uso sem variante (TAbelhaFin usa sem variant, só `class`).
 - `default`: borda rule, texto ink-soft (atual).
 - `secondary`: fundo rule/translúcido, texto ink.
 - `outline`: borda mais forte, texto ink, fundo transparente.
@@ -193,7 +193,7 @@ Manter a API simples atual (`title`/`description`/`header`/`children`) **intacta
 
 ## 6. Ajustes de divergência — FALTA
 
-### 6.1. `Toaster`/`toast` (do TABELAWEBUI-COVERAGE)
+### 6.1. `Toaster`/`toast` (do TABELHAWEBUI-COVERAGE)
 
 - **Sombra**: trocar `box-shadow: 0 2px 8px rgb(0 0 0 / 10%)` (difusa) por `3px 3px 0 0 var(--twui-rule)` (token da 1.3).
 - **`aria-label="Fechar"` hardcoded em PT** → deixar configurável/i18n-neutro.
@@ -211,7 +211,7 @@ Coexistem: `Card` (formulário) / `TabCard` (chrome de página). Não mesclar.
 ## 7. Exports + docs — FALTA
 
 - `src/lib/index.js`: exportar `TabCard`, `Timeline`, `TimelineItem`, `RuleCard`, `Nav`, `ThemeToggle`, `Dropdown` (já exporta Input/Label/Select/Toaster/toast).
-- `README.md`: atualizar tabela de componentes + tokens (já parcialmente reescrito).
+- `README.md`: atualizar tabelha de componentes + tokens (já parcialmente reescrito).
 - `CHANGELOG.md`: registrar o que entrou.
 
 ---
@@ -225,11 +225,11 @@ Coexistem: `Card` (formulário) / `TabCard` (chrome de página). Não mesclar.
 - `Input`/`Label` fazem forward de atributos.
 - `index.js` exporta todos os componentes.
 - `bun run build` (svelte-package) gera `dist/` atualizado (apps consomem via `file:` → usam `dist/`).
-- Regressão visual no TabelaFin: nada do que ele usa quebra (componentes só ganham props novas).
+- Regressão visual no TAbelhaFin: nada do que ele usa quebra (componentes só ganham props novas).
 
 ---
 
-## 9. Ordem sugerida de implementação (TABELAWEBUI-COVERAGE §6)
+## 9. Ordem sugerida de implementação (TABELHAWEBUI-COVERAGE §6)
 
 1. Tema/base (1.1, 1.2, 1.3) — destrava tudo.
 2. `TabCard` (2.1) + `RuleCard` (2.3) — os painéis signature.

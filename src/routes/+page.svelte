@@ -16,12 +16,12 @@
 </script>
 
 <svelte:head>
-	<title>TabelaWebUI — componentes</title>
+	<title>TAbelhaWebUI — componentes</title>
 </svelte:head>
 
 <div class="twui-docs-home">
 	<header class="twui-docs-home-header">
-		<Eyebrow>tabelawebui</Eyebrow>
+		<Eyebrow>tabelhawebui</Eyebrow>
 		<h1>Componentes</h1>
 		<p>
 			{total} componentes do design system, cada um com preview interativo,

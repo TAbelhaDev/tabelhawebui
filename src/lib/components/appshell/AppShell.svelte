@@ -6,7 +6,7 @@
 	import type { AppShellNavItem } from './types';
 
 	let {
-		brand = { prefix: 'Tabela', suffix: '' },
+		brand = { prefix: 'TAbelha', suffix: '' },
 		navItems = [],
 		currentPath = '',
 		logoutAction = '',

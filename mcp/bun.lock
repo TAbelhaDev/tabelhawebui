@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "@tabeladev/mcp-tabelawebui",
+      "name": "@tabelhadev/mcp-tabelhawebui",
       "dependencies": {
         "@modelcontextprotocol/sdk": "^1.30.0",
         "zod": "^4.4.3",

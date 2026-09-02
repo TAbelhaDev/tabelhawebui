@@ -1,7 +1,7 @@
-# Cobertura da UI do portfolio no tabelawebui — relatório de gaps
+# Cobertura da UI do portfolio no tabelhawebui — relatório de gaps
 
 > **Fonte da verdade:** o repo `portfolio` (este). A UI/UX dele é a base; o
-> `tabelawebui` é a abstração. Este relatório lista exatamente o que o
+> `tabelhawebui` é a abstração. Este relatório lista exatamente o que o
 > portfolio usa que a lib ainda **não** cobre, pra você implementar.
 >
 > **Regra de divergência:** o portfolio é o principal. Se houver qualquer
@@ -15,7 +15,7 @@
   `--twui-*`, `::selection`, `:focus-visible`, `.dark`/`[data-theme=dark]`).
   Está correto e bate com `src/routes/layout.css`.
 - **O que a lib tem e o portfolio NÃO usa (não é bug — são pros apps tipo
-  TabelaFin):** `Card`, `Table`, `Badge`, `Button`, `Panel`, `Status`,
+  TAbelhaFin):** `Card`, `Table`, `Badge`, `Button`, `Panel`, `Status`,
   `Input`, `Label`, `Select`, `Toaster`/`toast`. Manter.
 - **O que o portfolio usa que a lib NÃO tem (é isso que falta):** 6
   componentes signature + 1 bloco de tema/base + 2 utilitários. Detalhado
@@ -99,7 +99,7 @@ token:
 
 Todos devem seguir a convenção atual da lib: componente Svelte 5 autocontido
 com `<style>` escopado, classes `twui-*`, **só tokens** (zero Tailwind, zero
-dependência), e exportados no `src/lib/index.js` + tabela do `README.md` +
+dependência), e exportados no `src/lib/index.js` + tabelha do `README.md` +
 `CHANGELOG.md`. As specs abaixo têm os valores exatos do portfolio.
 
 ### 3.1. `TabCard` (o painel "aba de arquivo") — **mais signature do repo**

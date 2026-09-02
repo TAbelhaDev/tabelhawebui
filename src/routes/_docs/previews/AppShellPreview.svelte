@@ -3,7 +3,7 @@
 	import ExampleCard from '../ExampleCard.svelte';
 
 	const code = `<AppShell
-	brand={{ prefix: 'Tabela', suffix: 'RPGDK' }}
+	brand={{ prefix: 'TAbelha', suffix: 'RPGDK' }}
 	navItems={[
 		{ href: '/campaigns', label: 'Campanhas', icon: SwordsIcon },
 		{ href: '/community', label: 'Comunidade', icon: UsersIcon },
@@ -81,7 +81,7 @@
 >
 	<div class="twui-docs-appshell-frame">
 		<AppShell
-			brand={{ prefix: 'Tabela', suffix: 'RPGDK' }}
+			brand={{ prefix: 'TAbelha', suffix: 'RPGDK' }}
 			{navItems}
 			currentPath="/campaigns"
 			logoutAction="/auth/signout"

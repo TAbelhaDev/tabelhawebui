@@ -1,7 +1,7 @@
-# @tabeladev/mcp-tabelawebui
+# @tabelhadev/mcp-tabelhawebui
 
 MCP (Model Context Protocol) server for
-[TabelaWebUI](https://github.com/TabelaDev/tabelawebui): exposes the library's
+[TAbelhaWebUI](https://github.com/TAbelhaDev/tabelhawebui): exposes the library's
 components, tokens and accents as tools that coding agents (Claude, Cursor,
 opencode, etc.) can query. Instead of guessing props/tokens, the agent queries
 the real API of the installed package — even when consuming the npm-published
@@ -9,7 +9,7 @@ lib without a local checkout.
 
 ## How it works
 
-The server locates the `@tabeladev/tabelawebui` package and parses:
+The server locates the `@tabelhadev/tabelhawebui` package and parses:
 
 - **Components**: from the source (`src/lib/components/**/*.svelte`,
   Svelte 5 `$props()` destructuring) or, on the published package, from the
@@ -24,7 +24,7 @@ The server locates the `@tabeladev/tabelawebui` package and parses:
 ## Installation and setup
 
 ```bash
-bun add -g @tabeladev/mcp-tabelawebui    # or: npx @tabeladev/mcp-tabelawebui
+bun add -g @tabelhadev/mcp-tabelhawebui    # or: npx @tabelhadev/mcp-tabelhawebui
 ```
 
 Example in `opencode.json` (or `claude_desktop_config.json`/`.cursor/mcp.json`):
@@ -32,16 +32,16 @@ Example in `opencode.json` (or `claude_desktop_config.json`/`.cursor/mcp.json`):
 ```jsonc
 {
   "mcp": {
-    "tabelawebui": {
+    "tabelhawebui": {
       "type": "stdio",
-      "command": "mcp-tabelawebui",
-      // "args": ["--source", "/path/to/tabelawebui/checkout"] // optional
+      "command": "mcp-tabelhawebui",
+      // "args": ["--source", "/path/to/tabelhawebui/checkout"] // optional
     },
   },
 }
 ```
 
-The server resolves `@tabeladev/tabelawebui` from the process's **working
+The server resolves `@tabelhadev/tabelhawebui` from the process's **working
 directory** (walks up `node_modules`), so run it with the cwd in your project
 that has the lib installed. To point at a specific checkout (dev), use
 `--source` or the `TWUI_MCP_SOURCE` env.
@@ -70,7 +70,7 @@ Publishing:
 
 ```sh
 bun run build
-npm publish       # or bun publish (AGPL-3.0, like @tabeladev/tabelawebui)
+npm publish       # or bun publish (AGPL-3.0, like @tabelhadev/tabelhawebui)
 ```
 
 ## Scope

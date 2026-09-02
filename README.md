@@ -1,6 +1,6 @@
 <div align="center">
 
-# TabelaWebUI
+# TAbelhaWebUI
 
 **Shared theme and chrome for ianptkcs's web apps — Catppuccin (Latte/Mocha)
 with a "reading someone's source file" aesthetic: mono carries the structure,
@@ -20,7 +20,7 @@ sharp borders, configurable accent.**
 
 ## What it is
 
-The web counterpart of [`tabelatuiui`](https://github.com/TabelaDev/tabelatuiui)
+The web counterpart of [`tabelhatuiui`](https://github.com/TAbelhaDev/tabelhatuiui)
 (the Bubble Tea TUIs): each app keeps only its own business logic, and the
 library takes care of the theme and of the components everyone was redrawing
 from scratch.
@@ -30,7 +30,7 @@ from scratch.
 Requires Svelte 5.
 
 ```bash
-bun add @tabeladev/tabelawebui
+bun add @tabelhadev/tabelhawebui
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ Import the theme once in the app and use the components:
 
 ```svelte
 <script>
-	import { Card, Table, Badge, Button, Status } from '@tabeladev/tabelawebui';
+	import { Card, Table, Badge, Button, Status } from '@tabelhadev/tabelhawebui';
 </script>
 
 <Card>
@@ -58,7 +58,7 @@ Import the theme once in the app and use the components:
 In the app's CSS (once):
 
 ```css
-@import "@tabeladev/tabelawebui/theme.css";
+@import "@tabelhadev/tabelhawebui/theme.css";
 ```
 
 ## Components
@@ -91,7 +91,7 @@ In the app's CSS (once):
 | `Nav`                | navbar: logo + breadcrumb links separated by `/`                                                                                                                                                                                                                         |
 | `ThemeToggle`        | toggles `data-theme`/`.dark` + `localStorage`; optional `showLabel` for a visible light/dark label                                                                                                                                                                       |
 | `AppShell`           | authenticated app shell as one compound export: `AppShell.Sidebar` (desktop: brand + nav + theme/logout), `AppShell.BottomNav` (mobile), `AppShell.Content` (`max-w-6xl`)                                                                                                |
-| `Wordmark`           | `Tabela` in text color + `suffix` in accent; inherits the context font/size                                                                                                                                                                                              |
+| `Wordmark`           | `TAbelha` in text color + `suffix` in accent; inherits the context font/size                                                                                                                                                                                              |
 | `Dropdown`           | menu with a printed shadow; closes on outside click/Esc                                                                                                                                                                                                                  |
 | `Divider`            | horizontal/vertical line, `solid`/`dashed`, centered label                                                                                                                                                                                                               |
 | `Eyebrow`            | uppercase mono section label                                                                                                                                                                                                                                             |
@@ -181,7 +181,7 @@ bun run lint    # prettier
 bun run build   # svelte-package (dist)
 ```
 
-The package is published to npm as `@tabeladev/tabelawebui`; versions follow
+The package is published to npm as `@tabelhadev/tabelhawebui`; versions follow
 `CHANGELOG.md` and the convention in `CONTRIBUTING.md`.
 
 ## Tooling
@@ -218,5 +218,5 @@ See [CHANGELOG.md](CHANGELOG.md) for the version history.
 ## License
 
 [AGPL-3.0](LICENSE) — strong copyleft: you may use, modify and even host
-TabelaWebUI commercially, but any modified version, including one running as a
+TAbelhaWebUI commercially, but any modified version, including one running as a
 network service (SaaS), has to stay open source under the same license.

@@ -38,7 +38,7 @@
 			<span></span><span></span><span></span>
 		</button>
 		<a href="/" class="twui-docs-brand">
-			<span class="twui-docs-brand-name">tabela<span class="twui-docs-brand-accent">web</span>ui</span>
+			<span class="twui-docs-brand-name">tabelha<span class="twui-docs-brand-accent">web</span>ui</span>
 			<span class="twui-docs-brand-sub">componentes</span>
 		</a>
 		<div class="twui-docs-topbar-spacer"></div>

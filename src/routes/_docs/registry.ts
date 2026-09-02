@@ -1,7 +1,7 @@
 import type { ComponentDoc } from "./types";
 import { previewComponents } from "./component-map";
 
-// Descrições extraídas da tabela de componentes do README. Categorias seguem
+// Descrições extraídas da tabelha de componentes do README. Categorias seguem
 // as seções do `src/lib/index.ts`. Cada entrada tem exemplos curados (props +
 // código) ou um preview custom (componentes compostos/com snippets).
 
@@ -28,7 +28,7 @@ export const components: ComponentDoc[] = [
   custom(
     "Table",
     "Dados",
-    "Tabela com columns/rows, sort, filtro global, seleção, loading e paginação.",
+    "TAbelha com columns/rows, sort, filtro global, seleção, loading e paginação.",
   ),
 
   // ── Ações ───────────────────────────────────────────────────────────────
@@ -621,8 +621,8 @@ export const components: ComponentDoc[] = [
   generic("Eyebrow", "Layout", "Rótulo de seção mono uppercase.", [
     {
       label: "Padrão",
-      children: "tabelawebui",
-      code: "<Eyebrow>tabelawebui</Eyebrow>",
+      children: "tabelhawebui",
+      code: "<Eyebrow>tabelhawebui</Eyebrow>",
     },
   ]),
   generic(
@@ -634,7 +634,7 @@ export const components: ComponentDoc[] = [
         label: "Padrão",
         props: { href: "#" },
         children: "repositório",
-        code: '<BracketLink href="https://github.com/TabelaDev/tabelawebui">repositório</BracketLink>',
+        code: '<BracketLink href="https://github.com/TAbelhaDev/tabelhawebui">repositório</BracketLink>',
       },
     ],
   ),
@@ -665,11 +665,11 @@ export const components: ComponentDoc[] = [
   generic(
     "Wordmark",
     "Layout",
-    "Wordmark Tabela + sufixo em accent; herda fonte/tamanho do contexto.",
+    "Wordmark TAbelha + sufixo em accent; herda fonte/tamanho do contexto.",
     [
       {
         label: "Padrão",
-        code: '<Wordmark prefix="Tabela" suffix="Fin" />',
+        code: '<Wordmark prefix="TAbelha" suffix="Fin" />',
       },
     ],
   ),

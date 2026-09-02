@@ -1,11 +1,11 @@
 {
-  "name": "@tabeladev/mcp-tabelawebui",
+  "name": "@tabelhadev/mcp-tabelhawebui",
   "version": "0.1.1",
-  "description": "MCP server para o TabelaWebUI: componentes, tokens e accents consultáveis por coding agents.",
+  "description": "MCP server para o TAbelhaWebUI: componentes, tokens e accents consultáveis por coding agents.",
   "type": "module",
   "license": "AGPL-3.0",
   "bin": {
-    "mcp-tabelawebui": "dist/index.js"
+    "mcp-tabelhawebui": "dist/index.js"
   },
   "files": [
     "dist"
@@ -24,14 +24,14 @@
   },
   "keywords": [
     "mcp",
-    "tabelawebui",
+    "tabelhawebui",
     "catppuccin",
     "svelte",
     "design-system"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TabelaDev/tabelawebui.git"
+    "url": "git+https://github.com/TAbelhaDev/tabelhawebui.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",

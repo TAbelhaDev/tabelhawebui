@@ -1,15 +1,15 @@
-# Convenções dos apps web da TabelaDev
+# Convenções dos apps web da TAbelhaDev
 
-Regras comuns aos apps SvelteKit que consomem o `@tabeladev/tabelawebui`. Hoje:
-**tabelafin** (aberto), **tabelarpgdk/apps/site** (fechado) e **tabelahub**
-(aberto, o site/hub da TabelaDev).
+Regras comuns aos apps SvelteKit que consomem o `@tabelhadev/tabelhawebui`. Hoje:
+**tabelhafin** (aberto), **tabelharpgdk/apps/site** (fechado) e **tabelhahub**
+(aberto, o site/hub da TAbelhaDev).
 
 Mora aqui porque a lib é a única dependência que todos compartilham, aberto ou fechado.
 Cada repo tem um `AGENTS.md` que **aponta** pra este arquivo e guarda só o que é
 específico dele — as regras não são duplicadas.
 
 Doc de trabalho, em pt-BR, conforme a política de linguagem em
-`tabelafin/CONTRIBUTING.md#language`.
+`tabelhafin/CONTRIBUTING.md#language`.
 
 ---
 
@@ -23,8 +23,8 @@ acabamento: onde a landing mora, como o header é montado, se cor vem de utilit�
 bug corrigido num repo não chegava no outro.
 
 Caso concreto: o `checkJs: true` fazia o `svelte-check` type-checar o bundle gerado e
-reportar **milhares** de erros falsos. O tabelafin achou, corrigiu e documentou. O
-tabelarpgdk conviveu com `bun run check` inutilizável até este alinhamento.
+reportar **milhares** de erros falsos. O tabelhafin achou, corrigiu e documentou. O
+tabelharpgdk conviveu com `bun run check` inutilizável até este alinhamento.
 
 ---
 
@@ -39,14 +39,14 @@ tabelarpgdk conviveu com `bun run check` inutilizável até este alinhamento.
 | Mutação de tela | **form action** no `+page.server.ts`. `api/` é pra JSON/binário (upload, stream, webhook, auth). |
 | Links internos  | `resolve()` de `$app/paths`. Nada de string crua.                                                |
 
-> O tabelafin ainda tem `login/`, `signup/` e `logout/` soltas na raiz em vez de `auth/`.
+> O tabelhafin ainda tem `login/`, `signup/` e `logout/` soltas na raiz em vez de `auth/`.
 > Divergência conhecida, não corrigida ainda.
 
 ## Chrome
 
 Header, nav e footer de uma área **moram no `+layout.svelte` do grupo**, nunca dentro da
 página. Página que desenha o próprio header obriga copiar o header na segunda página —
-foi exatamente o que aconteceu no tabelafin.
+foi exatamente o que aconteceu no tabelhafin.
 
 ## Tema e cor
 
@@ -76,9 +76,9 @@ casos use a variável crua (`var(--ctp-mauve)`), não `var(--color-ctp-mauve)` �
 `--color-*` existem pra alimentar o Tailwind, não pra serem lidos em CSS.
 
 Classe que não corresponde a token definido **não gera CSS e falha em silêncio**. O
-`bg-background/80` do header do tabelarpgdk deixou o header sticky transparente por isso.
+`bg-background/80` do header do tabelharpgdk deixou o header sticky transparente por isso.
 
-> O `(app)/+layout.svelte` do tabelarpgdk ainda tem ~160 `style=` inline. Divergência
+> O `(app)/+layout.svelte` do tabelharpgdk ainda tem ~160 `style=` inline. Divergência
 > conhecida, fora do escopo do alinhamento inicial.
 
 ## Fontes
@@ -124,13 +124,13 @@ const canonical = $derived(`${page.url.origin}${page.url.pathname}`);
 
 O `lang` do `app.html` bate com a língua da copy. Ambos os produtos são pt-BR →
 `lang="pt-BR"`. O `data-accent` do `app.html` bate com a cor de onde saem `--shadow-glow`
-e `--gradient-hero` (o tabelafin ficou meses com `green` e gradiente maroon).
+e `--gradient-hero` (o tabelhafin ficou meses com `green` e gradiente maroon).
 
 > Nenhum dos dois tem imagem de preview (`og:image`) ainda.
 
 ## Feedback ao usuário
 
-- `Toaster` e `toast` vêm do `@tabeladev/tabelawebui`. Não usar `svelte-sonner` direto.
+- `Toaster` e `toast` vêm do `@tabelhadev/tabelhawebui`. Não usar `svelte-sonner` direto.
 - Flash: sempre `$flash = undefined` depois de exibir, senão o toast repete ao navegar.
 - Tipo do flash vem de `src/lib/enums/toast-type.ts` (`ToastType`), igual nos dois repos.
 
@@ -146,12 +146,12 @@ e `--gradient-hero` (o tabelafin ficou meses com `green` e gradiente maroon).
 | Helpers de server  | `src/lib/server/utils/`                                             |
 | Testes             | `*.spec.ts` colocado ao lado do módulo                              |
 
-> O tabelafin ainda tem 9 componentes soltos em `src/lib/*.svelte`, schema num arquivo só
+> O tabelhafin ainda tem 9 componentes soltos em `src/lib/*.svelte`, schema num arquivo só
 > e nenhuma camada de services. Divergências conhecidas.
 
 ## Dependências
 
-- A lib entra pelo **registry**: `"@tabeladev/tabelawebui": "^0.18.0"`, importada pelo nome
+- A lib entra pelo **registry**: `"@tabelhadev/tabelhawebui": "^0.18.0"`, importada pelo nome
   scoped. Nada de `file:` — some a reprodutibilidade e o lock deixa de fixar versão.
 - Runtime em `dependencies`, ferramenta em `devDependencies` (o better-auth já morou no
   lugar errado).
@@ -167,19 +167,19 @@ e `--gradient-hero` (o tabelafin ficou meses com `green` e gradiente maroon).
 - Bindings do Cloudflare disponíveis no `vite dev` pelo adapter — o alvo é **um comando
   só** pra subir o ambiente.
 
-> O tabelarpgdk ainda precisa de dois terminais (`bun dev` + `bun proxy`) e de acessar pela
+> O tabelharpgdk ainda precisa de dois terminais (`bun dev` + `bun proxy`) e de acessar pela
 > URL do wrangler, porque o `hooks.server.ts` explode sem o binding `DB`.
 
 ## Estrutura open-source
 
-O `tabelascaffold --github --web` (LICENSE, badges, CONTRIBUTING bilíngue, CHANGELOG,
+O `tabelhascaffold --github --web` (LICENSE, badges, CONTRIBUTING bilíngue, CHANGELOG,
 templates de issue/PR) se aplica **só a repo aberto**. `--web` sozinho (sem `--github`)
 dá só a estrutura de CI, sem a metadata open-source — desde que as categorias do
 scaffold viraram independentes, um repo fechado pode adotar isso sem ganhar LICENSE/
 CONTRIBUTING junto.
 
-- **tabelafin** — aberto, recebe `--github --web`.
-- **tabelarpgdk** — fechado, **não recebe** nenhuma categoria hoje. É decisão, não
+- **tabelhafin** — aberto, recebe `--github --web`.
+- **tabelharpgdk** — fechado, **não recebe** nenhuma categoria hoje. É decisão, não
   pendência: nada de tratar a ausência de CI ali como débito herdado desta convenção.
 
 ---
@@ -192,7 +192,7 @@ Coisas que a análise levantou e que ainda valem trabalho:
   no SVG. A correção certa é do lado da lib — `Landing.Features` e `Landing.Roadmap`
   aceitarem `Component` como o `RuleCard` já aceita. Abrir um `requests/`.
 - `og:image` nos dois produtos.
-- O tabelarpgdk tem ~36 arquivos nunca formatados, então `bun run lint` falha de saída.
+- O tabelharpgdk tem ~36 arquivos nunca formatados, então `bun run lint` falha de saída.
   Merece um commit `chore: format` isolado.
-- Carregamento de dados do tabelarpgdk é misto: umas rotas usam `+page.server.ts`, outras
+- Carregamento de dados do tabelharpgdk é misto: umas rotas usam `+page.server.ts`, outras
   `onMount(fetch('/api/...'))`. Escolher um.

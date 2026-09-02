@@ -1,20 +1,20 @@
-# Migração TabelaFin → tabelawebui (remover shadcn-svelte)
+# Migração TAbelhaFin → tabelhawebui (remover shadcn-svelte)
 
 ## Objetivo
 
-O app TabelaFin (SvelteKit 5 + Tailwind v4) ainda usa a UI do shadcn-svelte
+O app TAbelhaFin (SvelteKit 5 + Tailwind v4) ainda usa a UI do shadcn-svelte
 (`src/lib/components/ui/`) e o `svelte-sonner` para toasts. Queremos **zero
-dependência de shadcn**: tudo que a UI usa tem que vir do pacote `tabelawebui`
+dependência de shadcn**: tudo que a UI usa tem que vir do pacote `tabelhawebui`
 (componentes + tokens `--twui-*`).
 
-## Contexto do TabelaFin
+## Contexto do TAbelhaFin
 
 - Stack: SvelteKit + Cloudflare Workers (D1 + KV), Bun, Tailwind v4.
-- Já usa o tema `tabelawebui` (`@import 'tabelawebui/theme.css'` no
+- Já usa o tema `tabelhawebui` (`@import 'tabelhawebui/theme.css'` no
   `src/routes/layout.css`), que mapeia os tokens locais (`--paper`, `--ink`,
   `--rule`, `--accent`...) pros `--twui-*`.
 - Já usa os componentes da lib no dashboard e em `/transacoes`:
-  `Card`, `Table`, `Badge`, `Button`, `Status` (import de `tabelawebui`).
+  `Card`, `Table`, `Badge`, `Button`, `Status` (import de `tabelhawebui`).
 - Tema escuro via classe `.dark` (mode-watcher).
 
 ## Estado atual dos imports shadcn (8 arquivos)
@@ -30,23 +30,23 @@ dependência de shadcn**: tudo que a UI usa tem que vir do pacote `tabelawebui`
 | `src/lib/StatementUpload.svelte`            | `Button`, `Input` (ui), `toast` (svelte-sonner)   |
 | `src/lib/ReloadPrompt.svelte`               | `toast` (svelte-sonner)                           |
 
-Dependências do TabelaFin a remover após a migração:
+Dependências do TAbelhaFin a remover após a migração:
 `shadcn-svelte`, `bits-ui`, `svelte-sonner`, `tailwind-variants`,
 `tailwind-merge`, `clsx`, `tw-animate-css`. **Manter**: `mode-watcher` (tema),
 `sveltekit-flash-message` (flash messages → vão pro toast da lib).
 
-## O que a lib tabelawebui já tem (não reimplementar)
+## O que a lib tabelhawebui já tem (não reimplementar)
 
 Componentes existentes: `Card`, `Table`, `Badge`, `Button`, `Panel`, `Status`.
 Tema: `theme.css` com tokens `--twui-*` (semânticos + escala Latte/Mocha +
 paleta por flavor). Já cobre a estética "source file" (bordas afiadas, mono,
 accent maroon/pink).
 
-> **Regra do TabelaFin:** a lib é o design system. Nada de classe Tailwind
+> **Regra do TAbelhaFin:** a lib é o design system. Nada de classe Tailwind
 > custom no app pra estilizar componente da lib; o app só usa os componentes
 > e tokens.
 
-## O que a lib precisa ganhar (pra cobrir o uso do TabelaFin)
+## O que a lib precisa ganhar (pra cobrir o uso do TAbelhaFin)
 
 1. **`Input`** — campo de texto estilizado com tokens. Precisa suportar:
    - `type="password"` (login, onboarding)
@@ -65,13 +65,13 @@ accent maroon/pink).
      "nova versão disponível → Atualizar").
 
 > A API do `toast` da lib deve ser **compatível com o svelte-sonner** no que o
-> TabelaFin usa: `toast.success(msg)`, `toast.error(msg)`, `toast.info(msg)`,
+> TAbelhaFin usa: `toast.success(msg)`, `toast.error(msg)`, `toast.info(msg)`,
 > `toast.warning(msg)`, e `toast(msg, { action: { label, onClick } })`.
-> O TabelaFin não usa `duration` custom hoje, mas o ReloadPrompt passa
+> O TAbelhaFin não usa `duration` custom hoje, mas o ReloadPrompt passa
 > `duration: Infinity` no sonner — na lib isso vira "não auto-dismissar quando
 > tem action" (pode ignorar `duration`).
 
-## Mapeamento de componentes shadcn → tabelawebui
+## Mapeamento de componentes shadcn → tabelhawebui
 
 - `Card.Root > Card.Header > Card.Title + Card.Description > Card.Content`
   → `<Card title="..." description="...">children</Card>` (a lib já tem o
@@ -86,10 +86,10 @@ accent maroon/pink).
   `<option>` nativos.
 - `Toaster` (sonner) + `toast` (svelte-sonner) → `Toaster` + `toast` da lib.
 
-## Arquivos a migrar no TabelaFin (ordem sugerida)
+## Arquivos a migrar no TAbelhaFin (ordem sugerida)
 
 1. `src/routes/+layout.svelte`
-   - `import { Toaster } from 'tabelawebui'` + `import { toast } from 'tabelawebui'`
+   - `import { Toaster } from 'tabelhawebui'` + `import { toast } from 'tabelhawebui'`
    - trocar `<Toaster />` (sonner) pelo da lib
    - o `$effect` que consome flash messages (`getFlash`) passa a chamar
      `toast.success/error/info/warning` da lib — manter o `sveltekit-flash-message`.
@@ -127,5 +127,5 @@ revisar se sobrou alguma classe shadcn hardcoded nos componentes migrados. 12. `
 ## Não fazer
 
 - Não manter nenhum `$lib/components/ui/` remanescente.
-- Não duplicar tokens: tudo vem do `tabelawebui/theme.css` (`--twui-*`).
+- Não duplicar tokens: tudo vem do `tabelhawebui/theme.css` (`--twui-*`).
 - Não reestilizar componentes da lib no app com classes Tailwind custom.

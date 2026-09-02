@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 // Smoke test of the MCP server over stdio. Usage: `bun test` or
 // `tsx test/client.mts [--source <dir>]`. Without --source, uses the parent
-// repo (tabelawebui root, where the source lives).
+// repo (tabelhawebui root, where the source lives).
 const cwd = new URL("..", import.meta.url).pathname;
 const sourceArg = process.argv.includes("--source")
   ? (process.argv[process.argv.indexOf("--source") + 1] as string)
@@ -66,7 +66,7 @@ async function main() {
     capabilities: {},
     clientInfo: { name: "test-client", version: "0.0.0" },
   });
-  assert.equal(init.serverInfo.name, "tabelawebui");
+  assert.equal(init.serverInfo.name, "tabelhawebui");
   console.log("ok: initialize");
 
   const tools = await send("tools/list", {});

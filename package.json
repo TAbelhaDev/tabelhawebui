@@ -1,10 +1,10 @@
 {
-  "name": "@tabeladev/tabelawebui",
+  "name": "@tabelhadev/tabelhawebui",
   "version": "0.28.4",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TabelaDev/tabelawebui.git"
+    "url": "https://github.com/TAbelhaDev/tabelhawebui.git"
   },
   "type": "module",
   "description": "Tema + chrome compartilhado dos apps web do ianptkcs (Catppuccin + estética 'reading someone's source file').",

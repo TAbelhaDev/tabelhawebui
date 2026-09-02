@@ -59,7 +59,7 @@ export function parseIndex(indexFile: string): IndexExport[] {
         s.length <= 60 &&
         !s.includes("<") &&
         !s.includes("`") &&
-        !s.startsWith("tabelawebui")
+        !s.startsWith("tabelhawebui")
       ) {
         category = s;
         continue;
@@ -392,7 +392,7 @@ function buildSpecialExport(
       file: "src/lib/components/feedback/toast.svelte.ts",
       category,
       description:
-        "TabelaWebUI toast store (Svelte 5 module, `$state`). Callable and " +
+        "TAbelhaWebUI toast store (Svelte 5 module, `$state`). Callable and " +
         "with per-type methods: `toast(msg)`, `toast.success(msg)`, " +
         "`toast.error(msg)`, `toast.info(msg)`, `toast.warning(msg)`. " +
         "`<Toaster>` is the only one that renders.",

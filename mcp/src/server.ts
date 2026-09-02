@@ -37,7 +37,7 @@ export async function createServer(
   sourceArg?: string,
 ): Promise<{ server: McpServer; connect: () => Promise<void> }> {
   const server = new McpServer({
-    name: "tabelawebui",
+    name: "tabelhawebui",
     version: pkg.version,
   });
 
@@ -50,9 +50,9 @@ export async function createServer(
   server.registerTool(
     "list_components",
     {
-      title: "List TabelaWebUI components",
+      title: "List TAbelhaWebUI components",
       description:
-        "Lists every component, store and function exported by TabelaWebUI, " +
+        "Lists every component, store and function exported by TAbelhaWebUI, " +
         "with category, kind and description. Use before get_component to see what exists.",
       inputSchema: { includeSubcomponents: z.boolean().optional() },
     },
@@ -92,7 +92,7 @@ export async function createServer(
     {
       title: "Full API of one component",
       description:
-        "Returns the full API of a TabelaWebUI component: props with types, " +
+        "Returns the full API of a TAbelhaWebUI component: props with types, " +
         "defaults and bindables, snippets, events and a usage example. Accepts the " +
         "component name (Button, button, Card.Header, toast, buttonVariants...).",
       inputSchema: {

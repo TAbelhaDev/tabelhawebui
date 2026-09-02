@@ -1,6 +1,6 @@
 <div align="center">
 
-# TabelaWebUI
+# TAbelhaWebUI
 
 **Tema + chrome compartilhado dos apps web do ianptkcs — Catppuccin (Latte/Mocha)
 com a estética "reading someone's source file": mono leva a estrutura, bordas
@@ -20,7 +20,7 @@ afiadas, acento configurável.**
 
 ## O que é
 
-Equivalente web do [`tabelatuiui`](https://github.com/TabelaDev/tabelatuiui)
+Equivalente web do [`tabelhatuiui`](https://github.com/TAbelhaDev/tabelhatuiui)
 (os TUIs Bubble Tea): cada app mantém só o negócio dele; a lib cuida do tema e
 dos componentes que todo mundo desenhava do zero.
 
@@ -29,7 +29,7 @@ dos componentes que todo mundo desenhava do zero.
 Requer Svelte 5.
 
 ```bash
-bun add @tabeladev/tabelawebui
+bun add @tabelhadev/tabelhawebui
 ```
 
 ## Uso
@@ -38,7 +38,7 @@ Importe o tema uma vez no app e use os componentes:
 
 ```svelte
 <script>
-	import { Card, Table, Badge, Button, Status } from '@tabeladev/tabelawebui';
+	import { Card, Table, Badge, Button, Status } from '@tabelhadev/tabelhawebui';
 </script>
 
 <Card>
@@ -57,7 +57,7 @@ Importe o tema uma vez no app e use os componentes:
 No CSS do app (uma vez):
 
 ```css
-@import "@tabeladev/tabelawebui/theme.css";
+@import "@tabelhadev/tabelhawebui/theme.css";
 ```
 
 ## Componentes
@@ -66,7 +66,7 @@ No CSS do app (uma vez):
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Card`               | painel com header e conteúdo; API composta `Card.Header`/`Title`/`Description`/`Content`/`Footer`                                                                                                                                |
 | `TabCard`            | painel "aba de arquivo" (chrome de página)                                                                                                                                                                                       |
-| `Table`              | tabela com `columns`/`rows`, snippet `cell`, sort, filtro global, selection, loading/skeleton, empty e paginação (com `pageSizeOptions`; `pageSize={0}` mostra todas as linhas sem paginação)                                    |
+| `Table`              | tabelha com `columns`/`rows`, snippet `cell`, sort, filtro global, selection, loading/skeleton, empty e paginação (com `pageSizeOptions`; `pageSize={0}` mostra todas as linhas sem paginação)                                    |
 | `Badge`              | tag de texto pequena — variantes `default` / `secondary` / `outline`                                                                                                                                                             |
 | `Button`             | variantes `default` / `primary` / `ghost` / `danger` / `outline`, `size` (default/sm/lg/icon-sm), `href`, `loading`; `buttonVariants()`                                                                                          |
 | `Panel`              | contêiner com `focused` → borda accent; `toggleable` colapsável                                                                                                                                                                  |
@@ -89,7 +89,7 @@ No CSS do app (uma vez):
 | `Nav`                | navbar: logo + links em breadcrumb com `/`                                                                                                                                                                                       |
 | `ThemeToggle`        | alterna `data-theme`/`.dark` + `localStorage`; `showLabel` opcional pra label visível claro/escuro                                                                                                                               |
 | `AppShell`           | shell do app autenticado num só export composto: `AppShell.Sidebar` (desktop: brand + nav + tema/logout), `AppShell.BottomNav` (mobile), `AppShell.Content` (`max-w-6xl`)                                                        |
-| `Wordmark`           | `Tabela` na cor do texto + `suffix` em accent; herda a fonte/tamanho do contexto                                                                                                                                                 |
+| `Wordmark`           | `TAbelha` na cor do texto + `suffix` em accent; herda a fonte/tamanho do contexto                                                                                                                                                 |
 | `Dropdown`           | menu com sombra impressa; fecha por fora/Esc                                                                                                                                                                                     |
 | `Divider`            | linha horizontal/vertical, `solid`/`dashed`, label central                                                                                                                                                                       |
 | `Eyebrow`            | label de seção mono uppercase                                                                                                                                                                                                    |
@@ -175,7 +175,7 @@ bun run lint    # prettier
 bun run build   # svelte-package (dist)
 ```
 
-O pacote é publicado no npm como `@tabeladev/tabelawebui`; as versões seguem o
+O pacote é publicado no npm como `@tabelhadev/tabelhawebui`; as versões seguem o
 `CHANGELOG.md` e a convenção do `CONTRIBUTING.md`.
 
 ## Ferramentas
@@ -212,6 +212,6 @@ Veja [CHANGELOG.md](CHANGELOG.md) para o histórico de versões.
 ## Licença
 
 [AGPL-3.0](LICENSE) — copyleft forte: você pode usar, modificar e até
-hospedar o TabelaWebUI comercialmente, mas qualquer versão modificada,
+hospedar o TAbelhaWebUI comercialmente, mas qualquer versão modificada,
 inclusive rodando como serviço via rede (SaaS), precisa continuar open source
 sob a mesma licença.

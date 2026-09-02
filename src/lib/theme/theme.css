@@ -1,10 +1,10 @@
 /*
- * tabelawebui — Catppuccin theme + "reading someone's source file" aesthetic.
- * Same design system as the portfolio and tabelatuiui: mono carries the structure,
+ * tabelhawebui — Catppuccin theme + "reading someone's source file" aesthetic.
+ * Same design system as the portfolio and tabelhatuiui: mono carries the structure,
  * sharp borders.
  *
  * Usage: import once in the app and the custom properties become the global theme.
- *   @import '@tabeladev/tabelawebui/theme.css';
+ *   @import '@tabelhadev/tabelhawebui/theme.css';
  *
  * The accent is overridable per app via CSS var --twui-accent (or inheriting
  * from its own [data-theme='dark']).

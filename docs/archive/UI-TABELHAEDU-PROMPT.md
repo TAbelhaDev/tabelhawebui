@@ -1,39 +1,39 @@
-# Prompt de integração de UI — tabelaedu ↔ tabelawebui
+# Prompt de integração de UI — tabelhaedu ↔ tabelhawebui
 
 > Prompt pronto pra colar numa sessão do opencode rodando na raiz de
-> `/home/ianptkcs/codigo/pessoal/tabelaedu`. Objetivo: migrar a camada de
-> **apresentação** dos 5 apps pra `tabelawebui` (o design system da família),
+> `/home/ianptkcs/codigo/pessoal/tabelhaedu`. Objetivo: migrar a camada de
+> **apresentação** dos 5 apps pra `tabelhawebui` (o design system da família),
 > sem tocar em nenhuma lógica de dados/servidor.
 
 ---
 
 ## Contexto
 
-- **Repo alvo:** `/home/ianptkcs/codigo/pessoal/tabelaedu` (monorepo pnpm, SvelteKit,
+- **Repo alvo:** `/home/ianptkcs/codigo/pessoal/tabelhaedu` (monorepo pnpm, SvelteKit,
   4 apps: `webapp`, `b2btool`, `b2bdemo`, `checkoutapp`; pacote compartilhado
   `packages/ui` com Button/Card shadcn + tokens Tailwind).
-- **Lib de UI:** `tabelawebui` **v0.3.1** — publicada no npm
-  (`npm view tabelawebui` → 0.3.1). Design system Catppuccin (Latte/Mocha),
+- **Lib de UI:** `tabelhawebui` **v0.3.1** — publicada no npm
+  (`npm view tabelhawebui` → 0.3.1). Design system Catppuccin (Latte/Mocha),
   estética "reading someone's source file": **mono leva estrutura, serif leva
   prosa, bordas afiadas, accent nunca azul, sombra dura 3px offset**.
-- **Referência de integração que já existe:** `~/codigo/pessoal/tabelafin` — o
+- **Referência de integração que já existe:** `~/codigo/pessoal/tabelhafin` — o
   app irmão já consome a lib (`file:` no package.json, `@import
-'tabelawebui/theme.css'` no `src/routes/layout.css`, componentes da lib nas
+'tabelhawebui/theme.css'` no `src/routes/layout.css`, componentes da lib nas
   páginas). Olhe o `layout.css` e as páginas dele como modelo fiel. A doc da
-  lib (`~/codigo/pessoal/tabelawebui/INTEGRACAO_TABELAWEBUI.md`) descreve o
+  lib (`~/codigo/pessoal/tabelhawebui/INTEGRACAO_TABELHAWEBUI.md`) descreve o
   mesmo padrão.
 
 ## O que a lib JÁ ENTREGA (não reimplementar)
 
-Import do tema (uma vez por app): `@import "tabelawebui/theme.css";`
+Import do tema (uma vez por app): `@import "tabelhawebui/theme.css";`
 
-Componentes exportados (`import { ... } from "tabelawebui";`):
+Componentes exportados (`import { ... } from "tabelhawebui";`):
 
 | Componente                | Uso                                                                                                                                            |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Card`                    | painel de formulário; API composta `Card.Root/Header/Title/Description/Content/Footer` (aceita `class` em cada parte)                          |
 | `TabCard`                 | **painel de chrome de página** (aba "arquivo" + corpo `p-6`) — o painel principal das páginas de conteúdo                                      |
-| `Table`                   | tabela com `columns` (aceita `{ key, label }`) / `rows` + snippet `cell`                                                                       |
+| `Table`                   | tabelha com `columns` (aceita `{ key, label }`) / `rows` + snippet `cell`                                                                       |
 | `Badge`                   | tag — variantes `default`/`secondary`/`outline`                                                                                                |
 | `Button`                  | variantes `default`/`primary`/`ghost`/`danger`/`outline`, `size` default/sm/lg/icon-sm, `href` (renderiza `<a>`); `buttonVariants()` exportada |
 | `Panel`                   | contêiner com `focused` → borda accent                                                                                                         |
@@ -63,10 +63,10 @@ acentos). Escuro via `[data-theme="dark"]` **ou** `.dark`. Já tem
 ## O que a lib NÃO tem (implementar NESTE repo, localmente)
 
 > **Atualização 2026-08-06:** a fundação da integração já foi feita — o
-> `@tabelaedu/ui` virou shim sobre a lib (tema + shell + componentes
+> `@tabelhaedu/ui` virou shim sobre a lib (tema + shell + componentes
 > disponíveis); falta só a conversão página-a-página. E os dois primitivos
 > abaixo (`Textarea`, `Radio`/`Checkbox`) estão sendo adicionados à **própria
-> lib** (ver `UI-TABELAEDU-LIB-PROMPT.md` no repo tabelawebui). Se já
+> lib** (ver `UI-TABELHAEDU-LIB-PROMPT.md` no repo tabelhawebui). Se já
 > estiverem no `dist/` da lib quando você rodar, **use da lib**; senão,
 > implemente localmente seguindo a convenção: Svelte 5, `<style>` escopado,
 > classes `twui-*`, **só tokens `--twui-*`** (zero Tailwind), exportado de um
@@ -87,28 +87,28 @@ acentos). Escuro via `[data-theme="dark"]` **ou** `.dark`. Já tem
 
 **Não toque:** nenhum `+page.server.ts`, `+server.ts`, `hooks.server.ts`,
 `+layout.server.ts`, guards de feature/permissão, schema, runtime de
-`@tabelaedu/db`/`auth`/`authz`, migrações, seeds, testes de dados. A UI é só
+`@tabelhaedu/db`/`auth`/`authz`, migrações, seeds, testes de dados. A UI é só
 camada de apresentação — o comportamento (load/actions/redirects) fica intacto.
 
 **Faça:**
 
-1. **Dependência:** `pnpm add tabelawebui` no root (ou nos apps). Se a rede não
-   alcançar o npm, use `file:/home/ianptkcs/codigo/pessoal/tabelawebui` (a lib
+1. **Dependência:** `pnpm add tabelhawebui` no root (ou nos apps). Se a rede não
+   alcançar o npm, use `file:/home/ianptkcs/codigo/pessoal/tabelhawebui` (a lib
    tem `dist/` pronto). Depois decida: (a) trocar os imports
-   `@tabelaedu/ui` → `tabelawebui` direto, ou (b) deixar `@tabelaedu/ui` como
-   shim de re-export (`export { default as Button } from 'tabelawebui'`) pra
+   `@tabelhaedu/ui` → `tabelhawebui` direto, ou (b) deixar `@tabelhaedu/ui` como
+   shim de re-export (`export { default as Button } from 'tabelhawebui'`) pra
    minimizar o churn dos 51 arquivos. Prefira (b) se mantiver `packages/ui`
    relevante, senão (a).
 2. **Tema por app:** em cada `src/routes/layout.css`, trocar
-   `@import '@tabelaedu/ui/styles.css';` por `@import 'tabelawebui/theme.css';`
+   `@import '@tabelhaedu/ui/styles.css';` por `@import 'tabelhawebui/theme.css';`
    (antes de qualquer import Tailwind) e mapear os tokens usados no markup
    (`text-muted-foreground` → `--twui-ink-soft`, `border-border` →
    `--twui-rule`, `bg-muted`/`bg-accent` → `--twui-accent-soft`, `text-destructive`
    → `--twui-danger`, `text-destructive`/`bg-destructive` → `--twui-danger`).
-   Manter aliases próprios (`--paper`, `--ink`, `--rule`, ...) como o TabelaFin
+   Manter aliases próprios (`--paper`, `--ink`, `--rule`, ...) como o TAbelhaFin
    faz. `--radius: 0.375rem` (afiado). Fontes: JetBrains Mono + Newsreader
    (via `@fontsource-variable` ou Google Fonts) — mono estrutura, serif prosa.
-3. **Shell de app** (`+layout.svelte` de cada app): `Nav` (logo "TabelaEdu" +
+3. **Shell de app** (`+layout.svelte` de cada app): `Nav` (logo "TAbelhaEdu" +
    items de navegação + `trailing` com `ThemeToggle` e `Dropdown` de usuário com
    Sair), `<Toaster />` montado. O webapp tem ~20 rotas de domínio — os items do
    Nav refletem as rotas principais (home, questões, vídeos, simulados,
@@ -116,7 +116,7 @@ camada de apresentação — o comportamento (load/actions/redirects) fica intac
    recompensas, mentor, atendimento, admin).
 4. **Conversão das páginas:** envolver o conteúdo em `TabCard` (chrome de
    página) ou `Card` (formulários). Trocar:
-   - `Button` (shadcn) → `Button` (tabelawebui): `default`→`primary`,
+   - `Button` (shadcn) → `Button` (tabelhawebui): `default`→`primary`,
      `destructive`→`danger`, `outline`→`outline`, `ghost`→`ghost`.
    - `<input>` cru → `Input`; `<textarea>` cru → `Textarea` (o novo);
      `<select>` cru → `Select`; `<input type="radio">` → primitivo local estilizado.
@@ -141,8 +141,8 @@ camada de apresentação — o comportamento (load/actions/redirects) fica intac
 
 ## Observações
 
-- A estética é a da família (portfolio/TabelaFin): **funcional primeiro**,
-  consistente — não inventar um redesign. Seguir o TabelaFin como referência
+- A estética é a da família (portfolio/TAbelhaFin): **funcional primeiro**,
+  consistente — não inventar um redesign. Seguir o TAbelhaFin como referência
   visual e o `theme.css` da lib como fonte dos tokens.
 - Se a lib ganhar `Textarea`/`Radio` no futuro, pode substituir os locais —
   os locais devem seguir o mesmo contrato (`twui-*` + tokens) pra troca ser

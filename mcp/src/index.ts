@@ -8,6 +8,6 @@ try {
   const { connect } = await createServer(source);
   await connect();
 } catch (e) {
-  console.error(`[tabelawebui-mcp] ${(e as Error).message}`);
+  console.error(`[tabelhawebui-mcp] ${(e as Error).message}`);
   process.exit(1);
 }

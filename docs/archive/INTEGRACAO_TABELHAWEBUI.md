@@ -1,41 +1,41 @@
-# Integração tabelacal ↔ tabelawebui — relatório de análise
+# Integração tabelhacal ↔ tabelhawebui — relatório de análise
 
 > **Objetivo deste documento:** servir de prompt para um agente trabalhar no
-> repo `tabelawebui` (~/codigo/pessoal/tabelawebui). Ele descreve o que o app
-> `tabelacal` precisa consumir da lib, o que a lib já tem, o que falta
+> repo `tabelhawebui` (~/codigo/pessoal/tabelhawebui). Ele descreve o que o app
+> `tabelhacal` precisa consumir da lib, o que a lib já tem, o que falta
 > implementar e como o app vai consumir depois.
 >
-> **Contexto:** o `tabelawebui` ainda não está publicado no npm. O tabelacal
-> apontará para `file:/home/ianptkcs/codigo/pessoal/tabelawebui` no
-> package.json até a publicação, quando troca para `"tabelawebui": "^0.1.0"`.
+> **Contexto:** o `tabelhawebui` ainda não está publicado no npm. O tabelhacal
+> apontará para `file:/home/ianptkcs/codigo/pessoal/tabelhawebui` no
+> package.json até a publicação, quando troca para `"tabelhawebui": "^0.1.0"`.
 
 ---
 
-## 1. Referência de integração já existente: o TabelaFin
+## 1. Referência de integração já existente: o TAbelhaFin
 
-O repo irmão `~/codigo/pessoal/tabelafin` já fez essa integração e serve de
+O repo irmão `~/codigo/pessoal/tabelhafin` já fez essa integração e serve de
 modelo. Padrão observado lá:
 
-- `src/routes/layout.css` faz `@import 'tabelawebui/theme.css';` e mapeia os
+- `src/routes/layout.css` faz `@import 'tabelhawebui/theme.css';` e mapeia os
   tokens `--twui-*` para os tokens shadcn (`--background`, `--primary`, ...)
   e para aliases próprios (`--paper`, `--ink`, `--rule`, ...). As cores
   Catppuccin cruas são expostas como `--catppuccin-*` → `--twui-<flavor>-*`.
 - As páginas principais usam os componentes da lib:
-  `import { Card, Table, Badge, Button, Status } from 'tabelawebui';`
+  `import { Card, Table, Badge, Button, Status } from 'tabelhawebui';`
 - O que a lib **não** cobre (Select, Dialog, Input, Label, Toaster/sonner)
   continua usando shadcn (`$lib/components/ui/*`).
 - O tema fica "afiado": `--radius: 0.375rem`, fontes 100% JetBrains Mono.
 
-**Nota importante:** o layout.css do TabelaFin referencia
+**Nota importante:** o layout.css do TAbelhaFin referencia
 `var(--twui-latte-base, #eff1f5)` etc. — ou seja, os neutros do Catppuccin
-**ainda não existem** no theme.css da lib e o TabelaFin vive de fallback
+**ainda não existem** no theme.css da lib e o TAbelhaFin vive de fallback
 hardcoded. Implementar esses neutros na lib é uma das tarefas abaixo.
 
 ---
 
-## 2. O que o tabelacal usa hoje (inventário completo)
+## 2. O que o tabelhacal usa hoje (inventário completo)
 
-Stack do tabelacal: SvelteKit + Tailwind 4 + shadcn-svelte + bits-ui
+Stack do tabelhacal: SvelteKit + Tailwind 4 + shadcn-svelte + bits-ui
 (primitivos), tema Catppuccin próprio em `src/routes/layout.css`.
 
 ### 2.1 Componentes shadcn usados (imports reais)
@@ -64,24 +64,24 @@ As que dependem do tema (não podem quebrar):
 - Semânticos shadcn: `bg-background`, `text-foreground`, `text-muted-foreground`,
   `text-destructive`, `bg-destructive/20`, `bg-muted`, `border-border`,
   `text-accent-ink`.
-- Extra custom do tabelacal (definidos no próprio layout.css):
+- Extra custom do tabelhacal (definidos no próprio layout.css):
   `--accent-ink` (rosa escurecido no claro / `--ctp-pink` no escuro),
   `--shadow-soft`, `--shadow-glow`, `--gradient-hero`.
 
 ### 2.3 Fontes
 
-O tabelacal usa **Work Sans** (corpo, `--font-sans`) + **JetBrains Mono**
-(`--font-mono`), via `@fontsource-variable`. **Diferente do TabelaFin**, que é
-100% mono. Decisão a preservar no tabelacal (ou reavaliar).
+O tabelhacal usa **Work Sans** (corpo, `--font-sans`) + **JetBrains Mono**
+(`--font-mono`), via `@fontsource-variable`. **Diferente do TAbelhaFin**, que é
+100% mono. Decisão a preservar no tabelhacal (ou reavaliar).
 
 ### 2.4 Radii
 
-O tabelacal hoje usa `--radius: 0.75rem` (mais suave que o "afiado" do TabelaFin,
+O tabelhacal hoje usa `--radius: 0.75rem` (mais suave que o "afiado" do TAbelhaFin,
 que usa 0.375rem).
 
 ---
 
-## 3. Gap analysis — o que falta no tabelawebui
+## 3. Gap analysis — o que falta no tabelhawebui
 
 ### 3.1 Tema: neutros Catppuccin por flavor (FALTA)
 
@@ -105,36 +105,36 @@ Valores oficiais Catppuccin:
   overlay1 `#7f849c`, overlay2 `#9399b2`, subtext0 `#a6adc8`, subtext1
   `#bac2de`, text `#cdd6f4`.
 
-Isso resolve os fallbacks do TabelaFin e dá ao tabelacal os `--ctp-*` sem
+Isso resolve os fallbacks do TAbelhaFin e dá ao tabelhacal os `--ctp-*` sem
 hardcode no app.
 
 ### 3.2 Button — estender (FALTA)
 
 API atual: `variant: 'default' | 'primary' | 'ghost' | 'danger'`, sem size,
-sem href. O tabelacal precisa de:
+sem href. O tabelhacal precisa de:
 
 - **`size`**: `'default' | 'sm' | 'lg' | 'icon-sm'` (mapear alturas
   aproximadas do shadcn: sm ~h-7, lg ~h-9, icon-sm ~size-7, default ~h-8).
 - **`href`**: quando presente, renderizar `<a>` com o href (comportamento de
   link), como o Button shadcn faz.
 - **Variante `outline`**: borda com o `--twui-rule` e hover de fundo
-  (equivalente ao `variant="outline"` shadcn). O `danger` do tabelawebui já
+  (equivalente ao `variant="outline"` shadcn). O `danger` do tabelhawebui já
   cobre o `destructive` do shadcn.
 - **`buttonVariants` como função de classes** (exportada): o `+page.svelte`
-  do tabelacal usa `buttonVariants({ size: 'sm' })` e
+  do tabelhacal usa `buttonVariants({ size: 'sm' })` e
   `buttonVariants({ variant: 'outline', size: 'sm' })` como string de classes
-  para um `<span>` decorativo. Pode ser exportada do módulo, ou o tabelacal
+  para um `<span>` decorativo. Pode ser exportada do módulo, ou o tabelhacal
   troca os `<span>` por `<Button>` real.
 
 ### 3.3 Card — API composta (FALTA)
 
-API atual: `title`/`description`/`header` (snippet)/`children`. O tabelacal usa
+API atual: `title`/`description`/`header` (snippet)/`children`. O tabelhacal usa
 a API **composta** do shadcn (`Card.Root`, `Card.Header`, `Card.Title`,
 `Card.Description`, `Card.Content`, `Card.Footer`), com `class` em cada parte.
 
 **Implementar:** sub-componentes `Card.Header`, `Card.Title`, `Card.Description`,
 `Card.Content`, `Card.Footer` exportados junto do `Card` (mantendo a API simples
-atual intacta para o TabelaFin). Estrutura mínima:
+atual intacta para o TAbelhaFin). Estrutura mínima:
 
 - `Card` (Root): `<section class="twui-card">` — manter.
 - `Card.Header`: container com `border-bottom` (hoje `twui-card-header`).
@@ -142,11 +142,11 @@ atual intacta para o TabelaFin). Estrutura mínima:
   `twui-card-title` / `twui-card-description`).
 - `Card.Content`: wrapper com padding (`twui-card-content`).
 - `Card.Footer`: container com `border-top` e `display:flex` (novo).
-- Todos aceitam `class` para o tabelacal customizar.
+- Todos aceitam `class` para o tabelhacal customizar.
 
 ### 3.4 Badge — variantes (FALTA)
 
-API atual: só `children` + `class`. O tabelacal usa `variant="secondary"` e
+API atual: só `children` + `class`. O tabelhacal usa `variant="secondary"` e
 `variant="outline"`.
 
 **Implementar:** prop `variant: 'default' | 'secondary' | 'outline'`.
@@ -157,7 +157,7 @@ API atual: só `children` + `class`. O tabelacal usa `variant="secondary"` e
 
 ### 3.5 Input e Label (FALTA)
 
-Não existem na lib. O tabelacal usa:
+Não existem na lib. O tabelhacal usa:
 
 - **`Input`**: wrapper de `<input>` com borda `--twui-rule`, fundo
   `--twui-paper`, texto `--twui-ink`, `:focus` com outline/borda
@@ -166,32 +166,32 @@ Não existem na lib. O tabelacal usa:
   - `class`.
 - **`Label`**: `<label>` com cor `--twui-ink`, forward de `for` + `class`.
 
-### 3.6 O que fica no shadcn do tabelacal (não implementar)
+### 3.6 O que fica no shadcn do tabelhacal (não implementar)
 
-`Select`, `Dialog`, `Toaster`/sonner — primitivos bits-ui. O TabelaFin mantém
-shadcn nesses casos; o tabelacal fará o mesmo. (O `Dialog` do tabelacal hoje nem
+`Select`, `Dialog`, `Toaster`/sonner — primitivos bits-ui. O TAbelhaFin mantém
+shadcn nesses casos; o tabelhacal fará o mesmo. (O `Dialog` do tabelhacal hoje nem
 é usado, então é candidato a remoção.)
 
 ---
 
-## 4. Como o tabelacal vai consumir (depois da implementação)
+## 4. Como o tabelhacal vai consumir (depois da implementação)
 
-1. `package.json`: `"tabelawebui": "file:/home/ianptkcs/codigo/pessoal/tabelawebui"`
+1. `package.json`: `"tabelhawebui": "file:/home/ianptkcs/codigo/pessoal/tabelhawebui"`
    (vira `"^0.1.0"` após a publicação no npm).
 2. `src/routes/layout.css`:
-   - `@import 'tabelawebui/theme.css';` antes das imports do shadcn/tailwind.
+   - `@import 'tabelhawebui/theme.css';` antes das imports do shadcn/tailwind.
    - Remover as primitivas Catppuccin duplicadas; usar `--twui-latte-*` /
-     `--twui-mocha-*` como fonte de verdade (padrão TabelaFin).
-   - Manter extras do tabelacal: `--accent-ink`, `--shadow-*`, `--gradient-hero`,
+     `--twui-mocha-*` como fonte de verdade (padrão TAbelhaFin).
+   - Manter extras do tabelhacal: `--accent-ink`, `--shadow-*`, `--gradient-hero`,
      fontes (Work Sans + JetBrains Mono) e `--radius: 0.75rem` (decisão de
-     design a confirmar — TabelaFin usa 0.375rem "afiado").
+     design a confirmar — TAbelhaFin usa 0.375rem "afiado").
 3. Trocar imports nos `.svelte`:
-   - `Button` (shadcn) → `Button` (tabelawebui) — ajustando `variant`:
+   - `Button` (shadcn) → `Button` (tabelhawebui) — ajustando `variant`:
      `outline`→`outline`, `destructive`→`danger`, `default`→`primary` (a lib
      chama o filled de "primary"), `ghost`→`ghost`.
-   - `Card.Root/Header/...` (shadcn) → `Card` composto (tabelawebui).
+   - `Card.Root/Header/...` (shadcn) → `Card` composto (tabelhawebui).
    - `Badge` → `Badge` com `variant` (secondary/outline).
-   - `Input`/`Label` (shadcn) → `Input`/`Label` (tabelawebui).
+   - `Input`/`Label` (shadcn) → `Input`/`Label` (tabelhawebui).
    - `Select`, Toaster/sonner → permanecem shadcn.
 
 ---
@@ -203,12 +203,12 @@ shadcn nesses casos; o tabelacal fará o mesmo. (O `Dialog` do tabelacal hoje ne
 - `Button` aceita `size`, `href` e `variant="outline"`; continua suportando
   `variant="danger"`; a API antiga (`default`/`primary`/`ghost`) não quebra.
 - `Card` composto funcional mantendo a API simples de `title`/`description`.
-- `Badge` aceita `variant` sem quebrar o uso sem variante (TabelaFin usa Badge
+- `Badge` aceita `variant` sem quebrar o uso sem variante (TAbelhaFin usa Badge
   sem `variant`, só com `class`).
 - `Input` e `Label` existem e fazem forward de atributos.
 - `index.js` exporta todos: `Card`, `Table`, `Badge`, `Button`, `Panel`,
   `Status`, `Input`, `Label`.
 - Build da lib (`bun run build` / svelte-package) passa e gera `dist/`
-  atualizado (o tabelacal consome `file:` → usa o `dist/`).
-- Regressão visual no TabelaFin (ele usa a lib pelo mesmo `file:`): nada do que
+  atualizado (o tabelhacal consome `file:` → usa o `dist/`).
+- Regressão visual no TAbelhaFin (ele usa a lib pelo mesmo `file:`): nada do que
   ele usa quebra — os componentes só ganham props novas.

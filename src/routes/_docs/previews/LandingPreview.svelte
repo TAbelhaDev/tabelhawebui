@@ -29,7 +29,7 @@
 </script>
 
 {#snippet heroTitle()}
-	Tabela<span style="color: var(--twui-accent);">Web</span>UI
+	TAbelha<span style="color: var(--twui-accent);">Web</span>UI
 {/snippet}
 
 {#snippet sparkles()}

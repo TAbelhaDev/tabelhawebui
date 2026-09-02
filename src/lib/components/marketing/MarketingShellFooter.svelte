@@ -2,7 +2,7 @@
 	import Wordmark from '../layout/Wordmark.svelte';
 
 	let {
-		prefix = 'Tabela',
+		prefix = 'TAbelha',
 		suffix = '',
 		license,
 		repoUrl,

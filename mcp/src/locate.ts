@@ -30,20 +30,20 @@ function resolveRoot(sourceArg?: string): string | undefined {
   const env = process.env.TWUI_MCP_SOURCE;
   if (env) return resolve(process.cwd(), env);
 
-  // cwd is the tabelawebui repo (e.g. running from inside it)
+  // cwd is the tabelhawebui repo (e.g. running from inside it)
   const cwdPkg = join(process.cwd(), "package.json");
   if (existsSync(cwdPkg)) {
     try {
       const pkg = JSON.parse(readPkg(cwdPkg)) as { name?: string };
-      if (pkg.name === "@tabeladev/tabelawebui") return process.cwd();
+      if (pkg.name === "@tabelhadev/tabelhawebui") return process.cwd();
     } catch {
       /* ignore */
     }
   }
 
-  // Resolve `@tabeladev/tabelawebui` from cwd (walks up node_modules).
+  // Resolve `@tabelhadev/tabelhawebui` from cwd (walks up node_modules).
   try {
-    const entry = require.resolve("@tabeladev/tabelawebui", {
+    const entry = require.resolve("@tabelhadev/tabelhawebui", {
       paths: [process.cwd()],
     });
     // entry points at dist/index.js (or theme.css) — the package root is its dirname.
@@ -121,12 +121,12 @@ function describeLayout(root: string): SourceLayout {
   };
 }
 
-/** Locates the tabelawebui source (repo checkout or published package). */
+/** Locates the tabelhawebui source (repo checkout or published package). */
 export function locate(sourceArg?: string): SourceLayout {
   const root = resolveRoot(sourceArg);
   if (!root) {
     throw new Error(
-      "tabelawebui not found. Install the package in the project (bun add @tabeladev/tabelawebui) " +
+      "tabelhawebui not found. Install the package in the project (bun add @tabelhadev/tabelhawebui) " +
         "or point at a checkout with TWUI_MCP_SOURCE or --source <dir>.",
     );
   }

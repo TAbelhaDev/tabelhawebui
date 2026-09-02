@@ -158,7 +158,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   with label + logout form), `AppShell.BottomNav` (mobile), `AppShell.Content`
   (`max-w-6xl` container with responsive padding). Responsive at `lg`
   (1024px). Request: `requests/20260812-app-shell.md`.
-- `Wordmark`: renders `Tabela` in the text color plus a `suffix` in accent,
+- `Wordmark`: renders `TAbelha` in the text color plus a `suffix` in accent,
   inheriting the context font/size — used in the shell and standalone (auth,
   marketing, hero). Request: `requests/20260812-app-shell.md`.
 - `ThemeToggle` gains optional `showLabel` + `label` props for a visible
@@ -219,7 +219,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.15.1]
 
 > From this entry on the changelog is written in English, per the language
-> convention now carried by tabelascaffold. Earlier entries are left as the
+> convention now carried by tabelhascaffold. Earlier entries are left as the
 > historical record rather than retranslated.
 
 ### Changed
@@ -256,8 +256,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Interno
 
-- `.tabelascaffoldignore` marcando `ci.yml` e `release.yml` como divergência
-  intencional: o `tabelascaffold setup` sobrescreveria o workflow que publica no
+- `.tabelhascaffoldignore` marcando `ci.yml` e `release.yml` como divergência
+  intencional: o `tabelhascaffold setup` sobrescreveria o workflow que publica no
   npm pelo genérico.
 
 ## [0.14.2]
@@ -326,7 +326,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `ChatMessage` — bubble de mensagem de chat (`role` user/assistant, `content`,
   `name` com default por role, `streaming` → ellipsis pulsante quando sem
-  conteúdo). Presentacional, sem lógica de API/SSE — extraído do TabelaFin.
+  conteúdo). Presentacional, sem lógica de API/SSE — extraído do TAbelhaFin.
 
 ## [0.9.0]
 
@@ -348,7 +348,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `FloatingActionPill` — pill flutuante clicável (estilo `StatusPill`, mas `<button>`):
   `position` (canto fixo), `label`/`expandedLabel` → `aria-label`, `expanded` →
   `aria-expanded`, sombra `--twui-shadow-offset` com press no clique (offset some).
-  Pro extraída do TabelaFin (acesso ao chat de IA).
+  Pro extraída do TAbelhaFin (acesso ao chat de IA).
 
 ## [0.7.0]
 
@@ -371,7 +371,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Adicionado
 
 - `StatusPill` — pill fixa estilo toast (canto configurável, `closable`, `visible`
-  bindable, `style`/`class` pra offset custom) extraída do TabelaFin.
+  bindable, `style`/`class` pra offset custom) extraída do TAbelhaFin.
 - Primitivos de formulário: `Radio`/`Checkbox` (hidden input + indicador) e
   `Textarea` (espelha o `Input`).
 - Absorção inspirada no PrimeNG (`docs/archive/ABSORCAO-PRIMENG.md`):
@@ -435,7 +435,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (Latte/Mocha: base/mantle/crust/surface0-2/overlay0-2/subtext0-1/text) e aliases
   por flavor ativo (`--twui-base`, `--twui-surface0`, `--twui-text`, ...).
 - Componentes de formulário: `Input` (incl. `type="password"`/`file`), `Label`,
-  `Select`, `Toaster` + store `toast` (compatível com svelte-sonner no uso do TabelaFin).
+  `Select`, `Toaster` + store `toast` (compatível com svelte-sonner no uso do TAbelhaFin).
 - Componentes de chrome (portfolio): `TabCard`, `Timeline` + `TimelineItem`,
   `RuleCard`, `Nav`, `ThemeToggle`, `Dropdown`.
 - Utilitários: `Divider`, `Eyebrow`, `BracketLink`.

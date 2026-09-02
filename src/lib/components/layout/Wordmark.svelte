@@ -1,6 +1,6 @@
 <script lang="ts">
 	let {
-		prefix = 'Tabela',
+		prefix = 'TAbelha',
 		suffix = '',
 		class: className = ''
 	}: {
